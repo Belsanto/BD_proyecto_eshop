@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eshop_bd;
+package com.entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -24,13 +24,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author EQUIPO
  */
 @Entity
-@Table(name = "detalle_canje")
+@Table(name = "detalle_compra")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DetalleCanje.findAll", query = "SELECT d FROM DetalleCanje d")
-    , @NamedQuery(name = "DetalleCanje.findByCodigo", query = "SELECT d FROM DetalleCanje d WHERE d.codigo = :codigo")
-    , @NamedQuery(name = "DetalleCanje.findBySubTotal", query = "SELECT d FROM DetalleCanje d WHERE d.subTotal = :subTotal")})
-public class DetalleCanje implements Serializable {
+    @NamedQuery(name = "DetalleCompra.findAll", query = "SELECT d FROM DetalleCompra d")
+    , @NamedQuery(name = "DetalleCompra.findByCodigo", query = "SELECT d FROM DetalleCompra d WHERE d.codigo = :codigo")
+    , @NamedQuery(name = "DetalleCompra.findBySubTotal", query = "SELECT d FROM DetalleCompra d WHERE d.subTotal = :subTotal")
+    , @NamedQuery(name = "DetalleCompra.findByUnidades", query = "SELECT d FROM DetalleCompra d WHERE d.unidades = :unidades")})
+public class DetalleCompra implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,23 +42,27 @@ public class DetalleCanje implements Serializable {
     @Basic(optional = false)
     @Column(name = "sub_total")
     private double subTotal;
-    @JoinColumn(name = "canje_codigo", referencedColumnName = "codigo")
+    @Basic(optional = false)
+    @Column(name = "unidades")
+    private int unidades;
+    @JoinColumn(name = "producto_compra_codigo", referencedColumnName = "codigo")
     @ManyToOne
-    private Canje canjeCodigo;
-    @JoinColumn(name = "producto_canje_codigo", referencedColumnName = "codigo")
+    private Producto productoCompraCodigo;
+    @JoinColumn(name = "compra_codigo", referencedColumnName = "codigo")
     @ManyToOne
-    private Producto productoCanjeCodigo;
+    private Compra compraCodigo;
 
-    public DetalleCanje() {
+    public DetalleCompra() {
     }
 
-    public DetalleCanje(Integer codigo) {
+    public DetalleCompra(Integer codigo) {
         this.codigo = codigo;
     }
 
-    public DetalleCanje(Integer codigo, double subTotal) {
+    public DetalleCompra(Integer codigo, double subTotal, int unidades) {
         this.codigo = codigo;
         this.subTotal = subTotal;
+        this.unidades = unidades;
     }
 
     public Integer getCodigo() {
@@ -76,20 +81,28 @@ public class DetalleCanje implements Serializable {
         this.subTotal = subTotal;
     }
 
-    public Canje getCanjeCodigo() {
-        return canjeCodigo;
+    public int getUnidades() {
+        return unidades;
     }
 
-    public void setCanjeCodigo(Canje canjeCodigo) {
-        this.canjeCodigo = canjeCodigo;
+    public void setUnidades(int unidades) {
+        this.unidades = unidades;
     }
 
-    public Producto getProductoCanjeCodigo() {
-        return productoCanjeCodigo;
+    public Producto getProductoCompraCodigo() {
+        return productoCompraCodigo;
     }
 
-    public void setProductoCanjeCodigo(Producto productoCanjeCodigo) {
-        this.productoCanjeCodigo = productoCanjeCodigo;
+    public void setProductoCompraCodigo(Producto productoCompraCodigo) {
+        this.productoCompraCodigo = productoCompraCodigo;
+    }
+
+    public Compra getCompraCodigo() {
+        return compraCodigo;
+    }
+
+    public void setCompraCodigo(Compra compraCodigo) {
+        this.compraCodigo = compraCodigo;
     }
 
     @Override
@@ -102,10 +115,10 @@ public class DetalleCanje implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DetalleCanje)) {
+        if (!(object instanceof DetalleCompra)) {
             return false;
         }
-        DetalleCanje other = (DetalleCanje) object;
+        DetalleCompra other = (DetalleCompra) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
@@ -114,7 +127,7 @@ public class DetalleCanje implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.DetalleCanje[ codigo=" + codigo + " ]";
+        return "eshop_bd.DetalleCompra[ codigo=" + codigo + " ]";
     }
     
 }

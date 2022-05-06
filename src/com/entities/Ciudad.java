@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eshop_bd;
+package com.entities;
 
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,13 +28,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author EQUIPO
  */
 @Entity
-@Table(name = "delivery")
+@Table(name = "ciudad")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Delivery.findAll", query = "SELECT d FROM Delivery d")
-    , @NamedQuery(name = "Delivery.findByCodigo", query = "SELECT d FROM Delivery d WHERE d.codigo = :codigo")
-    , @NamedQuery(name = "Delivery.findByNombre", query = "SELECT d FROM Delivery d WHERE d.nombre = :nombre")})
-public class Delivery implements Serializable {
+    @NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c")
+    , @NamedQuery(name = "Ciudad.findByCodigo", query = "SELECT c FROM Ciudad c WHERE c.codigo = :codigo")
+    , @NamedQuery(name = "Ciudad.findByNombre", query = "SELECT c FROM Ciudad c WHERE c.nombre = :nombre")})
+public class Ciudad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,17 +45,24 @@ public class Delivery implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(mappedBy = "empresaCodigo")
-    private List<Ruta> rutaList;
+    @OneToMany(mappedBy = "ciudadProductoCodigo")
+    private List<ProductoSubasta> productoSubastaList;
+    @OneToMany(mappedBy = "ciudadProductoCodigo")
+    private List<Producto> productoList;
+    @JoinColumn(name = "pais_codigo", referencedColumnName = "codigo")
+    @ManyToOne(optional = false)
+    private Pais paisCodigo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudadUsuarioCodigo")
+    private List<Usuario> usuarioList;
 
-    public Delivery() {
+    public Ciudad() {
     }
 
-    public Delivery(Integer codigo) {
+    public Ciudad(Integer codigo) {
         this.codigo = codigo;
     }
 
-    public Delivery(Integer codigo, String nombre) {
+    public Ciudad(Integer codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
     }
@@ -74,12 +84,38 @@ public class Delivery implements Serializable {
     }
 
     @XmlTransient
-    public List<Ruta> getRutaList() {
-        return rutaList;
+    public List<ProductoSubasta> getProductoSubastaList() {
+        return productoSubastaList;
     }
 
-    public void setRutaList(List<Ruta> rutaList) {
-        this.rutaList = rutaList;
+    public void setProductoSubastaList(List<ProductoSubasta> productoSubastaList) {
+        this.productoSubastaList = productoSubastaList;
+    }
+
+    @XmlTransient
+    public List<Producto> getProductoList() {
+        return productoList;
+    }
+
+    public void setProductoList(List<Producto> productoList) {
+        this.productoList = productoList;
+    }
+
+    public Pais getPaisCodigo() {
+        return paisCodigo;
+    }
+
+    public void setPaisCodigo(Pais paisCodigo) {
+        this.paisCodigo = paisCodigo;
+    }
+
+    @XmlTransient
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override
@@ -92,10 +128,10 @@ public class Delivery implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Delivery)) {
+        if (!(object instanceof Ciudad)) {
             return false;
         }
-        Delivery other = (Delivery) object;
+        Ciudad other = (Ciudad) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
@@ -104,7 +140,7 @@ public class Delivery implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.Delivery[ codigo=" + codigo + " ]";
+        return "eshop_bd.Ciudad[ codigo=" + codigo + " ]";
     }
     
 }

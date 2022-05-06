@@ -3,36 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eshop_bd;
+package com.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author EQUIPO
  */
 @Entity
-@Table(name = "pais")
+@Table(name = "detalle_canje")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pais.findAll", query = "SELECT p FROM Pais p")
-    , @NamedQuery(name = "Pais.findByCodigo", query = "SELECT p FROM Pais p WHERE p.codigo = :codigo")
-    , @NamedQuery(name = "Pais.findByNombre", query = "SELECT p FROM Pais p WHERE p.nombre = :nombre")})
-public class Pais implements Serializable {
+    @NamedQuery(name = "DetalleCanje.findAll", query = "SELECT d FROM DetalleCanje d")
+    , @NamedQuery(name = "DetalleCanje.findByCodigo", query = "SELECT d FROM DetalleCanje d WHERE d.codigo = :codigo")
+    , @NamedQuery(name = "DetalleCanje.findBySubTotal", query = "SELECT d FROM DetalleCanje d WHERE d.subTotal = :subTotal")})
+public class DetalleCanje implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,21 +39,25 @@ public class Pais implements Serializable {
     @Column(name = "codigo")
     private Integer codigo;
     @Basic(optional = false)
-    @Column(name = "nombre")
-    private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "paisCodigo")
-    private List<Ciudad> ciudadList;
+    @Column(name = "sub_total")
+    private double subTotal;
+    @JoinColumn(name = "canje_codigo", referencedColumnName = "codigo")
+    @ManyToOne
+    private Canje canjeCodigo;
+    @JoinColumn(name = "producto_canje_codigo", referencedColumnName = "codigo")
+    @ManyToOne
+    private Producto productoCanjeCodigo;
 
-    public Pais() {
+    public DetalleCanje() {
     }
 
-    public Pais(Integer codigo) {
+    public DetalleCanje(Integer codigo) {
         this.codigo = codigo;
     }
 
-    public Pais(Integer codigo, String nombre) {
+    public DetalleCanje(Integer codigo, double subTotal) {
         this.codigo = codigo;
-        this.nombre = nombre;
+        this.subTotal = subTotal;
     }
 
     public Integer getCodigo() {
@@ -66,21 +68,28 @@ public class Pais implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public double getSubTotal() {
+        return subTotal;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
     }
 
-    @XmlTransient
-    public List<Ciudad> getCiudadList() {
-        return ciudadList;
+    public Canje getCanjeCodigo() {
+        return canjeCodigo;
     }
 
-    public void setCiudadList(List<Ciudad> ciudadList) {
-        this.ciudadList = ciudadList;
+    public void setCanjeCodigo(Canje canjeCodigo) {
+        this.canjeCodigo = canjeCodigo;
+    }
+
+    public Producto getProductoCanjeCodigo() {
+        return productoCanjeCodigo;
+    }
+
+    public void setProductoCanjeCodigo(Producto productoCanjeCodigo) {
+        this.productoCanjeCodigo = productoCanjeCodigo;
     }
 
     @Override
@@ -93,10 +102,10 @@ public class Pais implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pais)) {
+        if (!(object instanceof DetalleCanje)) {
             return false;
         }
-        Pais other = (Pais) object;
+        DetalleCanje other = (DetalleCanje) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
@@ -105,7 +114,7 @@ public class Pais implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.Pais[ codigo=" + codigo + " ]";
+        return "eshop_bd.DetalleCanje[ codigo=" + codigo + " ]";
     }
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eshop_bd;
+package com.entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -30,15 +30,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author EQUIPO
  */
 @Entity
-@Table(name = "ruta")
+@Table(name = "canje")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Ruta.findAll", query = "SELECT r FROM Ruta r")
-    , @NamedQuery(name = "Ruta.findByCodigo", query = "SELECT r FROM Ruta r WHERE r.codigo = :codigo")
-    , @NamedQuery(name = "Ruta.findByEstado", query = "SELECT r FROM Ruta r WHERE r.estado = :estado")
-    , @NamedQuery(name = "Ruta.findByFechaFinEntrega", query = "SELECT r FROM Ruta r WHERE r.fechaFinEntrega = :fechaFinEntrega")
-    , @NamedQuery(name = "Ruta.findByFechaInicioEntrega", query = "SELECT r FROM Ruta r WHERE r.fechaInicioEntrega = :fechaInicioEntrega")})
-public class Ruta implements Serializable {
+    @NamedQuery(name = "Canje.findAll", query = "SELECT c FROM Canje c")
+    , @NamedQuery(name = "Canje.findByCodigo", query = "SELECT c FROM Canje c WHERE c.codigo = :codigo")
+    , @NamedQuery(name = "Canje.findByFechaCanje", query = "SELECT c FROM Canje c WHERE c.fechaCanje = :fechaCanje")})
+public class Canje implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,34 +45,30 @@ public class Ruta implements Serializable {
     @Column(name = "codigo")
     private Integer codigo;
     @Basic(optional = false)
-    @Column(name = "estado")
-    private String estado;
-    @Basic(optional = false)
-    @Column(name = "fecha_fin_entrega")
+    @Column(name = "fecha_canje")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaFinEntrega;
-    @Basic(optional = false)
-    @Column(name = "fecha_inicio_entrega")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaInicioEntrega;
-    @JoinColumn(name = "empresa_codigo", referencedColumnName = "codigo")
+    private Date fechaCanje;
+    @OneToMany(mappedBy = "canjeCodigo")
+    private List<DetalleCanje> detalleCanjeList;
+    @JoinColumn(name = "cliente_codigo", referencedColumnName = "codigo")
     @ManyToOne
-    private Delivery empresaCodigo;
-    @OneToMany(mappedBy = "rutaCodigo")
+    private Usuario clienteCodigo;
+    @JoinColumn(name = "detalle_entrega_codigo", referencedColumnName = "codigo")
+    @ManyToOne
+    private DetalleEntrega detalleEntregaCodigo;
+    @OneToMany(mappedBy = "canjeEntregarCodigo")
     private List<DetalleEntrega> detalleEntregaList;
 
-    public Ruta() {
+    public Canje() {
     }
 
-    public Ruta(Integer codigo) {
+    public Canje(Integer codigo) {
         this.codigo = codigo;
     }
 
-    public Ruta(Integer codigo, String estado, Date fechaFinEntrega, Date fechaInicioEntrega) {
+    public Canje(Integer codigo, Date fechaCanje) {
         this.codigo = codigo;
-        this.estado = estado;
-        this.fechaFinEntrega = fechaFinEntrega;
-        this.fechaInicioEntrega = fechaInicioEntrega;
+        this.fechaCanje = fechaCanje;
     }
 
     public Integer getCodigo() {
@@ -85,36 +79,37 @@ public class Ruta implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getEstado() {
-        return estado;
+    public Date getFechaCanje() {
+        return fechaCanje;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setFechaCanje(Date fechaCanje) {
+        this.fechaCanje = fechaCanje;
     }
 
-    public Date getFechaFinEntrega() {
-        return fechaFinEntrega;
+    @XmlTransient
+    public List<DetalleCanje> getDetalleCanjeList() {
+        return detalleCanjeList;
     }
 
-    public void setFechaFinEntrega(Date fechaFinEntrega) {
-        this.fechaFinEntrega = fechaFinEntrega;
+    public void setDetalleCanjeList(List<DetalleCanje> detalleCanjeList) {
+        this.detalleCanjeList = detalleCanjeList;
     }
 
-    public Date getFechaInicioEntrega() {
-        return fechaInicioEntrega;
+    public Usuario getClienteCodigo() {
+        return clienteCodigo;
     }
 
-    public void setFechaInicioEntrega(Date fechaInicioEntrega) {
-        this.fechaInicioEntrega = fechaInicioEntrega;
+    public void setClienteCodigo(Usuario clienteCodigo) {
+        this.clienteCodigo = clienteCodigo;
     }
 
-    public Delivery getEmpresaCodigo() {
-        return empresaCodigo;
+    public DetalleEntrega getDetalleEntregaCodigo() {
+        return detalleEntregaCodigo;
     }
 
-    public void setEmpresaCodigo(Delivery empresaCodigo) {
-        this.empresaCodigo = empresaCodigo;
+    public void setDetalleEntregaCodigo(DetalleEntrega detalleEntregaCodigo) {
+        this.detalleEntregaCodigo = detalleEntregaCodigo;
     }
 
     @XmlTransient
@@ -136,10 +131,10 @@ public class Ruta implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Ruta)) {
+        if (!(object instanceof Canje)) {
             return false;
         }
-        Ruta other = (Ruta) object;
+        Canje other = (Canje) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
@@ -148,7 +143,7 @@ public class Ruta implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.Ruta[ codigo=" + codigo + " ]";
+        return "eshop_bd.Canje[ codigo=" + codigo + " ]";
     }
     
 }

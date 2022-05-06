@@ -2,21 +2,21 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="eShop_BDPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>eshop_bd.Ciudad</class>
-    <class>eshop_bd.DetalleCanje</class>
-    <class>eshop_bd.DetalleEntrega</class>
-    <class>eshop_bd.ProductoSubasta</class>
-    <class>eshop_bd.Delivery</class>
-    <class>eshop_bd.Producto</class>
-    <class>eshop_bd.Comentario</class>
-    <class>eshop_bd.Subasta</class>
-    <class>eshop_bd.Ruta</class>
-    <class>eshop_bd.Canje</class>
-    <class>eshop_bd.Pais</class>
-    <class>eshop_bd.SubastaUsuario</class>
-    <class>eshop_bd.Usuario</class>
-    <class>eshop_bd.DetalleCompra</class>
-    <class>eshop_bd.Compra</class>
+    <class>com.entities.SubastaUsuario</class>
+    <class>com.entities.Ruta</class>
+    <class>com.entities.Delivery</class>
+    <class>com.entities.Ciudad</class>
+    <class>com.entities.Pais</class>
+    <class>com.entities.Compra</class>
+    <class>com.entities.Comentario</class>
+    <class>com.entities.Producto</class>
+    <class>com.entities.DetalleCompra</class>
+    <class>com.entities.DetalleCanje</class>
+    <class>com.entities.Subasta</class>
+    <class>com.entities.Usuario</class>
+    <class>com.entities.DetalleEntrega</class>
+    <class>com.entities.ProductoSubasta</class>
+    <class>com.entities.Canje</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/eshop_proyectobd?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
