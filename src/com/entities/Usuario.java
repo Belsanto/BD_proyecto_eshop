@@ -41,6 +41,24 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuario.findByUsername", query = "SELECT u FROM Usuario u WHERE u.username = :username")})
 public class Usuario implements Serializable {
 
+    @JoinTable(name = "usuario_productos_favoritos", joinColumns = {
+        @JoinColumn(name = "usuarios_potenciales_codigo", referencedColumnName = "codigo")}, inverseJoinColumns = {
+        @JoinColumn(name = "productos_favoritos_codigo", referencedColumnName = "codigo")})
+    @ManyToMany
+    private List<Producto> productoList;
+    @OneToMany(mappedBy = "compradorCodigo")
+    private List<Compra> compraList;
+    @OneToMany(mappedBy = "vendedorCodigo")
+    private List<ProductoSubasta> productoSubastaList;
+    @OneToMany(mappedBy = "clienteCodigo")
+    private List<Canje> canjeList;
+    @OneToMany(mappedBy = "vendedorCodigo")
+    private List<Producto> productoList1;
+    @OneToMany(mappedBy = "userComentCodigo")
+    private List<Comentario> comentarioList;
+    @OneToMany(mappedBy = "usuarioSubastaCodigo")
+    private List<SubastaUsuario> subastaUsuarioList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,26 +79,14 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "username")
     private String username;
-    @JoinTable(name = "usuario_productos_favoritos", joinColumns = {
-        @JoinColumn(name = "usuarios_potenciales_codigo", referencedColumnName = "codigo")}, inverseJoinColumns = {
-        @JoinColumn(name = "productos_favoritos_codigo", referencedColumnName = "codigo")})
-    @ManyToMany
-    private List<Producto> productoList;
-    @OneToMany(mappedBy = "compradorCodigo")
-    private List<Compra> compraList;
-    @OneToMany(mappedBy = "vendedorCodigo")
-    private List<ProductoSubasta> productoSubastaList;
-    @OneToMany(mappedBy = "clienteCodigo")
-    private List<Canje> canjeList;
-    @OneToMany(mappedBy = "vendedorCodigo")
-    private List<Producto> productoList1;
-    @OneToMany(mappedBy = "userComentCodigo")
-    private List<Comentario> comentarioList;
-    @OneToMany(mappedBy = "usuarioSubastaCodigo")
-    private List<SubastaUsuario> subastaUsuarioList;
+    @JoinColumn(name = "cartera_puntos_codigo", referencedColumnName = "codigo")
+    @ManyToOne
+    private Cartera carteraPuntosCodigo;
     @JoinColumn(name = "ciudad_usuario_codigo", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private Ciudad ciudadUsuarioCodigo;
+    @OneToMany(mappedBy = "usuariosCodigo")
+    private List<Cartera> carteraList;
 
     public Usuario() {
     }
@@ -145,6 +151,56 @@ public class Usuario implements Serializable {
         this.username = username;
     }
 
+    public Cartera getCarteraPuntosCodigo() {
+        return carteraPuntosCodigo;
+    }
+
+    public void setCarteraPuntosCodigo(Cartera carteraPuntosCodigo) {
+        this.carteraPuntosCodigo = carteraPuntosCodigo;
+    }
+
+    public Ciudad getCiudadUsuarioCodigo() {
+        return ciudadUsuarioCodigo;
+    }
+
+    public void setCiudadUsuarioCodigo(Ciudad ciudadUsuarioCodigo) {
+        this.ciudadUsuarioCodigo = ciudadUsuarioCodigo;
+    }
+
+    @XmlTransient
+    public List<Cartera> getCarteraList() {
+        return carteraList;
+    }
+
+    public void setCarteraList(List<Cartera> carteraList) {
+        this.carteraList = carteraList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (codigo != null ? codigo.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Usuario)) {
+            return false;
+        }
+        Usuario other = (Usuario) object;
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.entities.Usuario[ codigo=" + codigo + " ]";
+    }
+
     @XmlTransient
     public List<Producto> getProductoList() {
         return productoList;
@@ -206,39 +262,6 @@ public class Usuario implements Serializable {
 
     public void setSubastaUsuarioList(List<SubastaUsuario> subastaUsuarioList) {
         this.subastaUsuarioList = subastaUsuarioList;
-    }
-
-    public Ciudad getCiudadUsuarioCodigo() {
-        return ciudadUsuarioCodigo;
-    }
-
-    public void setCiudadUsuarioCodigo(Ciudad ciudadUsuarioCodigo) {
-        this.ciudadUsuarioCodigo = ciudadUsuarioCodigo;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (codigo != null ? codigo.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuario)) {
-            return false;
-        }
-        Usuario other = (Usuario) object;
-        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "eshop_bd.Usuario[ codigo=" + codigo + " ]";
     }
     
 }

@@ -17,6 +17,7 @@ import com.entities.SubastaUsuario;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -26,6 +27,9 @@ public class SubastaUsuarioJpaController implements Serializable {
 
     public SubastaUsuarioJpaController(EntityManagerFactory emf) {
         this.emf = emf;
+    }
+    public SubastaUsuarioJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("eShop_BDPU");
     }
     private EntityManagerFactory emf = null;
 

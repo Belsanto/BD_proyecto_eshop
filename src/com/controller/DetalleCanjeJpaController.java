@@ -17,6 +17,7 @@ import com.entities.Producto;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -24,8 +25,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class DetalleCanjeJpaController implements Serializable {
 
-    public DetalleCanjeJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public DetalleCanjeJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("eShop_BDPU");
     }
     private EntityManagerFactory emf = null;
 

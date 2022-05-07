@@ -18,20 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  *
  * @author EQUIPO
  */
-public class PaisJpaController implements Serializable {
+public class PaisJpaController1 implements Serializable {
 
-    public PaisJpaController(EntityManagerFactory emf) {
+    public PaisJpaController1(EntityManagerFactory emf) {
         this.emf = emf;
-    }
-
-    public PaisJpaController() {
-        this.emf = Persistence.createEntityManagerFactory("eShop_BDPU");
     }
     private EntityManagerFactory emf = null;
 

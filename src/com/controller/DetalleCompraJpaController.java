@@ -17,6 +17,7 @@ import com.entities.DetalleCompra;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -26,6 +27,10 @@ public class DetalleCompraJpaController implements Serializable {
 
     public DetalleCompraJpaController(EntityManagerFactory emf) {
         this.emf = emf;
+    }
+
+    public DetalleCompraJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("eShop_BDPU");
     }
     private EntityManagerFactory emf = null;
 

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -29,6 +30,10 @@ public class ProductoSubastaJpaController implements Serializable {
 
     public ProductoSubastaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
+    }
+
+    public ProductoSubastaJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("eShop_BDPU");
     }
     private EntityManagerFactory emf = null;
 

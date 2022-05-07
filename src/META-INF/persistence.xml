@@ -17,6 +17,8 @@
     <class>com.entities.DetalleEntrega</class>
     <class>com.entities.ProductoSubasta</class>
     <class>com.entities.Canje</class>
+    <class>com.entities.Cartera</class>
+    <class>com.entities.Puntos</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/eshop_proyectobd?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
