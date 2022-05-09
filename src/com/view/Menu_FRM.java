@@ -27,17 +27,178 @@ public class Menu_FRM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panel1 = new org.edisoncor.gui.panel.Panel();
+        panelRectTranslucidoComplete1 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
+        buttonRound1 = new org.edisoncor.gui.button.ButtonRound();
+        labelMetric1 = new org.edisoncor.gui.label.LabelMetric();
+        panelRectTranslucidoComplete2 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
+        buttonRound2 = new org.edisoncor.gui.button.ButtonRound();
+        labelMetric2 = new org.edisoncor.gui.label.LabelMetric();
+        panelRectTranslucidoComplete3 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
+        labelMetric3 = new org.edisoncor.gui.label.LabelMetric();
+        buttonRound4 = new org.edisoncor.gui.button.ButtonRound();
+        panelRectTranslucidoComplete4 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
+        buttonRound3 = new org.edisoncor.gui.button.ButtonRound();
+        labelMetric4 = new org.edisoncor.gui.label.LabelMetric();
+        labelCustom1 = new org.edisoncor.gui.label.LabelCustom();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panelRectTranslucidoComplete1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        buttonRound1.setText("buttonRound1");
+
+        labelMetric1.setText("Compras");
+
+        javax.swing.GroupLayout panelRectTranslucidoComplete1Layout = new javax.swing.GroupLayout(panelRectTranslucidoComplete1);
+        panelRectTranslucidoComplete1.setLayout(panelRectTranslucidoComplete1Layout);
+        panelRectTranslucidoComplete1Layout.setHorizontalGroup(
+            panelRectTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRectTranslucidoComplete1Layout.createSequentialGroup()
+                .addGroup(panelRectTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRectTranslucidoComplete1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRectTranslucidoComplete1Layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(labelMetric1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelRectTranslucidoComplete1Layout.setVerticalGroup(
+            panelRectTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRectTranslucidoComplete1Layout.createSequentialGroup()
+                .addComponent(labelMetric1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        buttonRound2.setText("buttonRound2");
+
+        labelMetric2.setText("Subastas");
+
+        javax.swing.GroupLayout panelRectTranslucidoComplete2Layout = new javax.swing.GroupLayout(panelRectTranslucidoComplete2);
+        panelRectTranslucidoComplete2.setLayout(panelRectTranslucidoComplete2Layout);
+        panelRectTranslucidoComplete2Layout.setHorizontalGroup(
+            panelRectTranslucidoComplete2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRectTranslucidoComplete2Layout.createSequentialGroup()
+                .addGroup(panelRectTranslucidoComplete2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRectTranslucidoComplete2Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRectTranslucidoComplete2Layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(labelMetric2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelRectTranslucidoComplete2Layout.setVerticalGroup(
+            panelRectTranslucidoComplete2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRectTranslucidoComplete2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelMetric2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        labelMetric3.setText("Canjes");
+
+        buttonRound4.setText("buttonRound4");
+
+        javax.swing.GroupLayout panelRectTranslucidoComplete3Layout = new javax.swing.GroupLayout(panelRectTranslucidoComplete3);
+        panelRectTranslucidoComplete3.setLayout(panelRectTranslucidoComplete3Layout);
+        panelRectTranslucidoComplete3Layout.setHorizontalGroup(
+            panelRectTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRectTranslucidoComplete3Layout.createSequentialGroup()
+                .addGroup(panelRectTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRectTranslucidoComplete3Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(labelMetric3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRectTranslucidoComplete3Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(buttonRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelRectTranslucidoComplete3Layout.setVerticalGroup(
+            panelRectTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRectTranslucidoComplete3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelMetric3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        buttonRound3.setText("buttonRound3");
+
+        labelMetric4.setText("Ventas");
+
+        javax.swing.GroupLayout panelRectTranslucidoComplete4Layout = new javax.swing.GroupLayout(panelRectTranslucidoComplete4);
+        panelRectTranslucidoComplete4.setLayout(panelRectTranslucidoComplete4Layout);
+        panelRectTranslucidoComplete4Layout.setHorizontalGroup(
+            panelRectTranslucidoComplete4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRectTranslucidoComplete4Layout.createSequentialGroup()
+                .addGroup(panelRectTranslucidoComplete4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRectTranslucidoComplete4Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(buttonRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRectTranslucidoComplete4Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(labelMetric4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelRectTranslucidoComplete4Layout.setVerticalGroup(
+            panelRectTranslucidoComplete4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRectTranslucidoComplete4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelMetric4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        labelCustom1.setText("USUARIO");
+
+        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+        panel1.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelRectTranslucidoComplete1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelRectTranslucidoComplete2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelRectTranslucidoComplete3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelRectTranslucidoComplete4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(labelCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+        panel1Layout.setVerticalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelRectTranslucidoComplete1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelRectTranslucidoComplete2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelRectTranslucidoComplete3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelRectTranslucidoComplete4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,5 +240,21 @@ public class Menu_FRM extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.edisoncor.gui.button.ButtonRound buttonRound1;
+    private org.edisoncor.gui.button.ButtonRound buttonRound2;
+    private org.edisoncor.gui.button.ButtonRound buttonRound3;
+    private org.edisoncor.gui.button.ButtonRound buttonRound4;
+    private org.edisoncor.gui.label.LabelCustom labelCustom1;
+    private org.edisoncor.gui.label.LabelMetric labelMetric1;
+    private org.edisoncor.gui.label.LabelMetric labelMetric2;
+    private org.edisoncor.gui.label.LabelMetric labelMetric3;
+    private org.edisoncor.gui.label.LabelMetric labelMetric4;
+    private org.edisoncor.gui.panel.Panel panel1;
+    private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido3;
+    private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido4;
+    private org.edisoncor.gui.panel.PanelRectTranslucidoComplete panelRectTranslucidoComplete1;
+    private org.edisoncor.gui.panel.PanelRectTranslucidoComplete panelRectTranslucidoComplete2;
+    private org.edisoncor.gui.panel.PanelRectTranslucidoComplete panelRectTranslucidoComplete3;
+    private org.edisoncor.gui.panel.PanelRectTranslucidoComplete panelRectTranslucidoComplete4;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,12 +9,12 @@ package com.view;
  *
  * @author EQUIPO
  */
-public class GestionProductos_FRM extends javax.swing.JFrame {
+public class UsuarioProducto_FRM extends javax.swing.JFrame {
 
     /**
-     * Creates new form PublicarProducto
+     * Creates new form UsuarioProducto_FRM
      */
-    public GestionProductos_FRM() {
+    public UsuarioProducto_FRM() {
         initComponents();
     }
 
@@ -60,23 +60,20 @@ public class GestionProductos_FRM extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestionProductos_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioProducto_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestionProductos_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioProducto_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestionProductos_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioProducto_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestionProductos_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioProducto_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GestionProductos_FRM().setVisible(true);
+                new UsuarioProducto_FRM().setVisible(true);
             }
         });
     }

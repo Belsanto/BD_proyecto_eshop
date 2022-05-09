@@ -9,12 +9,12 @@ package com.view;
  *
  * @author EQUIPO
  */
-public class ComprasCliente_FRM extends javax.swing.JFrame {
+public class DetalleCanje_FRM extends javax.swing.JFrame {
 
     /**
-     * Creates new form ComprasCliente_FRM
+     * Creates new form DetalleCanje
      */
-    public ComprasCliente_FRM() {
+    public DetalleCanje_FRM() {
         initComponents();
     }
 
@@ -60,20 +60,21 @@ public class ComprasCliente_FRM extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ComprasCliente_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleCanje_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ComprasCliente_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleCanje_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ComprasCliente_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleCanje_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ComprasCliente_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetalleCanje_FRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ComprasCliente_FRM().setVisible(true);
+                new DetalleCanje_FRM().setVisible(true);
             }
         });
     }
