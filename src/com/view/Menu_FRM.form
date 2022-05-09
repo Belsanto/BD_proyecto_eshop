@@ -159,7 +159,7 @@
           <SubComponents>
             <Component class="org.edisoncor.gui.button.ButtonRound" name="buttonRound2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="buttonRound2"/>
+                <Property name="text" type="java.lang.String" value="Mis subastas"/>
               </Properties>
             </Component>
             <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric2">

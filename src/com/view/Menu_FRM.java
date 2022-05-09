@@ -73,7 +73,7 @@ public class Menu_FRM extends javax.swing.JFrame {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        buttonRound2.setText("buttonRound2");
+        buttonRound2.setText("Mis subastas");
 
         labelMetric2.setText("Subastas");
 
@@ -250,8 +250,6 @@ public class Menu_FRM extends javax.swing.JFrame {
     private org.edisoncor.gui.label.LabelMetric labelMetric3;
     private org.edisoncor.gui.label.LabelMetric labelMetric4;
     private org.edisoncor.gui.panel.Panel panel1;
-    private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido3;
-    private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido4;
     private org.edisoncor.gui.panel.PanelRectTranslucidoComplete panelRectTranslucidoComplete1;
     private org.edisoncor.gui.panel.PanelRectTranslucidoComplete panelRectTranslucidoComplete2;
     private org.edisoncor.gui.panel.PanelRectTranslucidoComplete panelRectTranslucidoComplete3;
