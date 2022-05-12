@@ -27,21 +27,230 @@ public class UsuarioSubastas_FRM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelImage1 = new org.edisoncor.gui.panel.PanelImage();
+        labelMetric1 = new org.edisoncor.gui.label.LabelMetric();
+        panelRoundTranslucidoComplete3 = new org.edisoncor.gui.panel.PanelRoundTranslucidoComplete();
+        jLabel19 = new javax.swing.JLabel();
+        textFieldRectIcon17 = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        textFieldRectIcon18 = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        textFieldRectIcon19 = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        textFieldRectIcon21 = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        comboBoxRect1 = new org.edisoncor.gui.comboBox.ComboBoxRect();
+        buttonRound1 = new org.edisoncor.gui.button.ButtonRound();
+        buttonRound2 = new org.edisoncor.gui.button.ButtonRound();
+        buttonRound3 = new org.edisoncor.gui.button.ButtonRound();
+        labelRound1 = new org.edisoncor.gui.label.LabelRound();
+        labelMetric2 = new org.edisoncor.gui.label.LabelMetric();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2022-05-11 at 12.37.40 AM.jpeg"))); // NOI18N
+
+        labelMetric1.setForeground(new java.awt.Color(0, 204, 153));
+        labelMetric1.setText("e-Shop");
+        labelMetric1.setColorDeSombra(new java.awt.Color(204, 255, 204));
+        labelMetric1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+
+        panelRoundTranslucidoComplete3.setBackground(new java.awt.Color(255, 255, 255));
+        panelRoundTranslucidoComplete3.setForeground(new java.awt.Color(255, 255, 255));
+        panelRoundTranslucidoComplete3.setColorDeBorde(new java.awt.Color(204, 204, 204));
+        panelRoundTranslucidoComplete3.setColorPrimario(new java.awt.Color(255, 255, 255));
+
+        jLabel19.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel19.setText("Código:");
+
+        textFieldRectIcon17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldRectIcon1ActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel20.setText("Nombre:");
+
+        jLabel21.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel21.setText("Nombre Publicación:");
+
+        jLabel23.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel23.setText("Descripción:");
+
+        jLabel24.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel24.setText("Estado:");
+
+        jLabel26.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel26.setText("Fecha Límite:");
+
+        textFieldRectIcon18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldRectIcon2ActionPerformed(evt);
+            }
+        });
+
+        textFieldRectIcon19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldRectIcon3ActionPerformed(evt);
+            }
+        });
+
+        textFieldRectIcon21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldRectIcon5ActionPerformed(evt);
+            }
+        });
+
+        comboBoxRect1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nuevo", "Usado" }));
+
+        buttonRound1.setText("Modificar");
+
+        buttonRound2.setText("Crear ");
+
+        buttonRound3.setText("Eliminar");
+
+        javax.swing.GroupLayout panelRoundTranslucidoComplete3Layout = new javax.swing.GroupLayout(panelRoundTranslucidoComplete3);
+        panelRoundTranslucidoComplete3.setLayout(panelRoundTranslucidoComplete3Layout);
+        panelRoundTranslucidoComplete3Layout.setHorizontalGroup(
+            panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRoundTranslucidoComplete3Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelRoundTranslucidoComplete3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel19)
+                        .addGap(126, 126, 126)
+                        .addComponent(textFieldRectIcon17, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRoundTranslucidoComplete3Layout.createSequentialGroup()
+                        .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textFieldRectIcon18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldRectIcon19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldRectIcon21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                            .addComponent(comboBoxRect1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(125, 125, 125))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRoundTranslucidoComplete3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(buttonRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
+        );
+        panelRoundTranslucidoComplete3Layout.setVerticalGroup(
+            panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRoundTranslucidoComplete3Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(textFieldRectIcon17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(textFieldRectIcon19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldRectIcon18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(textFieldRectIcon21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(comboBoxRect1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel26)
+                    .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        labelMetric2.setText("Agregar Producto Subasta:");
+        labelMetric2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+
+        javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
+        panelImage1.setLayout(panelImage1Layout);
+        panelImage1Layout.setHorizontalGroup(
+            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelImage1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelRoundTranslucidoComplete3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(panelImage1Layout.createSequentialGroup()
+                .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(labelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(labelMetric2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(panelImage1Layout.createSequentialGroup()
+                .addGap(217, 217, 217)
+                .addComponent(labelMetric1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelImage1Layout.setVerticalGroup(
+            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelImage1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(labelMetric1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelMetric2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelRoundTranslucidoComplete3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void textFieldRectIcon5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRectIcon5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldRectIcon5ActionPerformed
+
+    private void textFieldRectIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRectIcon3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldRectIcon3ActionPerformed
+
+    private void textFieldRectIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRectIcon2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldRectIcon2ActionPerformed
+
+    private void textFieldRectIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRectIcon1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldRectIcon1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,5 +291,25 @@ public class UsuarioSubastas_FRM extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.edisoncor.gui.button.ButtonRound buttonRound1;
+    private org.edisoncor.gui.button.ButtonRound buttonRound2;
+    private org.edisoncor.gui.button.ButtonRound buttonRound3;
+    private org.edisoncor.gui.comboBox.ComboBoxRect comboBoxRect1;
+    private com.toedter.calendar.JDateChooser jDateChooser3;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel26;
+    private org.edisoncor.gui.label.LabelMetric labelMetric1;
+    private org.edisoncor.gui.label.LabelMetric labelMetric2;
+    private org.edisoncor.gui.label.LabelRound labelRound1;
+    private org.edisoncor.gui.panel.PanelImage panelImage1;
+    private org.edisoncor.gui.panel.PanelRoundTranslucidoComplete panelRoundTranslucidoComplete3;
+    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon17;
+    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon18;
+    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon19;
+    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon21;
     // End of variables declaration//GEN-END:variables
 }

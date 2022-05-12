@@ -27,69 +27,139 @@ public class Menu_FRM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonAction1 = new org.edisoncor.gui.button.ButtonAction();
+        jDayChooser1 = new com.toedter.calendar.JDayChooser();
+        labelTask1 = new org.edisoncor.gui.label.LabelTask();
+        labelCustom2 = new org.edisoncor.gui.label.LabelCustom();
+        labelRound1 = new org.edisoncor.gui.label.LabelRound();
+        labelRect1 = new org.edisoncor.gui.label.LabelRect();
+        labelTask2 = new org.edisoncor.gui.label.LabelTask();
+        clockDigital1 = new org.edisoncor.gui.varios.ClockDigital();
+        clockFace1 = new org.edisoncor.gui.varios.ClockFace();
+        textField1 = new org.edisoncor.gui.textField.TextField();
+        textFieldRectIcon1 = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        textFieldRectImage1 = new org.edisoncor.gui.textField.TextFieldRectImage();
+        titleBar1 = new org.edisoncor.gui.varios.TitleBar();
+        titleBar3 = new org.edisoncor.gui.varios.TitleBar();
         panel1 = new org.edisoncor.gui.panel.Panel();
         panelRectTranslucidoComplete1 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
-        buttonRound1 = new org.edisoncor.gui.button.ButtonRound();
+        bt_misCompras = new org.edisoncor.gui.button.ButtonRound();
         labelMetric1 = new org.edisoncor.gui.label.LabelMetric();
+        buttonRound6 = new org.edisoncor.gui.button.ButtonRound();
         panelRectTranslucidoComplete2 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
         buttonRound2 = new org.edisoncor.gui.button.ButtonRound();
         labelMetric2 = new org.edisoncor.gui.label.LabelMetric();
+        buttonRound1 = new org.edisoncor.gui.button.ButtonRound();
         panelRectTranslucidoComplete3 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
         labelMetric3 = new org.edisoncor.gui.label.LabelMetric();
         buttonRound4 = new org.edisoncor.gui.button.ButtonRound();
+        buttonRound5 = new org.edisoncor.gui.button.ButtonRound();
         panelRectTranslucidoComplete4 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
         buttonRound3 = new org.edisoncor.gui.button.ButtonRound();
         labelMetric4 = new org.edisoncor.gui.label.LabelMetric();
         labelCustom1 = new org.edisoncor.gui.label.LabelCustom();
+        labelMetric5 = new org.edisoncor.gui.label.LabelMetric();
+        clockDigital2 = new org.edisoncor.gui.varios.ClockDigital();
+        titleBar2 = new org.edisoncor.gui.varios.TitleBar();
+        labelMetric6 = new org.edisoncor.gui.label.LabelMetric();
+
+        buttonAction1.setText("buttonAction1");
+
+        labelCustom2.setText("labelCustom2");
+
+        labelRound1.setText("labelRound1");
+
+        labelRect1.setText("labelRect1");
+
+        textField1.setText("textField1");
+
+        textFieldRectIcon1.setText("textFieldRectIcon1");
+
+        textFieldRectImage1.setText("textFieldRectImage1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panelRectTranslucidoComplete1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        panel1.setForeground(new java.awt.Color(204, 255, 204));
+        panel1.setColorPrimario(new java.awt.Color(204, 255, 204));
+        panel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2022-05-11 at 11.46.16 PM.jpeg"))); // NOI18N
 
-        buttonRound1.setText("buttonRound1");
+        panelRectTranslucidoComplete1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        panelRectTranslucidoComplete1.setForeground(new java.awt.Color(204, 255, 204));
+
+        bt_misCompras.setForeground(new java.awt.Color(0, 0, 0));
+        bt_misCompras.setText("Mis Compras");
+        bt_misCompras.setColorDeSombra(new java.awt.Color(153, 153, 153));
 
         labelMetric1.setText("Compras");
+
+        buttonRound6.setForeground(new java.awt.Color(0, 0, 0));
+        buttonRound6.setText("Rastrear Pedido");
+        buttonRound6.setColorDeSombra(new java.awt.Color(153, 153, 153));
+        buttonRound6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRound6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRectTranslucidoComplete1Layout = new javax.swing.GroupLayout(panelRectTranslucidoComplete1);
         panelRectTranslucidoComplete1.setLayout(panelRectTranslucidoComplete1Layout);
         panelRectTranslucidoComplete1Layout.setHorizontalGroup(
             panelRectTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRectTranslucidoComplete1Layout.createSequentialGroup()
-                .addGroup(panelRectTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRectTranslucidoComplete1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelRectTranslucidoComplete1Layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(labelMetric1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(163, 163, 163)
+                .addComponent(labelMetric1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelRectTranslucidoComplete1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(bt_misCompras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonRound6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         panelRectTranslucidoComplete1Layout.setVerticalGroup(
             panelRectTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRectTranslucidoComplete1Layout.createSequentialGroup()
                 .addComponent(labelMetric1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelRectTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_misCompras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonRound6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        buttonRound2.setText("buttonRound2");
+        panelRectTranslucidoComplete2.setBackground(new java.awt.Color(204, 255, 204));
+        panelRectTranslucidoComplete2.setForeground(new java.awt.Color(204, 255, 204));
+
+        buttonRound2.setForeground(new java.awt.Color(0, 0, 0));
+        buttonRound2.setText("Mis Subastas");
+        buttonRound2.setColorDeSombra(new java.awt.Color(153, 153, 153));
 
         labelMetric2.setText("Subastas");
+
+        buttonRound1.setForeground(new java.awt.Color(0, 0, 0));
+        buttonRound1.setText("Mis Participaciones");
+        buttonRound1.setBorderPainted(true);
+        buttonRound1.setColorDeSombra(new java.awt.Color(102, 102, 102));
+        buttonRound1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRound1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRectTranslucidoComplete2Layout = new javax.swing.GroupLayout(panelRectTranslucidoComplete2);
         panelRectTranslucidoComplete2.setLayout(panelRectTranslucidoComplete2Layout);
         panelRectTranslucidoComplete2Layout.setHorizontalGroup(
             panelRectTranslucidoComplete2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRectTranslucidoComplete2Layout.createSequentialGroup()
-                .addGroup(panelRectTranslucidoComplete2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRectTranslucidoComplete2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelRectTranslucidoComplete2Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(labelMetric2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRectTranslucidoComplete2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelMetric2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(168, 168, 168))
         );
         panelRectTranslucidoComplete2Layout.setVerticalGroup(
             panelRectTranslucidoComplete2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,13 +167,23 @@ public class Menu_FRM extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelMetric2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGroup(panelRectTranslucidoComplete2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
+
+        panelRectTranslucidoComplete3.setBackground(new java.awt.Color(204, 255, 204));
 
         labelMetric3.setText("Canjes");
 
-        buttonRound4.setText("buttonRound4");
+        buttonRound4.setForeground(new java.awt.Color(0, 0, 0));
+        buttonRound4.setText("Historial de Canjes");
+        buttonRound4.setColorDeSombra(new java.awt.Color(153, 153, 153));
+
+        buttonRound5.setForeground(new java.awt.Color(0, 0, 0));
+        buttonRound5.setText("Producto en Canje");
+        buttonRound5.setColorDeSombra(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout panelRectTranslucidoComplete3Layout = new javax.swing.GroupLayout(panelRectTranslucidoComplete3);
         panelRectTranslucidoComplete3.setLayout(panelRectTranslucidoComplete3Layout);
@@ -112,24 +192,38 @@ public class Menu_FRM extends javax.swing.JFrame {
             .addGroup(panelRectTranslucidoComplete3Layout.createSequentialGroup()
                 .addGroup(panelRectTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRectTranslucidoComplete3Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
+                        .addGap(173, 173, 173)
                         .addComponent(labelMetric3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelRectTranslucidoComplete3Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(buttonRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)
+                        .addComponent(buttonRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         panelRectTranslucidoComplete3Layout.setVerticalGroup(
             panelRectTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRectTranslucidoComplete3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(labelMetric3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRectTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        buttonRound3.setText("buttonRound3");
+        panelRectTranslucidoComplete4.setBackground(new java.awt.Color(204, 255, 204));
+        panelRectTranslucidoComplete4.setForeground(new java.awt.Color(204, 255, 204));
+
+        buttonRound3.setForeground(new java.awt.Color(0, 0, 0));
+        buttonRound3.setText("Mis Ventas");
+        buttonRound3.setColorDeSombra(new java.awt.Color(153, 153, 153));
+        buttonRound3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRound3ActionPerformed(evt);
+            }
+        });
 
         labelMetric4.setText("Ventas");
 
@@ -140,11 +234,11 @@ public class Menu_FRM extends javax.swing.JFrame {
             .addGroup(panelRectTranslucidoComplete4Layout.createSequentialGroup()
                 .addGroup(panelRectTranslucidoComplete4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRectTranslucidoComplete4Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(buttonRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(175, 175, 175)
+                        .addComponent(labelMetric4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelRectTranslucidoComplete4Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(labelMetric4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(146, 146, 146)
+                        .addComponent(buttonRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelRectTranslucidoComplete4Layout.setVerticalGroup(
@@ -152,12 +246,22 @@ public class Menu_FRM extends javax.swing.JFrame {
             .addGroup(panelRectTranslucidoComplete4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelMetric4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(buttonRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
+        labelCustom1.setBackground(new java.awt.Color(32, 39, 55));
         labelCustom1.setText("USUARIO");
+
+        labelMetric5.setText("Bienvenid@:");
+        labelMetric5.setColorDeSombra(new java.awt.Color(51, 51, 51));
+
+        clockDigital2.setForeground(new java.awt.Color(255, 255, 255));
+
+        labelMetric6.setText("e-Shop");
+        labelMetric6.setColorDeSombra(new java.awt.Color(102, 102, 102));
+        labelMetric6.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -167,25 +271,49 @@ public class Menu_FRM extends javax.swing.JFrame {
             .addComponent(panelRectTranslucidoComplete2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelRectTranslucidoComplete3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelRectTranslucidoComplete4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(labelCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addComponent(titleBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(labelMetric6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(clockDigital2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addComponent(labelMetric5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addContainerGap(42, Short.MAX_VALUE)
+                        .addComponent(clockDigital2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(titleBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(labelMetric6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelMetric5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(panelRectTranslucidoComplete1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelRectTranslucidoComplete2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelRectTranslucidoComplete3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelRectTranslucidoComplete4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panelRectTranslucidoComplete4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -196,13 +324,23 @@ public class Menu_FRM extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonRound3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonRound3ActionPerformed
+
+    private void buttonRound1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonRound1ActionPerformed
+
+    private void buttonRound6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonRound6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,21 +378,40 @@ public class Menu_FRM extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.edisoncor.gui.button.ButtonRound bt_misCompras;
+    private org.edisoncor.gui.button.ButtonAction buttonAction1;
     private org.edisoncor.gui.button.ButtonRound buttonRound1;
     private org.edisoncor.gui.button.ButtonRound buttonRound2;
     private org.edisoncor.gui.button.ButtonRound buttonRound3;
     private org.edisoncor.gui.button.ButtonRound buttonRound4;
+    private org.edisoncor.gui.button.ButtonRound buttonRound5;
+    private org.edisoncor.gui.button.ButtonRound buttonRound6;
+    private org.edisoncor.gui.varios.ClockDigital clockDigital1;
+    private org.edisoncor.gui.varios.ClockDigital clockDigital2;
+    private org.edisoncor.gui.varios.ClockFace clockFace1;
+    private com.toedter.calendar.JDayChooser jDayChooser1;
     private org.edisoncor.gui.label.LabelCustom labelCustom1;
+    private org.edisoncor.gui.label.LabelCustom labelCustom2;
     private org.edisoncor.gui.label.LabelMetric labelMetric1;
     private org.edisoncor.gui.label.LabelMetric labelMetric2;
     private org.edisoncor.gui.label.LabelMetric labelMetric3;
     private org.edisoncor.gui.label.LabelMetric labelMetric4;
+    private org.edisoncor.gui.label.LabelMetric labelMetric5;
+    private org.edisoncor.gui.label.LabelMetric labelMetric6;
+    private org.edisoncor.gui.label.LabelRect labelRect1;
+    private org.edisoncor.gui.label.LabelRound labelRound1;
+    private org.edisoncor.gui.label.LabelTask labelTask1;
+    private org.edisoncor.gui.label.LabelTask labelTask2;
     private org.edisoncor.gui.panel.Panel panel1;
-    private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido3;
-    private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido4;
     private org.edisoncor.gui.panel.PanelRectTranslucidoComplete panelRectTranslucidoComplete1;
     private org.edisoncor.gui.panel.PanelRectTranslucidoComplete panelRectTranslucidoComplete2;
     private org.edisoncor.gui.panel.PanelRectTranslucidoComplete panelRectTranslucidoComplete3;
     private org.edisoncor.gui.panel.PanelRectTranslucidoComplete panelRectTranslucidoComplete4;
+    private org.edisoncor.gui.textField.TextField textField1;
+    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon1;
+    private org.edisoncor.gui.textField.TextFieldRectImage textFieldRectImage1;
+    private org.edisoncor.gui.varios.TitleBar titleBar1;
+    private org.edisoncor.gui.varios.TitleBar titleBar2;
+    private org.edisoncor.gui.varios.TitleBar titleBar3;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/entities/Usuario.java</file>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/UsuarioProducto_FRM.java</file>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/RegistrarUsuario_FRM.java</file>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/UsuarioSubastas_FRM.java</file>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/Menu_FRM.java</file>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/controller/UsuarioJpaController.java</file>
+        </group>
     </open-files>
 </project-private>
