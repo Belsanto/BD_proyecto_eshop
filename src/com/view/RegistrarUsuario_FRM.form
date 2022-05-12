@@ -23,15 +23,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
           <Component id="panelImage1" min="-2" max="-2" attributes="0"/>
+=======
+          <EmptySpace min="0" pref="414" max="32767" attributes="0"/>
+>>>>>>> 1eda3d35ba5c6068bfe53f7e04b0727cadea8c1c
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
           <Group type="102" alignment="0" attributes="0">
               <Component id="panelImage1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
+=======
+          <EmptySpace min="0" pref="334" max="32767" attributes="0"/>
+>>>>>>> 1eda3d35ba5c6068bfe53f7e04b0727cadea8c1c
       </Group>
     </DimensionLayout>
   </Layout>

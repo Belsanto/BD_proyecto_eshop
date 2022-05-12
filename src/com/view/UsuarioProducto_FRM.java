@@ -27,6 +27,7 @@ public class UsuarioProducto_FRM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
         panelTranslucido1 = new org.edisoncor.gui.panel.PanelTranslucido();
         jDayChooser1 = new com.toedter.calendar.JDayChooser();
         jSpinField1 = new com.toedter.components.JSpinField();
@@ -290,17 +291,46 @@ public class UsuarioProducto_FRM extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelRoundTranslucidoComplete1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+=======
+        panel1 = new org.edisoncor.gui.panel.Panel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+        panel1.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 473, Short.MAX_VALUE)
+        );
+        panel1Layout.setVerticalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 206, Short.MAX_VALUE)
+>>>>>>> 1eda3d35ba5c6068bfe53f7e04b0727cadea8c1c
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+=======
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
+>>>>>>> 1eda3d35ba5c6068bfe53f7e04b0727cadea8c1c
         );
 
         pack();
@@ -374,6 +404,7 @@ public class UsuarioProducto_FRM extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
     private org.edisoncor.gui.button.ButtonRound buttonRound1;
     private org.edisoncor.gui.button.ButtonRound buttonRound2;
     private org.edisoncor.gui.button.ButtonRound buttonRound3;
@@ -404,5 +435,8 @@ public class UsuarioProducto_FRM extends javax.swing.JFrame {
     private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon6;
     private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon7;
     private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon8;
+=======
+    private org.edisoncor.gui.panel.Panel panel1;
+>>>>>>> 1eda3d35ba5c6068bfe53f7e04b0727cadea8c1c
     // End of variables declaration//GEN-END:variables
 }

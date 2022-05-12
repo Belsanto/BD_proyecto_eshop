@@ -127,12 +127,16 @@ public class Menu_FRM extends javax.swing.JFrame {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
+<<<<<<< HEAD
         panelRectTranslucidoComplete2.setBackground(new java.awt.Color(204, 255, 204));
         panelRectTranslucidoComplete2.setForeground(new java.awt.Color(204, 255, 204));
 
         buttonRound2.setForeground(new java.awt.Color(0, 0, 0));
         buttonRound2.setText("Mis Subastas");
         buttonRound2.setColorDeSombra(new java.awt.Color(153, 153, 153));
+=======
+        buttonRound2.setText("Mis subastas");
+>>>>>>> 1eda3d35ba5c6068bfe53f7e04b0727cadea8c1c
 
         labelMetric2.setText("Subastas");
 

@@ -291,6 +291,7 @@
           <SubComponents>
             <Component class="org.edisoncor.gui.button.ButtonRound" name="buttonRound2">
               <Properties>
+<<<<<<< HEAD
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
@@ -298,6 +299,9 @@
                 <Property name="colorDeSombra" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="99" type="rgb"/>
                 </Property>
+=======
+                <Property name="text" type="java.lang.String" value="Mis subastas"/>
+>>>>>>> 1eda3d35ba5c6068bfe53f7e04b0727cadea8c1c
               </Properties>
             </Component>
             <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric2">
