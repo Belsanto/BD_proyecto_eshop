@@ -31,9 +31,9 @@ public class Login_FRM extends javax.swing.JFrame {
         labelMetric1 = new org.edisoncor.gui.label.LabelMetric();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        textFieldRectIcon1 = new org.edisoncor.gui.textField.TextFieldRectIcon();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        buttonRound1 = new org.edisoncor.gui.button.ButtonRound();
+        txt_usuario = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        txt_contrasena = new javax.swing.JPasswordField();
+        bt_ingresar = new org.edisoncor.gui.button.ButtonRound();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,18 +51,18 @@ public class Login_FRM extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 51, 255));
         jLabel2.setText("Contraseña");
 
-        textFieldRectIcon1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        textFieldRectIcon1.setCaretColor(new java.awt.Color(102, 102, 0));
-        textFieldRectIcon1.addActionListener(new java.awt.event.ActionListener() {
+        txt_usuario.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        txt_usuario.setCaretColor(new java.awt.Color(102, 102, 0));
+        txt_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldRectIcon1ActionPerformed(evt);
+                txt_usuarioActionPerformed(evt);
             }
         });
 
-        buttonRound1.setText("Ingresar");
-        buttonRound1.addActionListener(new java.awt.event.ActionListener() {
+        bt_ingresar.setText("Ingresar");
+        bt_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRound1ActionPerformed(evt);
+                bt_ingresarActionPerformed(evt);
             }
         });
 
@@ -72,7 +72,7 @@ public class Login_FRM extends javax.swing.JFrame {
             panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelImage1Layout.createSequentialGroup()
                 .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panelImage1Layout.createSequentialGroup()
                             .addGap(132, 132, 132)
@@ -81,7 +81,7 @@ public class Login_FRM extends javax.swing.JFrame {
                                 .addComponent(jLabel1)))
                         .addGroup(panelImage1Layout.createSequentialGroup()
                             .addGap(182, 182, 182)
-                            .addComponent(textFieldRectIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(62, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -90,7 +90,7 @@ public class Login_FRM extends javax.swing.JFrame {
                         .addComponent(labelMetric1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(179, 179, 179))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
-                        .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(126, 126, 126))))
         );
         panelImage1Layout.setVerticalGroup(
@@ -101,13 +101,13 @@ public class Login_FRM extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(8, 8, 8)
-                .addComponent(textFieldRectIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(108, Short.MAX_VALUE))
         );
 
@@ -125,13 +125,13 @@ public class Login_FRM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textFieldRectIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRectIcon1ActionPerformed
+    private void txt_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldRectIcon1ActionPerformed
+    }//GEN-LAST:event_txt_usuarioActionPerformed
 
-    private void buttonRound1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound1ActionPerformed
+    private void bt_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_ingresarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonRound1ActionPerformed
+    }//GEN-LAST:event_bt_ingresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,12 +169,12 @@ public class Login_FRM extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.edisoncor.gui.button.ButtonRound buttonRound1;
+    private org.edisoncor.gui.button.ButtonRound bt_ingresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
     private org.edisoncor.gui.label.LabelMetric labelMetric1;
     private org.edisoncor.gui.panel.PanelImage panelImage1;
-    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon1;
+    private javax.swing.JPasswordField txt_contrasena;
+    private org.edisoncor.gui.textField.TextFieldRectIcon txt_usuario;
     // End of variables declaration//GEN-END:variables
 }

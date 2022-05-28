@@ -45,17 +45,17 @@ public class Menu_FRM extends javax.swing.JFrame {
         panelRectTranslucidoComplete1 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
         bt_misCompras = new org.edisoncor.gui.button.ButtonRound();
         labelMetric1 = new org.edisoncor.gui.label.LabelMetric();
-        buttonRound6 = new org.edisoncor.gui.button.ButtonRound();
+        bt_rastrearPedido = new org.edisoncor.gui.button.ButtonRound();
         panelRectTranslucidoComplete2 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
-        buttonRound2 = new org.edisoncor.gui.button.ButtonRound();
+        bt_missubastas = new org.edisoncor.gui.button.ButtonRound();
         labelMetric2 = new org.edisoncor.gui.label.LabelMetric();
-        buttonRound1 = new org.edisoncor.gui.button.ButtonRound();
+        bt_misParticipaciones = new org.edisoncor.gui.button.ButtonRound();
         panelRectTranslucidoComplete3 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
         labelMetric3 = new org.edisoncor.gui.label.LabelMetric();
-        buttonRound4 = new org.edisoncor.gui.button.ButtonRound();
-        buttonRound5 = new org.edisoncor.gui.button.ButtonRound();
+        bt_historialCanjes = new org.edisoncor.gui.button.ButtonRound();
+        bt_productoCanje = new org.edisoncor.gui.button.ButtonRound();
         panelRectTranslucidoComplete4 = new org.edisoncor.gui.panel.PanelRectTranslucidoComplete();
-        buttonRound3 = new org.edisoncor.gui.button.ButtonRound();
+        bt_misVentas = new org.edisoncor.gui.button.ButtonRound();
         labelMetric4 = new org.edisoncor.gui.label.LabelMetric();
         labelCustom1 = new org.edisoncor.gui.label.LabelCustom();
         labelMetric5 = new org.edisoncor.gui.label.LabelMetric();
@@ -92,12 +92,12 @@ public class Menu_FRM extends javax.swing.JFrame {
 
         labelMetric1.setText("Compras");
 
-        buttonRound6.setForeground(new java.awt.Color(0, 0, 0));
-        buttonRound6.setText("Rastrear Pedido");
-        buttonRound6.setColorDeSombra(new java.awt.Color(153, 153, 153));
-        buttonRound6.addActionListener(new java.awt.event.ActionListener() {
+        bt_rastrearPedido.setForeground(new java.awt.Color(0, 0, 0));
+        bt_rastrearPedido.setText("Rastrear Pedido");
+        bt_rastrearPedido.setColorDeSombra(new java.awt.Color(153, 153, 153));
+        bt_rastrearPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRound6ActionPerformed(evt);
+                bt_rastrearPedidoActionPerformed(evt);
             }
         });
 
@@ -113,7 +113,7 @@ public class Menu_FRM extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(bt_misCompras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonRound6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_rastrearPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         panelRectTranslucidoComplete1Layout.setVerticalGroup(
@@ -123,26 +123,26 @@ public class Menu_FRM extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRectTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_misCompras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonRound6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bt_rastrearPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
         panelRectTranslucidoComplete2.setBackground(new java.awt.Color(204, 255, 204));
         panelRectTranslucidoComplete2.setForeground(new java.awt.Color(204, 255, 204));
 
-        buttonRound2.setForeground(new java.awt.Color(0, 0, 0));
-        buttonRound2.setText("Mis Subastas");
-        buttonRound2.setColorDeSombra(new java.awt.Color(153, 153, 153));
+        bt_missubastas.setForeground(new java.awt.Color(0, 0, 0));
+        bt_missubastas.setText("Mis Subastas");
+        bt_missubastas.setColorDeSombra(new java.awt.Color(153, 153, 153));
 
         labelMetric2.setText("Subastas");
 
-        buttonRound1.setForeground(new java.awt.Color(0, 0, 0));
-        buttonRound1.setText("Mis Participaciones");
-        buttonRound1.setBorderPainted(true);
-        buttonRound1.setColorDeSombra(new java.awt.Color(102, 102, 102));
-        buttonRound1.addActionListener(new java.awt.event.ActionListener() {
+        bt_misParticipaciones.setForeground(new java.awt.Color(0, 0, 0));
+        bt_misParticipaciones.setText("Mis Participaciones");
+        bt_misParticipaciones.setBorderPainted(true);
+        bt_misParticipaciones.setColorDeSombra(new java.awt.Color(102, 102, 102));
+        bt_misParticipaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRound1ActionPerformed(evt);
+                bt_misParticipacionesActionPerformed(evt);
             }
         });
 
@@ -152,9 +152,9 @@ public class Menu_FRM extends javax.swing.JFrame {
             panelRectTranslucidoComplete2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRectTranslucidoComplete2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_missubastas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_misParticipaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRectTranslucidoComplete2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -168,8 +168,8 @@ public class Menu_FRM extends javax.swing.JFrame {
                 .addComponent(labelMetric2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRectTranslucidoComplete2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bt_missubastas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_misParticipaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
@@ -177,13 +177,13 @@ public class Menu_FRM extends javax.swing.JFrame {
 
         labelMetric3.setText("Canjes");
 
-        buttonRound4.setForeground(new java.awt.Color(0, 0, 0));
-        buttonRound4.setText("Historial de Canjes");
-        buttonRound4.setColorDeSombra(new java.awt.Color(153, 153, 153));
+        bt_historialCanjes.setForeground(new java.awt.Color(0, 0, 0));
+        bt_historialCanjes.setText("Historial de Canjes");
+        bt_historialCanjes.setColorDeSombra(new java.awt.Color(153, 153, 153));
 
-        buttonRound5.setForeground(new java.awt.Color(0, 0, 0));
-        buttonRound5.setText("Producto en Canje");
-        buttonRound5.setColorDeSombra(new java.awt.Color(153, 153, 153));
+        bt_productoCanje.setForeground(new java.awt.Color(0, 0, 0));
+        bt_productoCanje.setText("Producto en Canje");
+        bt_productoCanje.setColorDeSombra(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout panelRectTranslucidoComplete3Layout = new javax.swing.GroupLayout(panelRectTranslucidoComplete3);
         panelRectTranslucidoComplete3.setLayout(panelRectTranslucidoComplete3Layout);
@@ -196,9 +196,9 @@ public class Menu_FRM extends javax.swing.JFrame {
                         .addComponent(labelMetric3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelRectTranslucidoComplete3Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(buttonRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_historialCanjes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buttonRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bt_productoCanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         panelRectTranslucidoComplete3Layout.setVerticalGroup(
@@ -208,20 +208,20 @@ public class Menu_FRM extends javax.swing.JFrame {
                 .addComponent(labelMetric3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelRectTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bt_historialCanjes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_productoCanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
         panelRectTranslucidoComplete4.setBackground(new java.awt.Color(204, 255, 204));
         panelRectTranslucidoComplete4.setForeground(new java.awt.Color(204, 255, 204));
 
-        buttonRound3.setForeground(new java.awt.Color(0, 0, 0));
-        buttonRound3.setText("Mis Ventas");
-        buttonRound3.setColorDeSombra(new java.awt.Color(153, 153, 153));
-        buttonRound3.addActionListener(new java.awt.event.ActionListener() {
+        bt_misVentas.setForeground(new java.awt.Color(0, 0, 0));
+        bt_misVentas.setText("Mis Ventas");
+        bt_misVentas.setColorDeSombra(new java.awt.Color(153, 153, 153));
+        bt_misVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRound3ActionPerformed(evt);
+                bt_misVentasActionPerformed(evt);
             }
         });
 
@@ -238,7 +238,7 @@ public class Menu_FRM extends javax.swing.JFrame {
                         .addComponent(labelMetric4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelRectTranslucidoComplete4Layout.createSequentialGroup()
                         .addGap(146, 146, 146)
-                        .addComponent(buttonRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bt_misVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelRectTranslucidoComplete4Layout.setVerticalGroup(
@@ -247,7 +247,7 @@ public class Menu_FRM extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelMetric4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(buttonRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_misVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -330,17 +330,17 @@ public class Menu_FRM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonRound3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound3ActionPerformed
+    private void bt_misVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_misVentasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonRound3ActionPerformed
+    }//GEN-LAST:event_bt_misVentasActionPerformed
 
-    private void buttonRound1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound1ActionPerformed
+    private void bt_misParticipacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_misParticipacionesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonRound1ActionPerformed
+    }//GEN-LAST:event_bt_misParticipacionesActionPerformed
 
-    private void buttonRound6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound6ActionPerformed
+    private void bt_rastrearPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_rastrearPedidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonRound6ActionPerformed
+    }//GEN-LAST:event_bt_rastrearPedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,14 +378,14 @@ public class Menu_FRM extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.edisoncor.gui.button.ButtonRound bt_historialCanjes;
     private org.edisoncor.gui.button.ButtonRound bt_misCompras;
+    private org.edisoncor.gui.button.ButtonRound bt_misParticipaciones;
+    private org.edisoncor.gui.button.ButtonRound bt_misVentas;
+    private org.edisoncor.gui.button.ButtonRound bt_missubastas;
+    private org.edisoncor.gui.button.ButtonRound bt_productoCanje;
+    private org.edisoncor.gui.button.ButtonRound bt_rastrearPedido;
     private org.edisoncor.gui.button.ButtonAction buttonAction1;
-    private org.edisoncor.gui.button.ButtonRound buttonRound1;
-    private org.edisoncor.gui.button.ButtonRound buttonRound2;
-    private org.edisoncor.gui.button.ButtonRound buttonRound3;
-    private org.edisoncor.gui.button.ButtonRound buttonRound4;
-    private org.edisoncor.gui.button.ButtonRound buttonRound5;
-    private org.edisoncor.gui.button.ButtonRound buttonRound6;
     private org.edisoncor.gui.varios.ClockDigital clockDigital1;
     private org.edisoncor.gui.varios.ClockDigital clockDigital2;
     private org.edisoncor.gui.varios.ClockFace clockFace1;

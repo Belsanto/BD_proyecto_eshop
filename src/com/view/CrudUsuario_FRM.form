@@ -120,29 +120,29 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel5" min="-2" pref="65" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="comboBoxRect1" max="32767" attributes="0"/>
+                          <Component id="cb_ciudad" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel4" min="-2" pref="65" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="textFieldRectBackground3" min="-2" pref="462" max="-2" attributes="0"/>
+                              <Component id="txt_email" min="-2" pref="462" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jLabel3" min="-2" pref="65" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="passwordField1" max="32767" attributes="0"/>
+                                  <Component id="txt_password" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel2" min="-2" pref="65" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textFieldRectBackground2" min="-2" pref="462" max="-2" attributes="0"/>
+                                  <Component id="txt_username" min="-2" pref="462" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel1" min="-2" pref="65" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textFieldRectBackground1" min="-2" pref="462" max="-2" attributes="0"/>
+                                  <Component id="txt_nombre" min="-2" pref="462" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -152,12 +152,12 @@
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                          <Component id="buttonAction2" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonAction1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_modificar" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_buscar" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                          <Component id="buttonAction3" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonAction4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_borrar" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_agregar" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="39" max="32767" attributes="0"/>
@@ -170,30 +170,30 @@
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="textFieldRectBackground1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txt_nombre" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="textFieldRectBackground2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txt_username" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel3" pref="35" max="32767" attributes="0"/>
-                      <Component id="passwordField1" max="32767" attributes="0"/>
+                      <Component id="txt_password" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel4" min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Component id="textFieldRectBackground3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="txt_email" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="comboBoxRect1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="cb_ciudad" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="66" max="32767" attributes="0"/>
               </Group>
@@ -201,13 +201,13 @@
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="buttonAction4" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_agregar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="buttonAction3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_borrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          <Component id="buttonAction2" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_modificar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="buttonAction1" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_buscar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="panelLlamada1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -222,52 +222,55 @@
             <Property name="text" type="java.lang.String" value="NOMBRE"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="textFieldRectBackground1">
+        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="txt_nombre">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" value="USERNAME"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="textFieldRectBackground2">
+        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="txt_username">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="PASSWORD"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.passwordField.PasswordField" name="passwordField1">
+        <Component class="org.edisoncor.gui.passwordField.PasswordField" name="txt_password">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="EMAIL"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="textFieldRectBackground3">
+        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="txt_email">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="CIUDAD"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.comboBox.ComboBoxRect" name="comboBoxRect1">
+        <Component class="org.edisoncor.gui.comboBox.ComboBoxRect" name="cb_ciudad">
         </Component>
-        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction3">
+        <Component class="org.edisoncor.gui.button.ButtonAction" name="bt_borrar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Borrar"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction4">
+        <Component class="org.edisoncor.gui.button.ButtonAction" name="bt_agregar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_agregarActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction1">
+        <Component class="org.edisoncor.gui.button.ButtonAction" name="bt_buscar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction2">
+        <Component class="org.edisoncor.gui.button.ButtonAction" name="bt_modificar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>

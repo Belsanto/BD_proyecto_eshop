@@ -45,7 +45,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jPasswordField1" min="-2" pref="215" max="-2" attributes="0"/>
+                      <Component id="txt_contrasena" min="-2" pref="215" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
@@ -56,7 +56,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
-                              <Component id="textFieldRectIcon1" min="-2" pref="215" max="-2" attributes="0"/>
+                              <Component id="txt_usuario" min="-2" pref="215" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -70,7 +70,7 @@
                           <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="buttonRound1" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_ingresar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -85,13 +85,13 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  <Component id="textFieldRectIcon1" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_usuario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jPasswordField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_contrasena" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="buttonRound1" min="-2" max="-2" attributes="0"/>
+                  <Component id="bt_ingresar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="108" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -131,7 +131,7 @@
             <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.textField.TextFieldRectIcon" name="textFieldRectIcon1">
+        <Component class="org.edisoncor.gui.textField.TextFieldRectIcon" name="txt_usuario">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -143,17 +143,17 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldRectIcon1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_usuarioActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+        <Component class="javax.swing.JPasswordField" name="txt_contrasena">
         </Component>
-        <Component class="org.edisoncor.gui.button.ButtonRound" name="buttonRound1">
+        <Component class="org.edisoncor.gui.button.ButtonRound" name="bt_ingresar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingresar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRound1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_ingresarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

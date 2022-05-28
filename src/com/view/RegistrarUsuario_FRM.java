@@ -31,20 +31,20 @@ public class RegistrarUsuario_FRM extends javax.swing.JFrame {
         labelMetric1 = new org.edisoncor.gui.label.LabelMetric();
         panelRoundTranslucidoComplete3 = new org.edisoncor.gui.panel.PanelRoundTranslucidoComplete();
         jLabel19 = new javax.swing.JLabel();
-        textFieldRectIcon17 = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        txt_codigo = new org.edisoncor.gui.textField.TextFieldRectIcon();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        textFieldRectIcon18 = new org.edisoncor.gui.textField.TextFieldRectIcon();
-        textFieldRectIcon19 = new org.edisoncor.gui.textField.TextFieldRectIcon();
-        textFieldRectIcon21 = new org.edisoncor.gui.textField.TextFieldRectIcon();
-        textFieldRectIcon20 = new org.edisoncor.gui.textField.TextFieldRectIcon();
-        textFieldRectIcon22 = new org.edisoncor.gui.textField.TextFieldRectIcon();
-        buttonRound1 = new org.edisoncor.gui.button.ButtonRound();
-        buttonRound2 = new org.edisoncor.gui.button.ButtonRound();
-        buttonRound3 = new org.edisoncor.gui.button.ButtonRound();
+        txt_email = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        txt_nombre = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        txt_usuario = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        txt_contraseña = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        txt_ciudad = new org.edisoncor.gui.textField.TextFieldRectIcon();
+        bt_modificar = new org.edisoncor.gui.button.ButtonRound();
+        bt_agregar = new org.edisoncor.gui.button.ButtonRound();
+        bt_eliminar = new org.edisoncor.gui.button.ButtonRound();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,9 +62,9 @@ public class RegistrarUsuario_FRM extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel19.setText("Código:");
 
-        textFieldRectIcon17.addActionListener(new java.awt.event.ActionListener() {
+        txt_codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldRectIcon17textFieldRectIcon1ActionPerformed(evt);
+                txt_codigotextFieldRectIcon1ActionPerformed(evt);
             }
         });
 
@@ -83,54 +83,54 @@ public class RegistrarUsuario_FRM extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel26.setText("Ciudad:");
 
-        textFieldRectIcon18.addActionListener(new java.awt.event.ActionListener() {
+        txt_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldRectIcon18textFieldRectIcon2ActionPerformed(evt);
+                txt_emailtextFieldRectIcon2ActionPerformed(evt);
             }
         });
 
-        textFieldRectIcon19.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldRectIcon19textFieldRectIcon3ActionPerformed(evt);
+                txt_nombretextFieldRectIcon3ActionPerformed(evt);
             }
         });
 
-        textFieldRectIcon21.addActionListener(new java.awt.event.ActionListener() {
+        txt_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldRectIcon21textFieldRectIcon5ActionPerformed(evt);
+                txt_usuariotextFieldRectIcon5ActionPerformed(evt);
             }
         });
 
-        textFieldRectIcon20.addActionListener(new java.awt.event.ActionListener() {
+        txt_contraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldRectIcon20textFieldRectIcon1ActionPerformed(evt);
+                txt_contraseñatextFieldRectIcon1ActionPerformed(evt);
             }
         });
 
-        textFieldRectIcon22.addActionListener(new java.awt.event.ActionListener() {
+        txt_ciudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldRectIcon22textFieldRectIcon1ActionPerformed(evt);
+                txt_ciudadtextFieldRectIcon1ActionPerformed(evt);
             }
         });
 
-        buttonRound1.setText("Modificar");
-        buttonRound1.addActionListener(new java.awt.event.ActionListener() {
+        bt_modificar.setText("Modificar");
+        bt_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRound1ActionPerformed(evt);
+                bt_modificarActionPerformed(evt);
             }
         });
 
-        buttonRound2.setText("Agregar");
-        buttonRound2.addActionListener(new java.awt.event.ActionListener() {
+        bt_agregar.setText("Agregar");
+        bt_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRound2ActionPerformed(evt);
+                bt_agregarActionPerformed(evt);
             }
         });
 
-        buttonRound3.setText("Eliminar");
-        buttonRound3.addActionListener(new java.awt.event.ActionListener() {
+        bt_eliminar.setText("Eliminar");
+        bt_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRound3ActionPerformed(evt);
+                bt_eliminarActionPerformed(evt);
             }
         });
 
@@ -148,13 +148,13 @@ public class RegistrarUsuario_FRM extends javax.swing.JFrame {
                             .addComponent(jLabel26)
                             .addGroup(panelRoundTranslucidoComplete3Layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
-                                .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(bt_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(28, 28, 28)
                         .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldRectIcon20, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldRectIcon21, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldRectIcon22, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txt_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRoundTranslucidoComplete3Layout.createSequentialGroup()
                         .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20)
@@ -162,13 +162,13 @@ public class RegistrarUsuario_FRM extends javax.swing.JFrame {
                             .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(80, 80, 80)
                         .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldRectIcon18, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldRectIcon17, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldRectIcon19, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 44, Short.MAX_VALUE))
             .addGroup(panelRoundTranslucidoComplete3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
         panelRoundTranslucidoComplete3Layout.setVerticalGroup(
@@ -177,32 +177,32 @@ public class RegistrarUsuario_FRM extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(textFieldRectIcon17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(textFieldRectIcon19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldRectIcon18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(textFieldRectIcon21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(textFieldRectIcon20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
-                    .addComponent(textFieldRectIcon22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(panelRoundTranslucidoComplete3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bt_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
 
@@ -245,41 +245,41 @@ public class RegistrarUsuario_FRM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textFieldRectIcon17textFieldRectIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRectIcon17textFieldRectIcon1ActionPerformed
+    private void txt_codigotextFieldRectIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codigotextFieldRectIcon1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldRectIcon17textFieldRectIcon1ActionPerformed
+    }//GEN-LAST:event_txt_codigotextFieldRectIcon1ActionPerformed
 
-    private void textFieldRectIcon18textFieldRectIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRectIcon18textFieldRectIcon2ActionPerformed
+    private void txt_emailtextFieldRectIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_emailtextFieldRectIcon2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldRectIcon18textFieldRectIcon2ActionPerformed
+    }//GEN-LAST:event_txt_emailtextFieldRectIcon2ActionPerformed
 
-    private void textFieldRectIcon19textFieldRectIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRectIcon19textFieldRectIcon3ActionPerformed
+    private void txt_nombretextFieldRectIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombretextFieldRectIcon3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldRectIcon19textFieldRectIcon3ActionPerformed
+    }//GEN-LAST:event_txt_nombretextFieldRectIcon3ActionPerformed
 
-    private void textFieldRectIcon21textFieldRectIcon5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRectIcon21textFieldRectIcon5ActionPerformed
+    private void txt_usuariotextFieldRectIcon5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuariotextFieldRectIcon5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldRectIcon21textFieldRectIcon5ActionPerformed
+    }//GEN-LAST:event_txt_usuariotextFieldRectIcon5ActionPerformed
 
-    private void textFieldRectIcon20textFieldRectIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRectIcon20textFieldRectIcon1ActionPerformed
+    private void txt_contraseñatextFieldRectIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_contraseñatextFieldRectIcon1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldRectIcon20textFieldRectIcon1ActionPerformed
+    }//GEN-LAST:event_txt_contraseñatextFieldRectIcon1ActionPerformed
 
-    private void textFieldRectIcon22textFieldRectIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRectIcon22textFieldRectIcon1ActionPerformed
+    private void txt_ciudadtextFieldRectIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ciudadtextFieldRectIcon1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldRectIcon22textFieldRectIcon1ActionPerformed
+    }//GEN-LAST:event_txt_ciudadtextFieldRectIcon1ActionPerformed
 
-    private void buttonRound1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound1ActionPerformed
+    private void bt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_modificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonRound1ActionPerformed
+    }//GEN-LAST:event_bt_modificarActionPerformed
 
-    private void buttonRound2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound2ActionPerformed
+    private void bt_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_agregarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonRound2ActionPerformed
+    }//GEN-LAST:event_bt_agregarActionPerformed
 
-    private void buttonRound3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound3ActionPerformed
+    private void bt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonRound3ActionPerformed
+    }//GEN-LAST:event_bt_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,9 +318,9 @@ public class RegistrarUsuario_FRM extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.edisoncor.gui.button.ButtonRound buttonRound1;
-    private org.edisoncor.gui.button.ButtonRound buttonRound2;
-    private org.edisoncor.gui.button.ButtonRound buttonRound3;
+    private org.edisoncor.gui.button.ButtonRound bt_agregar;
+    private org.edisoncor.gui.button.ButtonRound bt_eliminar;
+    private org.edisoncor.gui.button.ButtonRound bt_modificar;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -330,11 +330,11 @@ public class RegistrarUsuario_FRM extends javax.swing.JFrame {
     private org.edisoncor.gui.label.LabelMetric labelMetric1;
     private org.edisoncor.gui.panel.PanelImage panelImage1;
     private org.edisoncor.gui.panel.PanelRoundTranslucidoComplete panelRoundTranslucidoComplete3;
-    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon17;
-    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon18;
-    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon19;
-    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon20;
-    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon21;
-    private org.edisoncor.gui.textField.TextFieldRectIcon textFieldRectIcon22;
+    private org.edisoncor.gui.textField.TextFieldRectIcon txt_ciudad;
+    private org.edisoncor.gui.textField.TextFieldRectIcon txt_codigo;
+    private org.edisoncor.gui.textField.TextFieldRectIcon txt_contraseña;
+    private org.edisoncor.gui.textField.TextFieldRectIcon txt_email;
+    private org.edisoncor.gui.textField.TextFieldRectIcon txt_nombre;
+    private org.edisoncor.gui.textField.TextFieldRectIcon txt_usuario;
     // End of variables declaration//GEN-END:variables
 }
