@@ -21,7 +21,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 public class ComentarioJpaController implements Serializable {
 

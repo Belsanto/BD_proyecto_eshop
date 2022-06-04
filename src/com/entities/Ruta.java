@@ -7,7 +7,6 @@ package com.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,16 +17,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "ruta")
@@ -57,11 +54,12 @@ public class Ruta implements Serializable {
     @Column(name = "fecha_inicio_entrega")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicioEntrega;
+    @JoinColumn(name = "departamento_codigo", referencedColumnName = "codigo")
+    @ManyToOne
+    private Departamento departamentoCodigo;
     @JoinColumn(name = "empresa_codigo", referencedColumnName = "codigo")
     @ManyToOne
     private Delivery empresaCodigo;
-    @OneToMany(mappedBy = "rutaCodigo")
-    private List<DetalleEntrega> detalleEntregaList;
 
     public Ruta() {
     }
@@ -109,21 +107,20 @@ public class Ruta implements Serializable {
         this.fechaInicioEntrega = fechaInicioEntrega;
     }
 
+    public Departamento getDepartamentoCodigo() {
+        return departamentoCodigo;
+    }
+
+    public void setDepartamentoCodigo(Departamento departamentoCodigo) {
+        this.departamentoCodigo = departamentoCodigo;
+    }
+
     public Delivery getEmpresaCodigo() {
         return empresaCodigo;
     }
 
     public void setEmpresaCodigo(Delivery empresaCodigo) {
         this.empresaCodigo = empresaCodigo;
-    }
-
-    @XmlTransient
-    public List<DetalleEntrega> getDetalleEntregaList() {
-        return detalleEntregaList;
-    }
-
-    public void setDetalleEntregaList(List<DetalleEntrega> detalleEntregaList) {
-        this.detalleEntregaList = detalleEntregaList;
     }
 
     @Override
@@ -148,7 +145,7 @@ public class Ruta implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.Ruta[ codigo=" + codigo + " ]";
+        return "com.entities.Ruta[ codigo=" + codigo + " ]";
     }
     
 }

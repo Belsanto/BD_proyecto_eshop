@@ -8,14 +8,13 @@ package com.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -26,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "usuario")
@@ -40,24 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuario.findByRutaFoto", query = "SELECT u FROM Usuario u WHERE u.rutaFoto = :rutaFoto")
     , @NamedQuery(name = "Usuario.findByUsername", query = "SELECT u FROM Usuario u WHERE u.username = :username")})
 public class Usuario implements Serializable {
-
-    @JoinTable(name = "usuario_productos_favoritos", joinColumns = {
-        @JoinColumn(name = "usuarios_potenciales_codigo", referencedColumnName = "codigo")}, inverseJoinColumns = {
-        @JoinColumn(name = "productos_favoritos_codigo", referencedColumnName = "codigo")})
-    @ManyToMany
-    private List<Producto> productoList;
-    @OneToMany(mappedBy = "compradorCodigo")
-    private List<Compra> compraList;
-    @OneToMany(mappedBy = "vendedorCodigo")
-    private List<ProductoSubasta> productoSubastaList;
-    @OneToMany(mappedBy = "clienteCodigo")
-    private List<Canje> canjeList;
-    @OneToMany(mappedBy = "vendedorCodigo")
-    private List<Producto> productoList1;
-    @OneToMany(mappedBy = "userComentCodigo")
-    private List<Comentario> comentarioList;
-    @OneToMany(mappedBy = "usuarioSubastaCodigo")
-    private List<SubastaUsuario> subastaUsuarioList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -79,13 +60,22 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "username")
     private String username;
-    @JoinColumn(name = "cartera_puntos_codigo", referencedColumnName = "codigo")
-    @ManyToOne
-    private Cartera carteraPuntosCodigo;
-    @JoinColumn(name = "ciudad_usuario_codigo", referencedColumnName = "codigo")
+    @OneToMany(mappedBy = "compradorCodigo")
+    private List<Compra> compraList;
+    @OneToMany(mappedBy = "vendedorCodigo")
+    private List<ProductoSubasta> productoSubastaList;
+    @OneToMany(mappedBy = "clienteCodigo")
+    private List<Canje> canjeList;
+    @OneToMany(mappedBy = "vendedorCodigo")
+    private List<Producto> productoList;
+    @OneToMany(mappedBy = "userComentCodigo")
+    private List<Comentario> comentarioList;
+    @OneToMany(mappedBy = "usuarioSubastaCodigo")
+    private List<SubastaUsuario> subastaUsuarioList;
+    @JoinColumn(name = "departamento_usuario_codigo", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
-    private Ciudad ciudadUsuarioCodigo;
-    @OneToMany(mappedBy = "usuariosCodigo")
+    private Departamento departamentoUsuarioCodigo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioCarteraCodigo")
     private List<Cartera> carteraList;
 
     public Usuario() {
@@ -151,20 +141,66 @@ public class Usuario implements Serializable {
         this.username = username;
     }
 
-    public Cartera getCarteraPuntosCodigo() {
-        return carteraPuntosCodigo;
+    @XmlTransient
+    public List<Compra> getCompraList() {
+        return compraList;
     }
 
-    public void setCarteraPuntosCodigo(Cartera carteraPuntosCodigo) {
-        this.carteraPuntosCodigo = carteraPuntosCodigo;
+    public void setCompraList(List<Compra> compraList) {
+        this.compraList = compraList;
     }
 
-    public Ciudad getCiudadUsuarioCodigo() {
-        return ciudadUsuarioCodigo;
+    @XmlTransient
+    public List<ProductoSubasta> getProductoSubastaList() {
+        return productoSubastaList;
     }
 
-    public void setCiudadUsuarioCodigo(Ciudad ciudadUsuarioCodigo) {
-        this.ciudadUsuarioCodigo = ciudadUsuarioCodigo;
+    public void setProductoSubastaList(List<ProductoSubasta> productoSubastaList) {
+        this.productoSubastaList = productoSubastaList;
+    }
+
+    @XmlTransient
+    public List<Canje> getCanjeList() {
+        return canjeList;
+    }
+
+    public void setCanjeList(List<Canje> canjeList) {
+        this.canjeList = canjeList;
+    }
+
+    @XmlTransient
+    public List<Producto> getProductoList() {
+        return productoList;
+    }
+
+    public void setProductoList(List<Producto> productoList) {
+        this.productoList = productoList;
+    }
+
+    @XmlTransient
+    public List<Comentario> getComentarioList() {
+        return comentarioList;
+    }
+
+    public void setComentarioList(List<Comentario> comentarioList) {
+        this.comentarioList = comentarioList;
+    }
+
+    @XmlTransient
+    public List<SubastaUsuario> getSubastaUsuarioList() {
+        return subastaUsuarioList;
+    }
+
+    public void setSubastaUsuarioList(List<SubastaUsuario> subastaUsuarioList) {
+        this.subastaUsuarioList = subastaUsuarioList;
+    }
+
+    public Departamento getDepartamentoUsuarioCodigo() {
+        return departamentoUsuarioCodigo;
+    }
+
+    public void setDepartamentoUsuarioCodigo(Departamento departamentoUsuarioCodigo) {
+        this.departamentoUsuarioCodigo = departamentoUsuarioCodigo;
     }
 
     @XmlTransient
@@ -199,69 +235,6 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "com.entities.Usuario[ codigo=" + codigo + " ]";
-    }
-
-    @XmlTransient
-    public List<Producto> getProductoList() {
-        return productoList;
-    }
-
-    public void setProductoList(List<Producto> productoList) {
-        this.productoList = productoList;
-    }
-
-    @XmlTransient
-    public List<Compra> getCompraList() {
-        return compraList;
-    }
-
-    public void setCompraList(List<Compra> compraList) {
-        this.compraList = compraList;
-    }
-
-    @XmlTransient
-    public List<ProductoSubasta> getProductoSubastaList() {
-        return productoSubastaList;
-    }
-
-    public void setProductoSubastaList(List<ProductoSubasta> productoSubastaList) {
-        this.productoSubastaList = productoSubastaList;
-    }
-
-    @XmlTransient
-    public List<Canje> getCanjeList() {
-        return canjeList;
-    }
-
-    public void setCanjeList(List<Canje> canjeList) {
-        this.canjeList = canjeList;
-    }
-
-    @XmlTransient
-    public List<Producto> getProductoList1() {
-        return productoList1;
-    }
-
-    public void setProductoList1(List<Producto> productoList1) {
-        this.productoList1 = productoList1;
-    }
-
-    @XmlTransient
-    public List<Comentario> getComentarioList() {
-        return comentarioList;
-    }
-
-    public void setComentarioList(List<Comentario> comentarioList) {
-        this.comentarioList = comentarioList;
-    }
-
-    @XmlTransient
-    public List<SubastaUsuario> getSubastaUsuarioList() {
-        return subastaUsuarioList;
-    }
-
-    public void setSubastaUsuarioList(List<SubastaUsuario> subastaUsuarioList) {
-        this.subastaUsuarioList = subastaUsuarioList;
     }
     
 }

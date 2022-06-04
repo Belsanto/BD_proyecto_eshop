@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -22,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "delivery")
@@ -42,6 +44,9 @@ public class Delivery implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
+    @JoinColumn(name = "pais_codigo", referencedColumnName = "codigo")
+    @ManyToOne(optional = false)
+    private Pais paisCodigo;
     @OneToMany(mappedBy = "empresaCodigo")
     private List<Ruta> rutaList;
 
@@ -71,6 +76,14 @@ public class Delivery implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Pais getPaisCodigo() {
+        return paisCodigo;
+    }
+
+    public void setPaisCodigo(Pais paisCodigo) {
+        this.paisCodigo = paisCodigo;
     }
 
     @XmlTransient
@@ -104,7 +117,7 @@ public class Delivery implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.Delivery[ codigo=" + codigo + " ]";
+        return "com.entities.Delivery[ codigo=" + codigo + " ]";
     }
     
 }

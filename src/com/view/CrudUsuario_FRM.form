@@ -82,7 +82,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="jTablaUsuarios">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">
@@ -120,29 +120,29 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel5" min="-2" pref="65" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="comboBoxRect1" max="32767" attributes="0"/>
+                          <Component id="cbCiudad" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel4" min="-2" pref="65" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="textFieldRectBackground3" min="-2" pref="462" max="-2" attributes="0"/>
+                              <Component id="txtemail" min="-2" pref="462" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jLabel3" min="-2" pref="65" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="passwordField1" max="32767" attributes="0"/>
+                                  <Component id="txtpassword" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel2" min="-2" pref="65" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textFieldRectBackground2" min="-2" pref="462" max="-2" attributes="0"/>
+                                  <Component id="txtUsename" min="-2" pref="462" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel1" min="-2" pref="65" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textFieldRectBackground1" min="-2" pref="462" max="-2" attributes="0"/>
+                                  <Component id="txtName" min="-2" pref="462" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -170,30 +170,30 @@
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="textFieldRectBackground1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtName" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="textFieldRectBackground2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtUsename" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel3" pref="35" max="32767" attributes="0"/>
-                      <Component id="passwordField1" max="32767" attributes="0"/>
+                      <Component id="txtpassword" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel4" min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Component id="textFieldRectBackground3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="txtemail" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="comboBoxRect1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="cbCiudad" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="66" max="32767" attributes="0"/>
               </Group>
@@ -222,35 +222,35 @@
             <Property name="text" type="java.lang.String" value="NOMBRE"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="textFieldRectBackground1">
+        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="txtName">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" value="USERNAME"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="textFieldRectBackground2">
+        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="txtUsename">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="PASSWORD"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.passwordField.PasswordField" name="passwordField1">
+        <Component class="org.edisoncor.gui.passwordField.PasswordField" name="txtpassword">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="EMAIL"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="textFieldRectBackground3">
+        <Component class="org.edisoncor.gui.textField.TextFieldRectBackground" name="txtemail">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="CIUDAD"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.comboBox.ComboBoxRect" name="comboBoxRect1">
+        <Component class="org.edisoncor.gui.comboBox.ComboBoxRect" name="cbCiudad">
         </Component>
         <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction3">
           <Properties>
@@ -261,6 +261,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAction4ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction1">
           <Properties>

@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "producto_subasta")
@@ -57,12 +57,12 @@ public class ProductoSubasta implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre_publicacion")
     private String nombrePublicacion;
-    @JoinColumn(name = "ciudad_producto_codigo", referencedColumnName = "codigo")
-    @ManyToOne
-    private Ciudad ciudadProductoCodigo;
     @JoinColumn(name = "vendedor_codigo", referencedColumnName = "codigo")
     @ManyToOne
     private Usuario vendedorCodigo;
+    @JoinColumn(name = "departamento_codigo", referencedColumnName = "codigo")
+    @ManyToOne
+    private Departamento departamentoCodigo;
     @OneToMany(mappedBy = "productoEnSubastaCodigo")
     private List<Subasta> subastaList;
 
@@ -121,20 +121,20 @@ public class ProductoSubasta implements Serializable {
         this.nombrePublicacion = nombrePublicacion;
     }
 
-    public Ciudad getCiudadProductoCodigo() {
-        return ciudadProductoCodigo;
-    }
-
-    public void setCiudadProductoCodigo(Ciudad ciudadProductoCodigo) {
-        this.ciudadProductoCodigo = ciudadProductoCodigo;
-    }
-
     public Usuario getVendedorCodigo() {
         return vendedorCodigo;
     }
 
     public void setVendedorCodigo(Usuario vendedorCodigo) {
         this.vendedorCodigo = vendedorCodigo;
+    }
+
+    public Departamento getDepartamentoCodigo() {
+        return departamentoCodigo;
+    }
+
+    public void setDepartamentoCodigo(Departamento departamentoCodigo) {
+        this.departamentoCodigo = departamentoCodigo;
     }
 
     @XmlTransient
@@ -168,7 +168,7 @@ public class ProductoSubasta implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.ProductoSubasta[ codigo=" + codigo + " ]";
+        return "com.entities.ProductoSubasta[ codigo=" + codigo + " ]";
     }
     
 }

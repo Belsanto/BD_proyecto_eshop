@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "cartera")
@@ -38,13 +38,11 @@ public class Cartera implements Serializable {
     @Basic(optional = false)
     @Column(name = "codigo")
     private String codigo;
-    @OneToMany(mappedBy = "carteraPuntosCodigo")
-    private List<Usuario> usuarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "carteraCodigo")
     private List<Puntos> puntosList;
-    @JoinColumn(name = "usuarios_codigo", referencedColumnName = "codigo")
-    @ManyToOne
-    private Usuario usuariosCodigo;
+    @JoinColumn(name = "usuario_cartera_codigo", referencedColumnName = "codigo")
+    @ManyToOne(optional = false)
+    private Usuario usuarioCarteraCodigo;
 
     public Cartera() {
     }
@@ -62,15 +60,6 @@ public class Cartera implements Serializable {
     }
 
     @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
-    @XmlTransient
     public List<Puntos> getPuntosList() {
         return puntosList;
     }
@@ -79,12 +68,12 @@ public class Cartera implements Serializable {
         this.puntosList = puntosList;
     }
 
-    public Usuario getUsuariosCodigo() {
-        return usuariosCodigo;
+    public Usuario getUsuarioCarteraCodigo() {
+        return usuarioCarteraCodigo;
     }
 
-    public void setUsuariosCodigo(Usuario usuariosCodigo) {
-        this.usuariosCodigo = usuariosCodigo;
+    public void setUsuarioCarteraCodigo(Usuario usuarioCarteraCodigo) {
+        this.usuarioCarteraCodigo = usuarioCarteraCodigo;
     }
 
     @Override

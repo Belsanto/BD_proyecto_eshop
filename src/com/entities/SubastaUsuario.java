@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "subasta_usuario")
@@ -131,7 +131,7 @@ public class SubastaUsuario implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.SubastaUsuario[ codigo=" + codigo + " ]";
+        return "com.entities.SubastaUsuario[ codigo=" + codigo + " ]";
     }
     
 }

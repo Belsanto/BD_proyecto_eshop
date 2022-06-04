@@ -28,13 +28,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author USER
  */
 @Entity
-@Table(name = "ciudad")
+@Table(name = "departamento")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c")
-    , @NamedQuery(name = "Ciudad.findByCodigo", query = "SELECT c FROM Ciudad c WHERE c.codigo = :codigo")
-    , @NamedQuery(name = "Ciudad.findByNombre", query = "SELECT c FROM Ciudad c WHERE c.nombre = :nombre")})
-public class Ciudad implements Serializable {
+    @NamedQuery(name = "Departamento.findAll", query = "SELECT d FROM Departamento d")
+    , @NamedQuery(name = "Departamento.findByCodigo", query = "SELECT d FROM Departamento d WHERE d.codigo = :codigo")
+    , @NamedQuery(name = "Departamento.findByNombre", query = "SELECT d FROM Departamento d WHERE d.nombre = :nombre")})
+public class Departamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,20 +45,26 @@ public class Ciudad implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @JoinColumn(name = "pais_codigo", referencedColumnName = "codigo")
+    @OneToMany(mappedBy = "departamentoCodigo")
+    private List<Ruta> rutaList;
+    @OneToMany(mappedBy = "departamentoCodigo")
+    private List<ProductoSubasta> productoSubastaList;
+    @OneToMany(mappedBy = "departamentoProductoCodigo")
+    private List<Producto> productoList;
+    @JoinColumn(name = "ciudad_codigo", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
-    private Pais paisCodigo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudadCodigo")
-    private List<Departamento> departamentoList;
+    private Ciudad ciudadCodigo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamentoUsuarioCodigo")
+    private List<Usuario> usuarioList;
 
-    public Ciudad() {
+    public Departamento() {
     }
 
-    public Ciudad(Integer codigo) {
+    public Departamento(Integer codigo) {
         this.codigo = codigo;
     }
 
-    public Ciudad(Integer codigo, String nombre) {
+    public Departamento(Integer codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
     }
@@ -79,21 +85,48 @@ public class Ciudad implements Serializable {
         this.nombre = nombre;
     }
 
-    public Pais getPaisCodigo() {
-        return paisCodigo;
+    @XmlTransient
+    public List<Ruta> getRutaList() {
+        return rutaList;
     }
 
-    public void setPaisCodigo(Pais paisCodigo) {
-        this.paisCodigo = paisCodigo;
+    public void setRutaList(List<Ruta> rutaList) {
+        this.rutaList = rutaList;
     }
 
     @XmlTransient
-    public List<Departamento> getDepartamentoList() {
-        return departamentoList;
+    public List<ProductoSubasta> getProductoSubastaList() {
+        return productoSubastaList;
     }
 
-    public void setDepartamentoList(List<Departamento> departamentoList) {
-        this.departamentoList = departamentoList;
+    public void setProductoSubastaList(List<ProductoSubasta> productoSubastaList) {
+        this.productoSubastaList = productoSubastaList;
+    }
+
+    @XmlTransient
+    public List<Producto> getProductoList() {
+        return productoList;
+    }
+
+    public void setProductoList(List<Producto> productoList) {
+        this.productoList = productoList;
+    }
+
+    public Ciudad getCiudadCodigo() {
+        return ciudadCodigo;
+    }
+
+    public void setCiudadCodigo(Ciudad ciudadCodigo) {
+        this.ciudadCodigo = ciudadCodigo;
+    }
+
+    @XmlTransient
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override
@@ -106,10 +139,10 @@ public class Ciudad implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Ciudad)) {
+        if (!(object instanceof Departamento)) {
             return false;
         }
-        Ciudad other = (Ciudad) object;
+        Departamento other = (Departamento) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
@@ -118,7 +151,7 @@ public class Ciudad implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entities.Ciudad[ codigo=" + codigo + " ]";
+        return "com.entities.Departamento[ codigo=" + codigo + " ]";
     }
     
 }

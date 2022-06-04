@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import com.entities.Pais;
 import com.entities.Ruta;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 public class DeliveryJpaController implements Serializable {
 
@@ -45,6 +46,11 @@ public class DeliveryJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Pais paisCodigo = delivery.getPaisCodigo();
+            if (paisCodigo != null) {
+                paisCodigo = em.getReference(paisCodigo.getClass(), paisCodigo.getCodigo());
+                delivery.setPaisCodigo(paisCodigo);
+            }
             List<Ruta> attachedRutaList = new ArrayList<Ruta>();
             for (Ruta rutaListRutaToAttach : delivery.getRutaList()) {
                 rutaListRutaToAttach = em.getReference(rutaListRutaToAttach.getClass(), rutaListRutaToAttach.getCodigo());
@@ -52,6 +58,10 @@ public class DeliveryJpaController implements Serializable {
             }
             delivery.setRutaList(attachedRutaList);
             em.persist(delivery);
+            if (paisCodigo != null) {
+                paisCodigo.getDeliveryList().add(delivery);
+                paisCodigo = em.merge(paisCodigo);
+            }
             for (Ruta rutaListRuta : delivery.getRutaList()) {
                 Delivery oldEmpresaCodigoOfRutaListRuta = rutaListRuta.getEmpresaCodigo();
                 rutaListRuta.setEmpresaCodigo(delivery);
@@ -75,8 +85,14 @@ public class DeliveryJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Delivery persistentDelivery = em.find(Delivery.class, delivery.getCodigo());
+            Pais paisCodigoOld = persistentDelivery.getPaisCodigo();
+            Pais paisCodigoNew = delivery.getPaisCodigo();
             List<Ruta> rutaListOld = persistentDelivery.getRutaList();
             List<Ruta> rutaListNew = delivery.getRutaList();
+            if (paisCodigoNew != null) {
+                paisCodigoNew = em.getReference(paisCodigoNew.getClass(), paisCodigoNew.getCodigo());
+                delivery.setPaisCodigo(paisCodigoNew);
+            }
             List<Ruta> attachedRutaListNew = new ArrayList<Ruta>();
             for (Ruta rutaListNewRutaToAttach : rutaListNew) {
                 rutaListNewRutaToAttach = em.getReference(rutaListNewRutaToAttach.getClass(), rutaListNewRutaToAttach.getCodigo());
@@ -85,6 +101,14 @@ public class DeliveryJpaController implements Serializable {
             rutaListNew = attachedRutaListNew;
             delivery.setRutaList(rutaListNew);
             delivery = em.merge(delivery);
+            if (paisCodigoOld != null && !paisCodigoOld.equals(paisCodigoNew)) {
+                paisCodigoOld.getDeliveryList().remove(delivery);
+                paisCodigoOld = em.merge(paisCodigoOld);
+            }
+            if (paisCodigoNew != null && !paisCodigoNew.equals(paisCodigoOld)) {
+                paisCodigoNew.getDeliveryList().add(delivery);
+                paisCodigoNew = em.merge(paisCodigoNew);
+            }
             for (Ruta rutaListOldRuta : rutaListOld) {
                 if (!rutaListNew.contains(rutaListOldRuta)) {
                     rutaListOldRuta.setEmpresaCodigo(null);
@@ -130,6 +154,11 @@ public class DeliveryJpaController implements Serializable {
                 delivery.getCodigo();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The delivery with id " + id + " no longer exists.", enfe);
+            }
+            Pais paisCodigo = delivery.getPaisCodigo();
+            if (paisCodigo != null) {
+                paisCodigo.getDeliveryList().remove(delivery);
+                paisCodigo = em.merge(paisCodigo);
             }
             List<Ruta> rutaList = delivery.getRutaList();
             for (Ruta rutaListRuta : rutaList) {

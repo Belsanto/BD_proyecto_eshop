@@ -12,21 +12,19 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import com.entities.Ciudad;
 import com.entities.Usuario;
+import com.entities.Departamento;
+import com.entities.Comentario;
+import com.entities.Producto;
 import java.util.ArrayList;
 import java.util.List;
-import com.entities.DetalleCanje;
-import com.entities.Comentario;
-import com.entities.DetalleCompra;
-import com.entities.Producto;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 public class ProductoJpaController implements Serializable {
 
@@ -44,77 +42,37 @@ public class ProductoJpaController implements Serializable {
     }
 
     public void create(Producto producto) throws PreexistingEntityException, Exception {
-        if (producto.getUsuarioList() == null) {
-            producto.setUsuarioList(new ArrayList<Usuario>());
-        }
-        if (producto.getDetalleCanjeList() == null) {
-            producto.setDetalleCanjeList(new ArrayList<DetalleCanje>());
-        }
         if (producto.getComentarioList() == null) {
             producto.setComentarioList(new ArrayList<Comentario>());
-        }
-        if (producto.getDetalleCompraList() == null) {
-            producto.setDetalleCompraList(new ArrayList<DetalleCompra>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Ciudad ciudadProductoCodigo = producto.getCiudadProductoCodigo();
-            if (ciudadProductoCodigo != null) {
-                ciudadProductoCodigo = em.getReference(ciudadProductoCodigo.getClass(), ciudadProductoCodigo.getCodigo());
-                producto.setCiudadProductoCodigo(ciudadProductoCodigo);
-            }
             Usuario vendedorCodigo = producto.getVendedorCodigo();
             if (vendedorCodigo != null) {
                 vendedorCodigo = em.getReference(vendedorCodigo.getClass(), vendedorCodigo.getCodigo());
                 producto.setVendedorCodigo(vendedorCodigo);
             }
-            List<Usuario> attachedUsuarioList = new ArrayList<Usuario>();
-            for (Usuario usuarioListUsuarioToAttach : producto.getUsuarioList()) {
-                usuarioListUsuarioToAttach = em.getReference(usuarioListUsuarioToAttach.getClass(), usuarioListUsuarioToAttach.getCodigo());
-                attachedUsuarioList.add(usuarioListUsuarioToAttach);
+            Departamento departamentoProductoCodigo = producto.getDepartamentoProductoCodigo();
+            if (departamentoProductoCodigo != null) {
+                departamentoProductoCodigo = em.getReference(departamentoProductoCodigo.getClass(), departamentoProductoCodigo.getCodigo());
+                producto.setDepartamentoProductoCodigo(departamentoProductoCodigo);
             }
-            producto.setUsuarioList(attachedUsuarioList);
-            List<DetalleCanje> attachedDetalleCanjeList = new ArrayList<DetalleCanje>();
-            for (DetalleCanje detalleCanjeListDetalleCanjeToAttach : producto.getDetalleCanjeList()) {
-                detalleCanjeListDetalleCanjeToAttach = em.getReference(detalleCanjeListDetalleCanjeToAttach.getClass(), detalleCanjeListDetalleCanjeToAttach.getCodigo());
-                attachedDetalleCanjeList.add(detalleCanjeListDetalleCanjeToAttach);
-            }
-            producto.setDetalleCanjeList(attachedDetalleCanjeList);
             List<Comentario> attachedComentarioList = new ArrayList<Comentario>();
             for (Comentario comentarioListComentarioToAttach : producto.getComentarioList()) {
                 comentarioListComentarioToAttach = em.getReference(comentarioListComentarioToAttach.getClass(), comentarioListComentarioToAttach.getCodigo());
                 attachedComentarioList.add(comentarioListComentarioToAttach);
             }
             producto.setComentarioList(attachedComentarioList);
-            List<DetalleCompra> attachedDetalleCompraList = new ArrayList<DetalleCompra>();
-            for (DetalleCompra detalleCompraListDetalleCompraToAttach : producto.getDetalleCompraList()) {
-                detalleCompraListDetalleCompraToAttach = em.getReference(detalleCompraListDetalleCompraToAttach.getClass(), detalleCompraListDetalleCompraToAttach.getCodigo());
-                attachedDetalleCompraList.add(detalleCompraListDetalleCompraToAttach);
-            }
-            producto.setDetalleCompraList(attachedDetalleCompraList);
             em.persist(producto);
-            if (ciudadProductoCodigo != null) {
-                ciudadProductoCodigo.getProductoList().add(producto);
-                ciudadProductoCodigo = em.merge(ciudadProductoCodigo);
-            }
             if (vendedorCodigo != null) {
                 vendedorCodigo.getProductoList().add(producto);
                 vendedorCodigo = em.merge(vendedorCodigo);
             }
-            for (Usuario usuarioListUsuario : producto.getUsuarioList()) {
-                usuarioListUsuario.getProductoList().add(producto);
-                usuarioListUsuario = em.merge(usuarioListUsuario);
-            }
-            for (DetalleCanje detalleCanjeListDetalleCanje : producto.getDetalleCanjeList()) {
-                Producto oldProductoCanjeCodigoOfDetalleCanjeListDetalleCanje = detalleCanjeListDetalleCanje.getProductoCanjeCodigo();
-                detalleCanjeListDetalleCanje.setProductoCanjeCodigo(producto);
-                detalleCanjeListDetalleCanje = em.merge(detalleCanjeListDetalleCanje);
-                if (oldProductoCanjeCodigoOfDetalleCanjeListDetalleCanje != null) {
-                    oldProductoCanjeCodigoOfDetalleCanjeListDetalleCanje.getDetalleCanjeList().remove(detalleCanjeListDetalleCanje);
-                    oldProductoCanjeCodigoOfDetalleCanjeListDetalleCanje = em.merge(oldProductoCanjeCodigoOfDetalleCanjeListDetalleCanje);
-                }
+            if (departamentoProductoCodigo != null) {
+                departamentoProductoCodigo.getProductoList().add(producto);
+                departamentoProductoCodigo = em.merge(departamentoProductoCodigo);
             }
             for (Comentario comentarioListComentario : producto.getComentarioList()) {
                 Producto oldProductocCodigoOfComentarioListComentario = comentarioListComentario.getProductocCodigo();
@@ -123,15 +81,6 @@ public class ProductoJpaController implements Serializable {
                 if (oldProductocCodigoOfComentarioListComentario != null) {
                     oldProductocCodigoOfComentarioListComentario.getComentarioList().remove(comentarioListComentario);
                     oldProductocCodigoOfComentarioListComentario = em.merge(oldProductocCodigoOfComentarioListComentario);
-                }
-            }
-            for (DetalleCompra detalleCompraListDetalleCompra : producto.getDetalleCompraList()) {
-                Producto oldProductoCompraCodigoOfDetalleCompraListDetalleCompra = detalleCompraListDetalleCompra.getProductoCompraCodigo();
-                detalleCompraListDetalleCompra.setProductoCompraCodigo(producto);
-                detalleCompraListDetalleCompra = em.merge(detalleCompraListDetalleCompra);
-                if (oldProductoCompraCodigoOfDetalleCompraListDetalleCompra != null) {
-                    oldProductoCompraCodigoOfDetalleCompraListDetalleCompra.getDetalleCompraList().remove(detalleCompraListDetalleCompra);
-                    oldProductoCompraCodigoOfDetalleCompraListDetalleCompra = em.merge(oldProductoCompraCodigoOfDetalleCompraListDetalleCompra);
                 }
             }
             em.getTransaction().commit();
@@ -153,40 +102,20 @@ public class ProductoJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Producto persistentProducto = em.find(Producto.class, producto.getCodigo());
-            Ciudad ciudadProductoCodigoOld = persistentProducto.getCiudadProductoCodigo();
-            Ciudad ciudadProductoCodigoNew = producto.getCiudadProductoCodigo();
             Usuario vendedorCodigoOld = persistentProducto.getVendedorCodigo();
             Usuario vendedorCodigoNew = producto.getVendedorCodigo();
-            List<Usuario> usuarioListOld = persistentProducto.getUsuarioList();
-            List<Usuario> usuarioListNew = producto.getUsuarioList();
-            List<DetalleCanje> detalleCanjeListOld = persistentProducto.getDetalleCanjeList();
-            List<DetalleCanje> detalleCanjeListNew = producto.getDetalleCanjeList();
+            Departamento departamentoProductoCodigoOld = persistentProducto.getDepartamentoProductoCodigo();
+            Departamento departamentoProductoCodigoNew = producto.getDepartamentoProductoCodigo();
             List<Comentario> comentarioListOld = persistentProducto.getComentarioList();
             List<Comentario> comentarioListNew = producto.getComentarioList();
-            List<DetalleCompra> detalleCompraListOld = persistentProducto.getDetalleCompraList();
-            List<DetalleCompra> detalleCompraListNew = producto.getDetalleCompraList();
-            if (ciudadProductoCodigoNew != null) {
-                ciudadProductoCodigoNew = em.getReference(ciudadProductoCodigoNew.getClass(), ciudadProductoCodigoNew.getCodigo());
-                producto.setCiudadProductoCodigo(ciudadProductoCodigoNew);
-            }
             if (vendedorCodigoNew != null) {
                 vendedorCodigoNew = em.getReference(vendedorCodigoNew.getClass(), vendedorCodigoNew.getCodigo());
                 producto.setVendedorCodigo(vendedorCodigoNew);
             }
-            List<Usuario> attachedUsuarioListNew = new ArrayList<Usuario>();
-            for (Usuario usuarioListNewUsuarioToAttach : usuarioListNew) {
-                usuarioListNewUsuarioToAttach = em.getReference(usuarioListNewUsuarioToAttach.getClass(), usuarioListNewUsuarioToAttach.getCodigo());
-                attachedUsuarioListNew.add(usuarioListNewUsuarioToAttach);
+            if (departamentoProductoCodigoNew != null) {
+                departamentoProductoCodigoNew = em.getReference(departamentoProductoCodigoNew.getClass(), departamentoProductoCodigoNew.getCodigo());
+                producto.setDepartamentoProductoCodigo(departamentoProductoCodigoNew);
             }
-            usuarioListNew = attachedUsuarioListNew;
-            producto.setUsuarioList(usuarioListNew);
-            List<DetalleCanje> attachedDetalleCanjeListNew = new ArrayList<DetalleCanje>();
-            for (DetalleCanje detalleCanjeListNewDetalleCanjeToAttach : detalleCanjeListNew) {
-                detalleCanjeListNewDetalleCanjeToAttach = em.getReference(detalleCanjeListNewDetalleCanjeToAttach.getClass(), detalleCanjeListNewDetalleCanjeToAttach.getCodigo());
-                attachedDetalleCanjeListNew.add(detalleCanjeListNewDetalleCanjeToAttach);
-            }
-            detalleCanjeListNew = attachedDetalleCanjeListNew;
-            producto.setDetalleCanjeList(detalleCanjeListNew);
             List<Comentario> attachedComentarioListNew = new ArrayList<Comentario>();
             for (Comentario comentarioListNewComentarioToAttach : comentarioListNew) {
                 comentarioListNewComentarioToAttach = em.getReference(comentarioListNewComentarioToAttach.getClass(), comentarioListNewComentarioToAttach.getCodigo());
@@ -194,22 +123,7 @@ public class ProductoJpaController implements Serializable {
             }
             comentarioListNew = attachedComentarioListNew;
             producto.setComentarioList(comentarioListNew);
-            List<DetalleCompra> attachedDetalleCompraListNew = new ArrayList<DetalleCompra>();
-            for (DetalleCompra detalleCompraListNewDetalleCompraToAttach : detalleCompraListNew) {
-                detalleCompraListNewDetalleCompraToAttach = em.getReference(detalleCompraListNewDetalleCompraToAttach.getClass(), detalleCompraListNewDetalleCompraToAttach.getCodigo());
-                attachedDetalleCompraListNew.add(detalleCompraListNewDetalleCompraToAttach);
-            }
-            detalleCompraListNew = attachedDetalleCompraListNew;
-            producto.setDetalleCompraList(detalleCompraListNew);
             producto = em.merge(producto);
-            if (ciudadProductoCodigoOld != null && !ciudadProductoCodigoOld.equals(ciudadProductoCodigoNew)) {
-                ciudadProductoCodigoOld.getProductoList().remove(producto);
-                ciudadProductoCodigoOld = em.merge(ciudadProductoCodigoOld);
-            }
-            if (ciudadProductoCodigoNew != null && !ciudadProductoCodigoNew.equals(ciudadProductoCodigoOld)) {
-                ciudadProductoCodigoNew.getProductoList().add(producto);
-                ciudadProductoCodigoNew = em.merge(ciudadProductoCodigoNew);
-            }
             if (vendedorCodigoOld != null && !vendedorCodigoOld.equals(vendedorCodigoNew)) {
                 vendedorCodigoOld.getProductoList().remove(producto);
                 vendedorCodigoOld = em.merge(vendedorCodigoOld);
@@ -218,34 +132,13 @@ public class ProductoJpaController implements Serializable {
                 vendedorCodigoNew.getProductoList().add(producto);
                 vendedorCodigoNew = em.merge(vendedorCodigoNew);
             }
-            for (Usuario usuarioListOldUsuario : usuarioListOld) {
-                if (!usuarioListNew.contains(usuarioListOldUsuario)) {
-                    usuarioListOldUsuario.getProductoList().remove(producto);
-                    usuarioListOldUsuario = em.merge(usuarioListOldUsuario);
-                }
+            if (departamentoProductoCodigoOld != null && !departamentoProductoCodigoOld.equals(departamentoProductoCodigoNew)) {
+                departamentoProductoCodigoOld.getProductoList().remove(producto);
+                departamentoProductoCodigoOld = em.merge(departamentoProductoCodigoOld);
             }
-            for (Usuario usuarioListNewUsuario : usuarioListNew) {
-                if (!usuarioListOld.contains(usuarioListNewUsuario)) {
-                    usuarioListNewUsuario.getProductoList().add(producto);
-                    usuarioListNewUsuario = em.merge(usuarioListNewUsuario);
-                }
-            }
-            for (DetalleCanje detalleCanjeListOldDetalleCanje : detalleCanjeListOld) {
-                if (!detalleCanjeListNew.contains(detalleCanjeListOldDetalleCanje)) {
-                    detalleCanjeListOldDetalleCanje.setProductoCanjeCodigo(null);
-                    detalleCanjeListOldDetalleCanje = em.merge(detalleCanjeListOldDetalleCanje);
-                }
-            }
-            for (DetalleCanje detalleCanjeListNewDetalleCanje : detalleCanjeListNew) {
-                if (!detalleCanjeListOld.contains(detalleCanjeListNewDetalleCanje)) {
-                    Producto oldProductoCanjeCodigoOfDetalleCanjeListNewDetalleCanje = detalleCanjeListNewDetalleCanje.getProductoCanjeCodigo();
-                    detalleCanjeListNewDetalleCanje.setProductoCanjeCodigo(producto);
-                    detalleCanjeListNewDetalleCanje = em.merge(detalleCanjeListNewDetalleCanje);
-                    if (oldProductoCanjeCodigoOfDetalleCanjeListNewDetalleCanje != null && !oldProductoCanjeCodigoOfDetalleCanjeListNewDetalleCanje.equals(producto)) {
-                        oldProductoCanjeCodigoOfDetalleCanjeListNewDetalleCanje.getDetalleCanjeList().remove(detalleCanjeListNewDetalleCanje);
-                        oldProductoCanjeCodigoOfDetalleCanjeListNewDetalleCanje = em.merge(oldProductoCanjeCodigoOfDetalleCanjeListNewDetalleCanje);
-                    }
-                }
+            if (departamentoProductoCodigoNew != null && !departamentoProductoCodigoNew.equals(departamentoProductoCodigoOld)) {
+                departamentoProductoCodigoNew.getProductoList().add(producto);
+                departamentoProductoCodigoNew = em.merge(departamentoProductoCodigoNew);
             }
             for (Comentario comentarioListOldComentario : comentarioListOld) {
                 if (!comentarioListNew.contains(comentarioListOldComentario)) {
@@ -261,23 +154,6 @@ public class ProductoJpaController implements Serializable {
                     if (oldProductocCodigoOfComentarioListNewComentario != null && !oldProductocCodigoOfComentarioListNewComentario.equals(producto)) {
                         oldProductocCodigoOfComentarioListNewComentario.getComentarioList().remove(comentarioListNewComentario);
                         oldProductocCodigoOfComentarioListNewComentario = em.merge(oldProductocCodigoOfComentarioListNewComentario);
-                    }
-                }
-            }
-            for (DetalleCompra detalleCompraListOldDetalleCompra : detalleCompraListOld) {
-                if (!detalleCompraListNew.contains(detalleCompraListOldDetalleCompra)) {
-                    detalleCompraListOldDetalleCompra.setProductoCompraCodigo(null);
-                    detalleCompraListOldDetalleCompra = em.merge(detalleCompraListOldDetalleCompra);
-                }
-            }
-            for (DetalleCompra detalleCompraListNewDetalleCompra : detalleCompraListNew) {
-                if (!detalleCompraListOld.contains(detalleCompraListNewDetalleCompra)) {
-                    Producto oldProductoCompraCodigoOfDetalleCompraListNewDetalleCompra = detalleCompraListNewDetalleCompra.getProductoCompraCodigo();
-                    detalleCompraListNewDetalleCompra.setProductoCompraCodigo(producto);
-                    detalleCompraListNewDetalleCompra = em.merge(detalleCompraListNewDetalleCompra);
-                    if (oldProductoCompraCodigoOfDetalleCompraListNewDetalleCompra != null && !oldProductoCompraCodigoOfDetalleCompraListNewDetalleCompra.equals(producto)) {
-                        oldProductoCompraCodigoOfDetalleCompraListNewDetalleCompra.getDetalleCompraList().remove(detalleCompraListNewDetalleCompra);
-                        oldProductoCompraCodigoOfDetalleCompraListNewDetalleCompra = em.merge(oldProductoCompraCodigoOfDetalleCompraListNewDetalleCompra);
                     }
                 }
             }
@@ -310,35 +186,20 @@ public class ProductoJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The producto with id " + id + " no longer exists.", enfe);
             }
-            Ciudad ciudadProductoCodigo = producto.getCiudadProductoCodigo();
-            if (ciudadProductoCodigo != null) {
-                ciudadProductoCodigo.getProductoList().remove(producto);
-                ciudadProductoCodigo = em.merge(ciudadProductoCodigo);
-            }
             Usuario vendedorCodigo = producto.getVendedorCodigo();
             if (vendedorCodigo != null) {
                 vendedorCodigo.getProductoList().remove(producto);
                 vendedorCodigo = em.merge(vendedorCodigo);
             }
-            List<Usuario> usuarioList = producto.getUsuarioList();
-            for (Usuario usuarioListUsuario : usuarioList) {
-                usuarioListUsuario.getProductoList().remove(producto);
-                usuarioListUsuario = em.merge(usuarioListUsuario);
-            }
-            List<DetalleCanje> detalleCanjeList = producto.getDetalleCanjeList();
-            for (DetalleCanje detalleCanjeListDetalleCanje : detalleCanjeList) {
-                detalleCanjeListDetalleCanje.setProductoCanjeCodigo(null);
-                detalleCanjeListDetalleCanje = em.merge(detalleCanjeListDetalleCanje);
+            Departamento departamentoProductoCodigo = producto.getDepartamentoProductoCodigo();
+            if (departamentoProductoCodigo != null) {
+                departamentoProductoCodigo.getProductoList().remove(producto);
+                departamentoProductoCodigo = em.merge(departamentoProductoCodigo);
             }
             List<Comentario> comentarioList = producto.getComentarioList();
             for (Comentario comentarioListComentario : comentarioList) {
                 comentarioListComentario.setProductocCodigo(null);
                 comentarioListComentario = em.merge(comentarioListComentario);
-            }
-            List<DetalleCompra> detalleCompraList = producto.getDetalleCompraList();
-            for (DetalleCompra detalleCompraListDetalleCompra : detalleCompraList) {
-                detalleCompraListDetalleCompra.setProductoCompraCodigo(null);
-                detalleCompraListDetalleCompra = em.merge(detalleCompraListDetalleCompra);
             }
             em.remove(producto);
             em.getTransaction().commit();

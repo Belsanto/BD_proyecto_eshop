@@ -15,20 +15,24 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.entities.Usuario;
+import com.entities.Puntos;
 import java.util.ArrayList;
 import java.util.List;
-import com.entities.Puntos;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 public class CarteraJpaController implements Serializable {
 
     public CarteraJpaController(EntityManagerFactory emf) {
         this.emf = emf;
+    }
+    public CarteraJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("eShop_BDPU");
     }
     private EntityManagerFactory emf = null;
 
@@ -37,9 +41,6 @@ public class CarteraJpaController implements Serializable {
     }
 
     public void create(Cartera cartera) throws PreexistingEntityException, Exception {
-        if (cartera.getUsuarioList() == null) {
-            cartera.setUsuarioList(new ArrayList<Usuario>());
-        }
         if (cartera.getPuntosList() == null) {
             cartera.setPuntosList(new ArrayList<Puntos>());
         }
@@ -47,17 +48,11 @@ public class CarteraJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Usuario usuariosCodigo = cartera.getUsuariosCodigo();
-            if (usuariosCodigo != null) {
-                usuariosCodigo = em.getReference(usuariosCodigo.getClass(), usuariosCodigo.getCodigo());
-                cartera.setUsuariosCodigo(usuariosCodigo);
+            Usuario usuarioCarteraCodigo = cartera.getUsuarioCarteraCodigo();
+            if (usuarioCarteraCodigo != null) {
+                usuarioCarteraCodigo = em.getReference(usuarioCarteraCodigo.getClass(), usuarioCarteraCodigo.getCodigo());
+                cartera.setUsuarioCarteraCodigo(usuarioCarteraCodigo);
             }
-            List<Usuario> attachedUsuarioList = new ArrayList<Usuario>();
-            for (Usuario usuarioListUsuarioToAttach : cartera.getUsuarioList()) {
-                usuarioListUsuarioToAttach = em.getReference(usuarioListUsuarioToAttach.getClass(), usuarioListUsuarioToAttach.getCodigo());
-                attachedUsuarioList.add(usuarioListUsuarioToAttach);
-            }
-            cartera.setUsuarioList(attachedUsuarioList);
             List<Puntos> attachedPuntosList = new ArrayList<Puntos>();
             for (Puntos puntosListPuntosToAttach : cartera.getPuntosList()) {
                 puntosListPuntosToAttach = em.getReference(puntosListPuntosToAttach.getClass(), puntosListPuntosToAttach.getCodigo());
@@ -65,23 +60,9 @@ public class CarteraJpaController implements Serializable {
             }
             cartera.setPuntosList(attachedPuntosList);
             em.persist(cartera);
-            if (usuariosCodigo != null) {
-                Cartera oldCarteraPuntosCodigoOfUsuariosCodigo = usuariosCodigo.getCarteraPuntosCodigo();
-                if (oldCarteraPuntosCodigoOfUsuariosCodigo != null) {
-                    oldCarteraPuntosCodigoOfUsuariosCodigo.setUsuariosCodigo(null);
-                    oldCarteraPuntosCodigoOfUsuariosCodigo = em.merge(oldCarteraPuntosCodigoOfUsuariosCodigo);
-                }
-                usuariosCodigo.setCarteraPuntosCodigo(cartera);
-                usuariosCodigo = em.merge(usuariosCodigo);
-            }
-            for (Usuario usuarioListUsuario : cartera.getUsuarioList()) {
-                Cartera oldCarteraPuntosCodigoOfUsuarioListUsuario = usuarioListUsuario.getCarteraPuntosCodigo();
-                usuarioListUsuario.setCarteraPuntosCodigo(cartera);
-                usuarioListUsuario = em.merge(usuarioListUsuario);
-                if (oldCarteraPuntosCodigoOfUsuarioListUsuario != null) {
-                    oldCarteraPuntosCodigoOfUsuarioListUsuario.getUsuarioList().remove(usuarioListUsuario);
-                    oldCarteraPuntosCodigoOfUsuarioListUsuario = em.merge(oldCarteraPuntosCodigoOfUsuarioListUsuario);
-                }
+            if (usuarioCarteraCodigo != null) {
+                usuarioCarteraCodigo.getCarteraList().add(cartera);
+                usuarioCarteraCodigo = em.merge(usuarioCarteraCodigo);
             }
             for (Puntos puntosListPuntos : cartera.getPuntosList()) {
                 Cartera oldCarteraCodigoOfPuntosListPuntos = puntosListPuntos.getCarteraCodigo();
@@ -111,10 +92,8 @@ public class CarteraJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Cartera persistentCartera = em.find(Cartera.class, cartera.getCodigo());
-            Usuario usuariosCodigoOld = persistentCartera.getUsuariosCodigo();
-            Usuario usuariosCodigoNew = cartera.getUsuariosCodigo();
-            List<Usuario> usuarioListOld = persistentCartera.getUsuarioList();
-            List<Usuario> usuarioListNew = cartera.getUsuarioList();
+            Usuario usuarioCarteraCodigoOld = persistentCartera.getUsuarioCarteraCodigo();
+            Usuario usuarioCarteraCodigoNew = cartera.getUsuarioCarteraCodigo();
             List<Puntos> puntosListOld = persistentCartera.getPuntosList();
             List<Puntos> puntosListNew = cartera.getPuntosList();
             List<String> illegalOrphanMessages = null;
@@ -129,17 +108,10 @@ public class CarteraJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            if (usuariosCodigoNew != null) {
-                usuariosCodigoNew = em.getReference(usuariosCodigoNew.getClass(), usuariosCodigoNew.getCodigo());
-                cartera.setUsuariosCodigo(usuariosCodigoNew);
+            if (usuarioCarteraCodigoNew != null) {
+                usuarioCarteraCodigoNew = em.getReference(usuarioCarteraCodigoNew.getClass(), usuarioCarteraCodigoNew.getCodigo());
+                cartera.setUsuarioCarteraCodigo(usuarioCarteraCodigoNew);
             }
-            List<Usuario> attachedUsuarioListNew = new ArrayList<Usuario>();
-            for (Usuario usuarioListNewUsuarioToAttach : usuarioListNew) {
-                usuarioListNewUsuarioToAttach = em.getReference(usuarioListNewUsuarioToAttach.getClass(), usuarioListNewUsuarioToAttach.getCodigo());
-                attachedUsuarioListNew.add(usuarioListNewUsuarioToAttach);
-            }
-            usuarioListNew = attachedUsuarioListNew;
-            cartera.setUsuarioList(usuarioListNew);
             List<Puntos> attachedPuntosListNew = new ArrayList<Puntos>();
             for (Puntos puntosListNewPuntosToAttach : puntosListNew) {
                 puntosListNewPuntosToAttach = em.getReference(puntosListNewPuntosToAttach.getClass(), puntosListNewPuntosToAttach.getCodigo());
@@ -148,35 +120,13 @@ public class CarteraJpaController implements Serializable {
             puntosListNew = attachedPuntosListNew;
             cartera.setPuntosList(puntosListNew);
             cartera = em.merge(cartera);
-            if (usuariosCodigoOld != null && !usuariosCodigoOld.equals(usuariosCodigoNew)) {
-                usuariosCodigoOld.setCarteraPuntosCodigo(null);
-                usuariosCodigoOld = em.merge(usuariosCodigoOld);
+            if (usuarioCarteraCodigoOld != null && !usuarioCarteraCodigoOld.equals(usuarioCarteraCodigoNew)) {
+                usuarioCarteraCodigoOld.getCarteraList().remove(cartera);
+                usuarioCarteraCodigoOld = em.merge(usuarioCarteraCodigoOld);
             }
-            if (usuariosCodigoNew != null && !usuariosCodigoNew.equals(usuariosCodigoOld)) {
-                Cartera oldCarteraPuntosCodigoOfUsuariosCodigo = usuariosCodigoNew.getCarteraPuntosCodigo();
-                if (oldCarteraPuntosCodigoOfUsuariosCodigo != null) {
-                    oldCarteraPuntosCodigoOfUsuariosCodigo.setUsuariosCodigo(null);
-                    oldCarteraPuntosCodigoOfUsuariosCodigo = em.merge(oldCarteraPuntosCodigoOfUsuariosCodigo);
-                }
-                usuariosCodigoNew.setCarteraPuntosCodigo(cartera);
-                usuariosCodigoNew = em.merge(usuariosCodigoNew);
-            }
-            for (Usuario usuarioListOldUsuario : usuarioListOld) {
-                if (!usuarioListNew.contains(usuarioListOldUsuario)) {
-                    usuarioListOldUsuario.setCarteraPuntosCodigo(null);
-                    usuarioListOldUsuario = em.merge(usuarioListOldUsuario);
-                }
-            }
-            for (Usuario usuarioListNewUsuario : usuarioListNew) {
-                if (!usuarioListOld.contains(usuarioListNewUsuario)) {
-                    Cartera oldCarteraPuntosCodigoOfUsuarioListNewUsuario = usuarioListNewUsuario.getCarteraPuntosCodigo();
-                    usuarioListNewUsuario.setCarteraPuntosCodigo(cartera);
-                    usuarioListNewUsuario = em.merge(usuarioListNewUsuario);
-                    if (oldCarteraPuntosCodigoOfUsuarioListNewUsuario != null && !oldCarteraPuntosCodigoOfUsuarioListNewUsuario.equals(cartera)) {
-                        oldCarteraPuntosCodigoOfUsuarioListNewUsuario.getUsuarioList().remove(usuarioListNewUsuario);
-                        oldCarteraPuntosCodigoOfUsuarioListNewUsuario = em.merge(oldCarteraPuntosCodigoOfUsuarioListNewUsuario);
-                    }
-                }
+            if (usuarioCarteraCodigoNew != null && !usuarioCarteraCodigoNew.equals(usuarioCarteraCodigoOld)) {
+                usuarioCarteraCodigoNew.getCarteraList().add(cartera);
+                usuarioCarteraCodigoNew = em.merge(usuarioCarteraCodigoNew);
             }
             for (Puntos puntosListNewPuntos : puntosListNew) {
                 if (!puntosListOld.contains(puntosListNewPuntos)) {
@@ -229,15 +179,10 @@ public class CarteraJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            Usuario usuariosCodigo = cartera.getUsuariosCodigo();
-            if (usuariosCodigo != null) {
-                usuariosCodigo.setCarteraPuntosCodigo(null);
-                usuariosCodigo = em.merge(usuariosCodigo);
-            }
-            List<Usuario> usuarioList = cartera.getUsuarioList();
-            for (Usuario usuarioListUsuario : usuarioList) {
-                usuarioListUsuario.setCarteraPuntosCodigo(null);
-                usuarioListUsuario = em.merge(usuarioListUsuario);
+            Usuario usuarioCarteraCodigo = cartera.getUsuarioCarteraCodigo();
+            if (usuarioCarteraCodigo != null) {
+                usuarioCarteraCodigo.getCarteraList().remove(cartera);
+                usuarioCarteraCodigo = em.merge(usuarioCarteraCodigo);
             }
             em.remove(cartera);
             em.getTransaction().commit();

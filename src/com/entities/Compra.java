@@ -7,7 +7,6 @@ package com.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,16 +17,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "compra")
@@ -55,13 +52,6 @@ public class Compra implements Serializable {
     @JoinColumn(name = "comprador_codigo", referencedColumnName = "codigo")
     @ManyToOne
     private Usuario compradorCodigo;
-    @JoinColumn(name = "detalle_entrega_codigo", referencedColumnName = "codigo")
-    @ManyToOne
-    private DetalleEntrega detalleEntregaCodigo;
-    @OneToMany(mappedBy = "compraCodigo")
-    private List<DetalleCompra> detalleCompraList;
-    @OneToMany(mappedBy = "compraEntregarCodigo")
-    private List<DetalleEntrega> detalleEntregaList;
 
     public Compra() {
     }
@@ -108,32 +98,6 @@ public class Compra implements Serializable {
         this.compradorCodigo = compradorCodigo;
     }
 
-    public DetalleEntrega getDetalleEntregaCodigo() {
-        return detalleEntregaCodigo;
-    }
-
-    public void setDetalleEntregaCodigo(DetalleEntrega detalleEntregaCodigo) {
-        this.detalleEntregaCodigo = detalleEntregaCodigo;
-    }
-
-    @XmlTransient
-    public List<DetalleCompra> getDetalleCompraList() {
-        return detalleCompraList;
-    }
-
-    public void setDetalleCompraList(List<DetalleCompra> detalleCompraList) {
-        this.detalleCompraList = detalleCompraList;
-    }
-
-    @XmlTransient
-    public List<DetalleEntrega> getDetalleEntregaList() {
-        return detalleEntregaList;
-    }
-
-    public void setDetalleEntregaList(List<DetalleEntrega> detalleEntregaList) {
-        this.detalleEntregaList = detalleEntregaList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -156,7 +120,7 @@ public class Compra implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.Compra[ codigo=" + codigo + " ]";
+        return "com.entities.Compra[ codigo=" + codigo + " ]";
     }
     
 }

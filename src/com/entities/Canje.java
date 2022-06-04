@@ -7,7 +7,6 @@ package com.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,16 +17,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "canje")
@@ -48,16 +45,9 @@ public class Canje implements Serializable {
     @Column(name = "fecha_canje")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCanje;
-    @OneToMany(mappedBy = "canjeCodigo")
-    private List<DetalleCanje> detalleCanjeList;
     @JoinColumn(name = "cliente_codigo", referencedColumnName = "codigo")
     @ManyToOne
     private Usuario clienteCodigo;
-    @JoinColumn(name = "detalle_entrega_codigo", referencedColumnName = "codigo")
-    @ManyToOne
-    private DetalleEntrega detalleEntregaCodigo;
-    @OneToMany(mappedBy = "canjeEntregarCodigo")
-    private List<DetalleEntrega> detalleEntregaList;
 
     public Canje() {
     }
@@ -87,38 +77,12 @@ public class Canje implements Serializable {
         this.fechaCanje = fechaCanje;
     }
 
-    @XmlTransient
-    public List<DetalleCanje> getDetalleCanjeList() {
-        return detalleCanjeList;
-    }
-
-    public void setDetalleCanjeList(List<DetalleCanje> detalleCanjeList) {
-        this.detalleCanjeList = detalleCanjeList;
-    }
-
     public Usuario getClienteCodigo() {
         return clienteCodigo;
     }
 
     public void setClienteCodigo(Usuario clienteCodigo) {
         this.clienteCodigo = clienteCodigo;
-    }
-
-    public DetalleEntrega getDetalleEntregaCodigo() {
-        return detalleEntregaCodigo;
-    }
-
-    public void setDetalleEntregaCodigo(DetalleEntrega detalleEntregaCodigo) {
-        this.detalleEntregaCodigo = detalleEntregaCodigo;
-    }
-
-    @XmlTransient
-    public List<DetalleEntrega> getDetalleEntregaList() {
-        return detalleEntregaList;
-    }
-
-    public void setDetalleEntregaList(List<DetalleEntrega> detalleEntregaList) {
-        this.detalleEntregaList = detalleEntregaList;
     }
 
     @Override
@@ -143,7 +107,7 @@ public class Canje implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.Canje[ codigo=" + codigo + " ]";
+        return "com.entities.Canje[ codigo=" + codigo + " ]";
     }
     
 }

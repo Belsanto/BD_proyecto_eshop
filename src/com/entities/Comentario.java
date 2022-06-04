@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "comentario")
@@ -157,7 +157,7 @@ public class Comentario implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.Comentario[ codigo=" + codigo + " ]";
+        return "com.entities.Comentario[ codigo=" + codigo + " ]";
     }
     
 }

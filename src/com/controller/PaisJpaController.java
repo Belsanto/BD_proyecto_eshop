@@ -12,17 +12,18 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import com.entities.Ciudad;
-import com.entities.Pais;
+import com.entities.Delivery;
 import java.util.ArrayList;
 import java.util.List;
+import com.entities.Ciudad;
+import com.entities.Pais;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 public class PaisJpaController implements Serializable {
 
@@ -40,6 +41,9 @@ public class PaisJpaController implements Serializable {
     }
 
     public void create(Pais pais) {
+        if (pais.getDeliveryList() == null) {
+            pais.setDeliveryList(new ArrayList<Delivery>());
+        }
         if (pais.getCiudadList() == null) {
             pais.setCiudadList(new ArrayList<Ciudad>());
         }
@@ -47,6 +51,12 @@ public class PaisJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            List<Delivery> attachedDeliveryList = new ArrayList<Delivery>();
+            for (Delivery deliveryListDeliveryToAttach : pais.getDeliveryList()) {
+                deliveryListDeliveryToAttach = em.getReference(deliveryListDeliveryToAttach.getClass(), deliveryListDeliveryToAttach.getCodigo());
+                attachedDeliveryList.add(deliveryListDeliveryToAttach);
+            }
+            pais.setDeliveryList(attachedDeliveryList);
             List<Ciudad> attachedCiudadList = new ArrayList<Ciudad>();
             for (Ciudad ciudadListCiudadToAttach : pais.getCiudadList()) {
                 ciudadListCiudadToAttach = em.getReference(ciudadListCiudadToAttach.getClass(), ciudadListCiudadToAttach.getCodigo());
@@ -54,6 +64,15 @@ public class PaisJpaController implements Serializable {
             }
             pais.setCiudadList(attachedCiudadList);
             em.persist(pais);
+            for (Delivery deliveryListDelivery : pais.getDeliveryList()) {
+                Pais oldPaisCodigoOfDeliveryListDelivery = deliveryListDelivery.getPaisCodigo();
+                deliveryListDelivery.setPaisCodigo(pais);
+                deliveryListDelivery = em.merge(deliveryListDelivery);
+                if (oldPaisCodigoOfDeliveryListDelivery != null) {
+                    oldPaisCodigoOfDeliveryListDelivery.getDeliveryList().remove(deliveryListDelivery);
+                    oldPaisCodigoOfDeliveryListDelivery = em.merge(oldPaisCodigoOfDeliveryListDelivery);
+                }
+            }
             for (Ciudad ciudadListCiudad : pais.getCiudadList()) {
                 Pais oldPaisCodigoOfCiudadListCiudad = ciudadListCiudad.getPaisCodigo();
                 ciudadListCiudad.setPaisCodigo(pais);
@@ -77,9 +96,19 @@ public class PaisJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Pais persistentPais = em.find(Pais.class, pais.getCodigo());
+            List<Delivery> deliveryListOld = persistentPais.getDeliveryList();
+            List<Delivery> deliveryListNew = pais.getDeliveryList();
             List<Ciudad> ciudadListOld = persistentPais.getCiudadList();
             List<Ciudad> ciudadListNew = pais.getCiudadList();
             List<String> illegalOrphanMessages = null;
+            for (Delivery deliveryListOldDelivery : deliveryListOld) {
+                if (!deliveryListNew.contains(deliveryListOldDelivery)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain Delivery " + deliveryListOldDelivery + " since its paisCodigo field is not nullable.");
+                }
+            }
             for (Ciudad ciudadListOldCiudad : ciudadListOld) {
                 if (!ciudadListNew.contains(ciudadListOldCiudad)) {
                     if (illegalOrphanMessages == null) {
@@ -91,6 +120,13 @@ public class PaisJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
+            List<Delivery> attachedDeliveryListNew = new ArrayList<Delivery>();
+            for (Delivery deliveryListNewDeliveryToAttach : deliveryListNew) {
+                deliveryListNewDeliveryToAttach = em.getReference(deliveryListNewDeliveryToAttach.getClass(), deliveryListNewDeliveryToAttach.getCodigo());
+                attachedDeliveryListNew.add(deliveryListNewDeliveryToAttach);
+            }
+            deliveryListNew = attachedDeliveryListNew;
+            pais.setDeliveryList(deliveryListNew);
             List<Ciudad> attachedCiudadListNew = new ArrayList<Ciudad>();
             for (Ciudad ciudadListNewCiudadToAttach : ciudadListNew) {
                 ciudadListNewCiudadToAttach = em.getReference(ciudadListNewCiudadToAttach.getClass(), ciudadListNewCiudadToAttach.getCodigo());
@@ -99,6 +135,17 @@ public class PaisJpaController implements Serializable {
             ciudadListNew = attachedCiudadListNew;
             pais.setCiudadList(ciudadListNew);
             pais = em.merge(pais);
+            for (Delivery deliveryListNewDelivery : deliveryListNew) {
+                if (!deliveryListOld.contains(deliveryListNewDelivery)) {
+                    Pais oldPaisCodigoOfDeliveryListNewDelivery = deliveryListNewDelivery.getPaisCodigo();
+                    deliveryListNewDelivery.setPaisCodigo(pais);
+                    deliveryListNewDelivery = em.merge(deliveryListNewDelivery);
+                    if (oldPaisCodigoOfDeliveryListNewDelivery != null && !oldPaisCodigoOfDeliveryListNewDelivery.equals(pais)) {
+                        oldPaisCodigoOfDeliveryListNewDelivery.getDeliveryList().remove(deliveryListNewDelivery);
+                        oldPaisCodigoOfDeliveryListNewDelivery = em.merge(oldPaisCodigoOfDeliveryListNewDelivery);
+                    }
+                }
+            }
             for (Ciudad ciudadListNewCiudad : ciudadListNew) {
                 if (!ciudadListOld.contains(ciudadListNewCiudad)) {
                     Pais oldPaisCodigoOfCiudadListNewCiudad = ciudadListNewCiudad.getPaisCodigo();
@@ -140,6 +187,13 @@ public class PaisJpaController implements Serializable {
                 throw new NonexistentEntityException("The pais with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
+            List<Delivery> deliveryListOrphanCheck = pais.getDeliveryList();
+            for (Delivery deliveryListOrphanCheckDelivery : deliveryListOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Pais (" + pais + ") cannot be destroyed since the Delivery " + deliveryListOrphanCheckDelivery + " in its deliveryList field has a non-nullable paisCodigo field.");
+            }
             List<Ciudad> ciudadListOrphanCheck = pais.getCiudadList();
             for (Ciudad ciudadListOrphanCheckCiudad : ciudadListOrphanCheck) {
                 if (illegalOrphanMessages == null) {

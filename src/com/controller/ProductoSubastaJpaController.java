@@ -12,9 +12,9 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import com.entities.Ciudad;
-import com.entities.ProductoSubasta;
 import com.entities.Usuario;
+import com.entities.Departamento;
+import com.entities.ProductoSubasta;
 import com.entities.Subasta;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 public class ProductoSubastaJpaController implements Serializable {
 
@@ -49,15 +49,15 @@ public class ProductoSubastaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Ciudad ciudadProductoCodigo = productoSubasta.getCiudadProductoCodigo();
-            if (ciudadProductoCodigo != null) {
-                ciudadProductoCodigo = em.getReference(ciudadProductoCodigo.getClass(), ciudadProductoCodigo.getCodigo());
-                productoSubasta.setCiudadProductoCodigo(ciudadProductoCodigo);
-            }
             Usuario vendedorCodigo = productoSubasta.getVendedorCodigo();
             if (vendedorCodigo != null) {
                 vendedorCodigo = em.getReference(vendedorCodigo.getClass(), vendedorCodigo.getCodigo());
                 productoSubasta.setVendedorCodigo(vendedorCodigo);
+            }
+            Departamento departamentoCodigo = productoSubasta.getDepartamentoCodigo();
+            if (departamentoCodigo != null) {
+                departamentoCodigo = em.getReference(departamentoCodigo.getClass(), departamentoCodigo.getCodigo());
+                productoSubasta.setDepartamentoCodigo(departamentoCodigo);
             }
             List<Subasta> attachedSubastaList = new ArrayList<Subasta>();
             for (Subasta subastaListSubastaToAttach : productoSubasta.getSubastaList()) {
@@ -66,13 +66,13 @@ public class ProductoSubastaJpaController implements Serializable {
             }
             productoSubasta.setSubastaList(attachedSubastaList);
             em.persist(productoSubasta);
-            if (ciudadProductoCodigo != null) {
-                ciudadProductoCodigo.getProductoSubastaList().add(productoSubasta);
-                ciudadProductoCodigo = em.merge(ciudadProductoCodigo);
-            }
             if (vendedorCodigo != null) {
                 vendedorCodigo.getProductoSubastaList().add(productoSubasta);
                 vendedorCodigo = em.merge(vendedorCodigo);
+            }
+            if (departamentoCodigo != null) {
+                departamentoCodigo.getProductoSubastaList().add(productoSubasta);
+                departamentoCodigo = em.merge(departamentoCodigo);
             }
             for (Subasta subastaListSubasta : productoSubasta.getSubastaList()) {
                 ProductoSubasta oldProductoEnSubastaCodigoOfSubastaListSubasta = subastaListSubasta.getProductoEnSubastaCodigo();
@@ -102,19 +102,19 @@ public class ProductoSubastaJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             ProductoSubasta persistentProductoSubasta = em.find(ProductoSubasta.class, productoSubasta.getCodigo());
-            Ciudad ciudadProductoCodigoOld = persistentProductoSubasta.getCiudadProductoCodigo();
-            Ciudad ciudadProductoCodigoNew = productoSubasta.getCiudadProductoCodigo();
             Usuario vendedorCodigoOld = persistentProductoSubasta.getVendedorCodigo();
             Usuario vendedorCodigoNew = productoSubasta.getVendedorCodigo();
+            Departamento departamentoCodigoOld = persistentProductoSubasta.getDepartamentoCodigo();
+            Departamento departamentoCodigoNew = productoSubasta.getDepartamentoCodigo();
             List<Subasta> subastaListOld = persistentProductoSubasta.getSubastaList();
             List<Subasta> subastaListNew = productoSubasta.getSubastaList();
-            if (ciudadProductoCodigoNew != null) {
-                ciudadProductoCodigoNew = em.getReference(ciudadProductoCodigoNew.getClass(), ciudadProductoCodigoNew.getCodigo());
-                productoSubasta.setCiudadProductoCodigo(ciudadProductoCodigoNew);
-            }
             if (vendedorCodigoNew != null) {
                 vendedorCodigoNew = em.getReference(vendedorCodigoNew.getClass(), vendedorCodigoNew.getCodigo());
                 productoSubasta.setVendedorCodigo(vendedorCodigoNew);
+            }
+            if (departamentoCodigoNew != null) {
+                departamentoCodigoNew = em.getReference(departamentoCodigoNew.getClass(), departamentoCodigoNew.getCodigo());
+                productoSubasta.setDepartamentoCodigo(departamentoCodigoNew);
             }
             List<Subasta> attachedSubastaListNew = new ArrayList<Subasta>();
             for (Subasta subastaListNewSubastaToAttach : subastaListNew) {
@@ -124,14 +124,6 @@ public class ProductoSubastaJpaController implements Serializable {
             subastaListNew = attachedSubastaListNew;
             productoSubasta.setSubastaList(subastaListNew);
             productoSubasta = em.merge(productoSubasta);
-            if (ciudadProductoCodigoOld != null && !ciudadProductoCodigoOld.equals(ciudadProductoCodigoNew)) {
-                ciudadProductoCodigoOld.getProductoSubastaList().remove(productoSubasta);
-                ciudadProductoCodigoOld = em.merge(ciudadProductoCodigoOld);
-            }
-            if (ciudadProductoCodigoNew != null && !ciudadProductoCodigoNew.equals(ciudadProductoCodigoOld)) {
-                ciudadProductoCodigoNew.getProductoSubastaList().add(productoSubasta);
-                ciudadProductoCodigoNew = em.merge(ciudadProductoCodigoNew);
-            }
             if (vendedorCodigoOld != null && !vendedorCodigoOld.equals(vendedorCodigoNew)) {
                 vendedorCodigoOld.getProductoSubastaList().remove(productoSubasta);
                 vendedorCodigoOld = em.merge(vendedorCodigoOld);
@@ -139,6 +131,14 @@ public class ProductoSubastaJpaController implements Serializable {
             if (vendedorCodigoNew != null && !vendedorCodigoNew.equals(vendedorCodigoOld)) {
                 vendedorCodigoNew.getProductoSubastaList().add(productoSubasta);
                 vendedorCodigoNew = em.merge(vendedorCodigoNew);
+            }
+            if (departamentoCodigoOld != null && !departamentoCodigoOld.equals(departamentoCodigoNew)) {
+                departamentoCodigoOld.getProductoSubastaList().remove(productoSubasta);
+                departamentoCodigoOld = em.merge(departamentoCodigoOld);
+            }
+            if (departamentoCodigoNew != null && !departamentoCodigoNew.equals(departamentoCodigoOld)) {
+                departamentoCodigoNew.getProductoSubastaList().add(productoSubasta);
+                departamentoCodigoNew = em.merge(departamentoCodigoNew);
             }
             for (Subasta subastaListOldSubasta : subastaListOld) {
                 if (!subastaListNew.contains(subastaListOldSubasta)) {
@@ -186,15 +186,15 @@ public class ProductoSubastaJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The productoSubasta with id " + id + " no longer exists.", enfe);
             }
-            Ciudad ciudadProductoCodigo = productoSubasta.getCiudadProductoCodigo();
-            if (ciudadProductoCodigo != null) {
-                ciudadProductoCodigo.getProductoSubastaList().remove(productoSubasta);
-                ciudadProductoCodigo = em.merge(ciudadProductoCodigo);
-            }
             Usuario vendedorCodigo = productoSubasta.getVendedorCodigo();
             if (vendedorCodigo != null) {
                 vendedorCodigo.getProductoSubastaList().remove(productoSubasta);
                 vendedorCodigo = em.merge(vendedorCodigo);
+            }
+            Departamento departamentoCodigo = productoSubasta.getDepartamentoCodigo();
+            if (departamentoCodigo != null) {
+                departamentoCodigo.getProductoSubastaList().remove(productoSubasta);
+                departamentoCodigo = em.merge(departamentoCodigo);
             }
             List<Subasta> subastaList = productoSubasta.getSubastaList();
             for (Subasta subastaListSubasta : subastaList) {

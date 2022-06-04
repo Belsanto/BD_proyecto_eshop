@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "pais")
@@ -43,6 +43,8 @@ public class Pais implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "paisCodigo")
+    private List<Delivery> deliveryList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "paisCodigo")
     private List<Ciudad> ciudadList;
 
@@ -72,6 +74,15 @@ public class Pais implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    @XmlTransient
+    public List<Delivery> getDeliveryList() {
+        return deliveryList;
+    }
+
+    public void setDeliveryList(List<Delivery> deliveryList) {
+        this.deliveryList = deliveryList;
     }
 
     @XmlTransient
@@ -105,7 +116,7 @@ public class Pais implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.Pais[ codigo=" + codigo + " ]";
+        return "com.entities.Pais[ codigo=" + codigo + " ]";
     }
     
 }

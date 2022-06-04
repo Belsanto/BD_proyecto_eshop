@@ -14,18 +14,16 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.entities.Pais;
-import com.entities.ProductoSubasta;
+import com.entities.Departamento;
 import java.util.ArrayList;
 import java.util.List;
-import com.entities.Producto;
-import com.entities.Usuario;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 public class CiudadJpaController implements Serializable {
 
@@ -44,14 +42,8 @@ public class CiudadJpaController implements Serializable {
     }
 
     public void create(Ciudad ciudad) {
-        if (ciudad.getProductoSubastaList() == null) {
-            ciudad.setProductoSubastaList(new ArrayList<ProductoSubasta>());
-        }
-        if (ciudad.getProductoList() == null) {
-            ciudad.setProductoList(new ArrayList<Producto>());
-        }
-        if (ciudad.getUsuarioList() == null) {
-            ciudad.setUsuarioList(new ArrayList<Usuario>());
+        if (ciudad.getDepartamentoList() == null) {
+            ciudad.setDepartamentoList(new ArrayList<Departamento>());
         }
         EntityManager em = null;
         try {
@@ -62,54 +54,24 @@ public class CiudadJpaController implements Serializable {
                 paisCodigo = em.getReference(paisCodigo.getClass(), paisCodigo.getCodigo());
                 ciudad.setPaisCodigo(paisCodigo);
             }
-            List<ProductoSubasta> attachedProductoSubastaList = new ArrayList<ProductoSubasta>();
-            for (ProductoSubasta productoSubastaListProductoSubastaToAttach : ciudad.getProductoSubastaList()) {
-                productoSubastaListProductoSubastaToAttach = em.getReference(productoSubastaListProductoSubastaToAttach.getClass(), productoSubastaListProductoSubastaToAttach.getCodigo());
-                attachedProductoSubastaList.add(productoSubastaListProductoSubastaToAttach);
+            List<Departamento> attachedDepartamentoList = new ArrayList<Departamento>();
+            for (Departamento departamentoListDepartamentoToAttach : ciudad.getDepartamentoList()) {
+                departamentoListDepartamentoToAttach = em.getReference(departamentoListDepartamentoToAttach.getClass(), departamentoListDepartamentoToAttach.getCodigo());
+                attachedDepartamentoList.add(departamentoListDepartamentoToAttach);
             }
-            ciudad.setProductoSubastaList(attachedProductoSubastaList);
-            List<Producto> attachedProductoList = new ArrayList<Producto>();
-            for (Producto productoListProductoToAttach : ciudad.getProductoList()) {
-                productoListProductoToAttach = em.getReference(productoListProductoToAttach.getClass(), productoListProductoToAttach.getCodigo());
-                attachedProductoList.add(productoListProductoToAttach);
-            }
-            ciudad.setProductoList(attachedProductoList);
-            List<Usuario> attachedUsuarioList = new ArrayList<Usuario>();
-            for (Usuario usuarioListUsuarioToAttach : ciudad.getUsuarioList()) {
-                usuarioListUsuarioToAttach = em.getReference(usuarioListUsuarioToAttach.getClass(), usuarioListUsuarioToAttach.getCodigo());
-                attachedUsuarioList.add(usuarioListUsuarioToAttach);
-            }
-            ciudad.setUsuarioList(attachedUsuarioList);
+            ciudad.setDepartamentoList(attachedDepartamentoList);
             em.persist(ciudad);
             if (paisCodigo != null) {
                 paisCodigo.getCiudadList().add(ciudad);
                 paisCodigo = em.merge(paisCodigo);
             }
-            for (ProductoSubasta productoSubastaListProductoSubasta : ciudad.getProductoSubastaList()) {
-                Ciudad oldCiudadProductoCodigoOfProductoSubastaListProductoSubasta = productoSubastaListProductoSubasta.getCiudadProductoCodigo();
-                productoSubastaListProductoSubasta.setCiudadProductoCodigo(ciudad);
-                productoSubastaListProductoSubasta = em.merge(productoSubastaListProductoSubasta);
-                if (oldCiudadProductoCodigoOfProductoSubastaListProductoSubasta != null) {
-                    oldCiudadProductoCodigoOfProductoSubastaListProductoSubasta.getProductoSubastaList().remove(productoSubastaListProductoSubasta);
-                    oldCiudadProductoCodigoOfProductoSubastaListProductoSubasta = em.merge(oldCiudadProductoCodigoOfProductoSubastaListProductoSubasta);
-                }
-            }
-            for (Producto productoListProducto : ciudad.getProductoList()) {
-                Ciudad oldCiudadProductoCodigoOfProductoListProducto = productoListProducto.getCiudadProductoCodigo();
-                productoListProducto.setCiudadProductoCodigo(ciudad);
-                productoListProducto = em.merge(productoListProducto);
-                if (oldCiudadProductoCodigoOfProductoListProducto != null) {
-                    oldCiudadProductoCodigoOfProductoListProducto.getProductoList().remove(productoListProducto);
-                    oldCiudadProductoCodigoOfProductoListProducto = em.merge(oldCiudadProductoCodigoOfProductoListProducto);
-                }
-            }
-            for (Usuario usuarioListUsuario : ciudad.getUsuarioList()) {
-                Ciudad oldCiudadUsuarioCodigoOfUsuarioListUsuario = usuarioListUsuario.getCiudadUsuarioCodigo();
-                usuarioListUsuario.setCiudadUsuarioCodigo(ciudad);
-                usuarioListUsuario = em.merge(usuarioListUsuario);
-                if (oldCiudadUsuarioCodigoOfUsuarioListUsuario != null) {
-                    oldCiudadUsuarioCodigoOfUsuarioListUsuario.getUsuarioList().remove(usuarioListUsuario);
-                    oldCiudadUsuarioCodigoOfUsuarioListUsuario = em.merge(oldCiudadUsuarioCodigoOfUsuarioListUsuario);
+            for (Departamento departamentoListDepartamento : ciudad.getDepartamentoList()) {
+                Ciudad oldCiudadCodigoOfDepartamentoListDepartamento = departamentoListDepartamento.getCiudadCodigo();
+                departamentoListDepartamento.setCiudadCodigo(ciudad);
+                departamentoListDepartamento = em.merge(departamentoListDepartamento);
+                if (oldCiudadCodigoOfDepartamentoListDepartamento != null) {
+                    oldCiudadCodigoOfDepartamentoListDepartamento.getDepartamentoList().remove(departamentoListDepartamento);
+                    oldCiudadCodigoOfDepartamentoListDepartamento = em.merge(oldCiudadCodigoOfDepartamentoListDepartamento);
                 }
             }
             em.getTransaction().commit();
@@ -128,19 +90,15 @@ public class CiudadJpaController implements Serializable {
             Ciudad persistentCiudad = em.find(Ciudad.class, ciudad.getCodigo());
             Pais paisCodigoOld = persistentCiudad.getPaisCodigo();
             Pais paisCodigoNew = ciudad.getPaisCodigo();
-            List<ProductoSubasta> productoSubastaListOld = persistentCiudad.getProductoSubastaList();
-            List<ProductoSubasta> productoSubastaListNew = ciudad.getProductoSubastaList();
-            List<Producto> productoListOld = persistentCiudad.getProductoList();
-            List<Producto> productoListNew = ciudad.getProductoList();
-            List<Usuario> usuarioListOld = persistentCiudad.getUsuarioList();
-            List<Usuario> usuarioListNew = ciudad.getUsuarioList();
+            List<Departamento> departamentoListOld = persistentCiudad.getDepartamentoList();
+            List<Departamento> departamentoListNew = ciudad.getDepartamentoList();
             List<String> illegalOrphanMessages = null;
-            for (Usuario usuarioListOldUsuario : usuarioListOld) {
-                if (!usuarioListNew.contains(usuarioListOldUsuario)) {
+            for (Departamento departamentoListOldDepartamento : departamentoListOld) {
+                if (!departamentoListNew.contains(departamentoListOldDepartamento)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Usuario " + usuarioListOldUsuario + " since its ciudadUsuarioCodigo field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Departamento " + departamentoListOldDepartamento + " since its ciudadCodigo field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -150,27 +108,13 @@ public class CiudadJpaController implements Serializable {
                 paisCodigoNew = em.getReference(paisCodigoNew.getClass(), paisCodigoNew.getCodigo());
                 ciudad.setPaisCodigo(paisCodigoNew);
             }
-            List<ProductoSubasta> attachedProductoSubastaListNew = new ArrayList<ProductoSubasta>();
-            for (ProductoSubasta productoSubastaListNewProductoSubastaToAttach : productoSubastaListNew) {
-                productoSubastaListNewProductoSubastaToAttach = em.getReference(productoSubastaListNewProductoSubastaToAttach.getClass(), productoSubastaListNewProductoSubastaToAttach.getCodigo());
-                attachedProductoSubastaListNew.add(productoSubastaListNewProductoSubastaToAttach);
+            List<Departamento> attachedDepartamentoListNew = new ArrayList<Departamento>();
+            for (Departamento departamentoListNewDepartamentoToAttach : departamentoListNew) {
+                departamentoListNewDepartamentoToAttach = em.getReference(departamentoListNewDepartamentoToAttach.getClass(), departamentoListNewDepartamentoToAttach.getCodigo());
+                attachedDepartamentoListNew.add(departamentoListNewDepartamentoToAttach);
             }
-            productoSubastaListNew = attachedProductoSubastaListNew;
-            ciudad.setProductoSubastaList(productoSubastaListNew);
-            List<Producto> attachedProductoListNew = new ArrayList<Producto>();
-            for (Producto productoListNewProductoToAttach : productoListNew) {
-                productoListNewProductoToAttach = em.getReference(productoListNewProductoToAttach.getClass(), productoListNewProductoToAttach.getCodigo());
-                attachedProductoListNew.add(productoListNewProductoToAttach);
-            }
-            productoListNew = attachedProductoListNew;
-            ciudad.setProductoList(productoListNew);
-            List<Usuario> attachedUsuarioListNew = new ArrayList<Usuario>();
-            for (Usuario usuarioListNewUsuarioToAttach : usuarioListNew) {
-                usuarioListNewUsuarioToAttach = em.getReference(usuarioListNewUsuarioToAttach.getClass(), usuarioListNewUsuarioToAttach.getCodigo());
-                attachedUsuarioListNew.add(usuarioListNewUsuarioToAttach);
-            }
-            usuarioListNew = attachedUsuarioListNew;
-            ciudad.setUsuarioList(usuarioListNew);
+            departamentoListNew = attachedDepartamentoListNew;
+            ciudad.setDepartamentoList(departamentoListNew);
             ciudad = em.merge(ciudad);
             if (paisCodigoOld != null && !paisCodigoOld.equals(paisCodigoNew)) {
                 paisCodigoOld.getCiudadList().remove(ciudad);
@@ -180,48 +124,14 @@ public class CiudadJpaController implements Serializable {
                 paisCodigoNew.getCiudadList().add(ciudad);
                 paisCodigoNew = em.merge(paisCodigoNew);
             }
-            for (ProductoSubasta productoSubastaListOldProductoSubasta : productoSubastaListOld) {
-                if (!productoSubastaListNew.contains(productoSubastaListOldProductoSubasta)) {
-                    productoSubastaListOldProductoSubasta.setCiudadProductoCodigo(null);
-                    productoSubastaListOldProductoSubasta = em.merge(productoSubastaListOldProductoSubasta);
-                }
-            }
-            for (ProductoSubasta productoSubastaListNewProductoSubasta : productoSubastaListNew) {
-                if (!productoSubastaListOld.contains(productoSubastaListNewProductoSubasta)) {
-                    Ciudad oldCiudadProductoCodigoOfProductoSubastaListNewProductoSubasta = productoSubastaListNewProductoSubasta.getCiudadProductoCodigo();
-                    productoSubastaListNewProductoSubasta.setCiudadProductoCodigo(ciudad);
-                    productoSubastaListNewProductoSubasta = em.merge(productoSubastaListNewProductoSubasta);
-                    if (oldCiudadProductoCodigoOfProductoSubastaListNewProductoSubasta != null && !oldCiudadProductoCodigoOfProductoSubastaListNewProductoSubasta.equals(ciudad)) {
-                        oldCiudadProductoCodigoOfProductoSubastaListNewProductoSubasta.getProductoSubastaList().remove(productoSubastaListNewProductoSubasta);
-                        oldCiudadProductoCodigoOfProductoSubastaListNewProductoSubasta = em.merge(oldCiudadProductoCodigoOfProductoSubastaListNewProductoSubasta);
-                    }
-                }
-            }
-            for (Producto productoListOldProducto : productoListOld) {
-                if (!productoListNew.contains(productoListOldProducto)) {
-                    productoListOldProducto.setCiudadProductoCodigo(null);
-                    productoListOldProducto = em.merge(productoListOldProducto);
-                }
-            }
-            for (Producto productoListNewProducto : productoListNew) {
-                if (!productoListOld.contains(productoListNewProducto)) {
-                    Ciudad oldCiudadProductoCodigoOfProductoListNewProducto = productoListNewProducto.getCiudadProductoCodigo();
-                    productoListNewProducto.setCiudadProductoCodigo(ciudad);
-                    productoListNewProducto = em.merge(productoListNewProducto);
-                    if (oldCiudadProductoCodigoOfProductoListNewProducto != null && !oldCiudadProductoCodigoOfProductoListNewProducto.equals(ciudad)) {
-                        oldCiudadProductoCodigoOfProductoListNewProducto.getProductoList().remove(productoListNewProducto);
-                        oldCiudadProductoCodigoOfProductoListNewProducto = em.merge(oldCiudadProductoCodigoOfProductoListNewProducto);
-                    }
-                }
-            }
-            for (Usuario usuarioListNewUsuario : usuarioListNew) {
-                if (!usuarioListOld.contains(usuarioListNewUsuario)) {
-                    Ciudad oldCiudadUsuarioCodigoOfUsuarioListNewUsuario = usuarioListNewUsuario.getCiudadUsuarioCodigo();
-                    usuarioListNewUsuario.setCiudadUsuarioCodigo(ciudad);
-                    usuarioListNewUsuario = em.merge(usuarioListNewUsuario);
-                    if (oldCiudadUsuarioCodigoOfUsuarioListNewUsuario != null && !oldCiudadUsuarioCodigoOfUsuarioListNewUsuario.equals(ciudad)) {
-                        oldCiudadUsuarioCodigoOfUsuarioListNewUsuario.getUsuarioList().remove(usuarioListNewUsuario);
-                        oldCiudadUsuarioCodigoOfUsuarioListNewUsuario = em.merge(oldCiudadUsuarioCodigoOfUsuarioListNewUsuario);
+            for (Departamento departamentoListNewDepartamento : departamentoListNew) {
+                if (!departamentoListOld.contains(departamentoListNewDepartamento)) {
+                    Ciudad oldCiudadCodigoOfDepartamentoListNewDepartamento = departamentoListNewDepartamento.getCiudadCodigo();
+                    departamentoListNewDepartamento.setCiudadCodigo(ciudad);
+                    departamentoListNewDepartamento = em.merge(departamentoListNewDepartamento);
+                    if (oldCiudadCodigoOfDepartamentoListNewDepartamento != null && !oldCiudadCodigoOfDepartamentoListNewDepartamento.equals(ciudad)) {
+                        oldCiudadCodigoOfDepartamentoListNewDepartamento.getDepartamentoList().remove(departamentoListNewDepartamento);
+                        oldCiudadCodigoOfDepartamentoListNewDepartamento = em.merge(oldCiudadCodigoOfDepartamentoListNewDepartamento);
                     }
                 }
             }
@@ -255,12 +165,12 @@ public class CiudadJpaController implements Serializable {
                 throw new NonexistentEntityException("The ciudad with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            List<Usuario> usuarioListOrphanCheck = ciudad.getUsuarioList();
-            for (Usuario usuarioListOrphanCheckUsuario : usuarioListOrphanCheck) {
+            List<Departamento> departamentoListOrphanCheck = ciudad.getDepartamentoList();
+            for (Departamento departamentoListOrphanCheckDepartamento : departamentoListOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Ciudad (" + ciudad + ") cannot be destroyed since the Usuario " + usuarioListOrphanCheckUsuario + " in its usuarioList field has a non-nullable ciudadUsuarioCodigo field.");
+                illegalOrphanMessages.add("This Ciudad (" + ciudad + ") cannot be destroyed since the Departamento " + departamentoListOrphanCheckDepartamento + " in its departamentoList field has a non-nullable ciudadCodigo field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
@@ -269,16 +179,6 @@ public class CiudadJpaController implements Serializable {
             if (paisCodigo != null) {
                 paisCodigo.getCiudadList().remove(ciudad);
                 paisCodigo = em.merge(paisCodigo);
-            }
-            List<ProductoSubasta> productoSubastaList = ciudad.getProductoSubastaList();
-            for (ProductoSubasta productoSubastaListProductoSubasta : productoSubastaList) {
-                productoSubastaListProductoSubasta.setCiudadProductoCodigo(null);
-                productoSubastaListProductoSubasta = em.merge(productoSubastaListProductoSubasta);
-            }
-            List<Producto> productoList = ciudad.getProductoList();
-            for (Producto productoListProducto : productoList) {
-                productoListProducto.setCiudadProductoCodigo(null);
-                productoListProducto = em.merge(productoListProducto);
             }
             em.remove(ciudad);
             em.getTransaction().commit();

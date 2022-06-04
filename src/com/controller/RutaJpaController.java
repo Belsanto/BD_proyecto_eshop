@@ -11,10 +11,9 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import com.entities.Departamento;
 import com.entities.Delivery;
-import com.entities.DetalleEntrega;
 import com.entities.Ruta;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,7 +21,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 public class RutaJpaController implements Serializable {
 
@@ -40,37 +39,28 @@ public class RutaJpaController implements Serializable {
     }
 
     public void create(Ruta ruta) {
-        if (ruta.getDetalleEntregaList() == null) {
-            ruta.setDetalleEntregaList(new ArrayList<DetalleEntrega>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Departamento departamentoCodigo = ruta.getDepartamentoCodigo();
+            if (departamentoCodigo != null) {
+                departamentoCodigo = em.getReference(departamentoCodigo.getClass(), departamentoCodigo.getCodigo());
+                ruta.setDepartamentoCodigo(departamentoCodigo);
+            }
             Delivery empresaCodigo = ruta.getEmpresaCodigo();
             if (empresaCodigo != null) {
                 empresaCodigo = em.getReference(empresaCodigo.getClass(), empresaCodigo.getCodigo());
                 ruta.setEmpresaCodigo(empresaCodigo);
             }
-            List<DetalleEntrega> attachedDetalleEntregaList = new ArrayList<DetalleEntrega>();
-            for (DetalleEntrega detalleEntregaListDetalleEntregaToAttach : ruta.getDetalleEntregaList()) {
-                detalleEntregaListDetalleEntregaToAttach = em.getReference(detalleEntregaListDetalleEntregaToAttach.getClass(), detalleEntregaListDetalleEntregaToAttach.getCodigo());
-                attachedDetalleEntregaList.add(detalleEntregaListDetalleEntregaToAttach);
-            }
-            ruta.setDetalleEntregaList(attachedDetalleEntregaList);
             em.persist(ruta);
+            if (departamentoCodigo != null) {
+                departamentoCodigo.getRutaList().add(ruta);
+                departamentoCodigo = em.merge(departamentoCodigo);
+            }
             if (empresaCodigo != null) {
                 empresaCodigo.getRutaList().add(ruta);
                 empresaCodigo = em.merge(empresaCodigo);
-            }
-            for (DetalleEntrega detalleEntregaListDetalleEntrega : ruta.getDetalleEntregaList()) {
-                Ruta oldRutaCodigoOfDetalleEntregaListDetalleEntrega = detalleEntregaListDetalleEntrega.getRutaCodigo();
-                detalleEntregaListDetalleEntrega.setRutaCodigo(ruta);
-                detalleEntregaListDetalleEntrega = em.merge(detalleEntregaListDetalleEntrega);
-                if (oldRutaCodigoOfDetalleEntregaListDetalleEntrega != null) {
-                    oldRutaCodigoOfDetalleEntregaListDetalleEntrega.getDetalleEntregaList().remove(detalleEntregaListDetalleEntrega);
-                    oldRutaCodigoOfDetalleEntregaListDetalleEntrega = em.merge(oldRutaCodigoOfDetalleEntregaListDetalleEntrega);
-                }
             }
             em.getTransaction().commit();
         } finally {
@@ -86,22 +76,27 @@ public class RutaJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Ruta persistentRuta = em.find(Ruta.class, ruta.getCodigo());
+            Departamento departamentoCodigoOld = persistentRuta.getDepartamentoCodigo();
+            Departamento departamentoCodigoNew = ruta.getDepartamentoCodigo();
             Delivery empresaCodigoOld = persistentRuta.getEmpresaCodigo();
             Delivery empresaCodigoNew = ruta.getEmpresaCodigo();
-            List<DetalleEntrega> detalleEntregaListOld = persistentRuta.getDetalleEntregaList();
-            List<DetalleEntrega> detalleEntregaListNew = ruta.getDetalleEntregaList();
+            if (departamentoCodigoNew != null) {
+                departamentoCodigoNew = em.getReference(departamentoCodigoNew.getClass(), departamentoCodigoNew.getCodigo());
+                ruta.setDepartamentoCodigo(departamentoCodigoNew);
+            }
             if (empresaCodigoNew != null) {
                 empresaCodigoNew = em.getReference(empresaCodigoNew.getClass(), empresaCodigoNew.getCodigo());
                 ruta.setEmpresaCodigo(empresaCodigoNew);
             }
-            List<DetalleEntrega> attachedDetalleEntregaListNew = new ArrayList<DetalleEntrega>();
-            for (DetalleEntrega detalleEntregaListNewDetalleEntregaToAttach : detalleEntregaListNew) {
-                detalleEntregaListNewDetalleEntregaToAttach = em.getReference(detalleEntregaListNewDetalleEntregaToAttach.getClass(), detalleEntregaListNewDetalleEntregaToAttach.getCodigo());
-                attachedDetalleEntregaListNew.add(detalleEntregaListNewDetalleEntregaToAttach);
-            }
-            detalleEntregaListNew = attachedDetalleEntregaListNew;
-            ruta.setDetalleEntregaList(detalleEntregaListNew);
             ruta = em.merge(ruta);
+            if (departamentoCodigoOld != null && !departamentoCodigoOld.equals(departamentoCodigoNew)) {
+                departamentoCodigoOld.getRutaList().remove(ruta);
+                departamentoCodigoOld = em.merge(departamentoCodigoOld);
+            }
+            if (departamentoCodigoNew != null && !departamentoCodigoNew.equals(departamentoCodigoOld)) {
+                departamentoCodigoNew.getRutaList().add(ruta);
+                departamentoCodigoNew = em.merge(departamentoCodigoNew);
+            }
             if (empresaCodigoOld != null && !empresaCodigoOld.equals(empresaCodigoNew)) {
                 empresaCodigoOld.getRutaList().remove(ruta);
                 empresaCodigoOld = em.merge(empresaCodigoOld);
@@ -109,23 +104,6 @@ public class RutaJpaController implements Serializable {
             if (empresaCodigoNew != null && !empresaCodigoNew.equals(empresaCodigoOld)) {
                 empresaCodigoNew.getRutaList().add(ruta);
                 empresaCodigoNew = em.merge(empresaCodigoNew);
-            }
-            for (DetalleEntrega detalleEntregaListOldDetalleEntrega : detalleEntregaListOld) {
-                if (!detalleEntregaListNew.contains(detalleEntregaListOldDetalleEntrega)) {
-                    detalleEntregaListOldDetalleEntrega.setRutaCodigo(null);
-                    detalleEntregaListOldDetalleEntrega = em.merge(detalleEntregaListOldDetalleEntrega);
-                }
-            }
-            for (DetalleEntrega detalleEntregaListNewDetalleEntrega : detalleEntregaListNew) {
-                if (!detalleEntregaListOld.contains(detalleEntregaListNewDetalleEntrega)) {
-                    Ruta oldRutaCodigoOfDetalleEntregaListNewDetalleEntrega = detalleEntregaListNewDetalleEntrega.getRutaCodigo();
-                    detalleEntregaListNewDetalleEntrega.setRutaCodigo(ruta);
-                    detalleEntregaListNewDetalleEntrega = em.merge(detalleEntregaListNewDetalleEntrega);
-                    if (oldRutaCodigoOfDetalleEntregaListNewDetalleEntrega != null && !oldRutaCodigoOfDetalleEntregaListNewDetalleEntrega.equals(ruta)) {
-                        oldRutaCodigoOfDetalleEntregaListNewDetalleEntrega.getDetalleEntregaList().remove(detalleEntregaListNewDetalleEntrega);
-                        oldRutaCodigoOfDetalleEntregaListNewDetalleEntrega = em.merge(oldRutaCodigoOfDetalleEntregaListNewDetalleEntrega);
-                    }
-                }
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -156,15 +134,15 @@ public class RutaJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The ruta with id " + id + " no longer exists.", enfe);
             }
+            Departamento departamentoCodigo = ruta.getDepartamentoCodigo();
+            if (departamentoCodigo != null) {
+                departamentoCodigo.getRutaList().remove(ruta);
+                departamentoCodigo = em.merge(departamentoCodigo);
+            }
             Delivery empresaCodigo = ruta.getEmpresaCodigo();
             if (empresaCodigo != null) {
                 empresaCodigo.getRutaList().remove(ruta);
                 empresaCodigo = em.merge(empresaCodigo);
-            }
-            List<DetalleEntrega> detalleEntregaList = ruta.getDetalleEntregaList();
-            for (DetalleEntrega detalleEntregaListDetalleEntrega : detalleEntregaList) {
-                detalleEntregaListDetalleEntrega.setRutaCodigo(null);
-                detalleEntregaListDetalleEntrega = em.merge(detalleEntregaListDetalleEntrega);
             }
             em.remove(ruta);
             em.getTransaction().commit();

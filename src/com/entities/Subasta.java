@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "subasta")
@@ -134,7 +134,7 @@ public class Subasta implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.Subasta[ codigo=" + codigo + " ]";
+        return "com.entities.Subasta[ codigo=" + codigo + " ]";
     }
     
 }

@@ -13,7 +13,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -26,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 @Entity
 @Table(name = "producto")
@@ -74,20 +73,14 @@ public class Producto implements Serializable {
     @Basic(optional = false)
     @Column(name = "valor_en_puntos")
     private int valorEnPuntos;
-    @ManyToMany(mappedBy = "productoList")
-    private List<Usuario> usuarioList;
-    @OneToMany(mappedBy = "productoCanjeCodigo")
-    private List<DetalleCanje> detalleCanjeList;
-    @JoinColumn(name = "ciudad_producto_codigo", referencedColumnName = "codigo")
-    @ManyToOne
-    private Ciudad ciudadProductoCodigo;
     @JoinColumn(name = "vendedor_codigo", referencedColumnName = "codigo")
     @ManyToOne
     private Usuario vendedorCodigo;
+    @JoinColumn(name = "departamento_producto_codigo", referencedColumnName = "codigo")
+    @ManyToOne
+    private Departamento departamentoProductoCodigo;
     @OneToMany(mappedBy = "productocCodigo")
     private List<Comentario> comentarioList;
-    @OneToMany(mappedBy = "productoCompraCodigo")
-    private List<DetalleCompra> detalleCompraList;
 
     public Producto() {
     }
@@ -180,38 +173,20 @@ public class Producto implements Serializable {
         this.valorEnPuntos = valorEnPuntos;
     }
 
-    @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
-    @XmlTransient
-    public List<DetalleCanje> getDetalleCanjeList() {
-        return detalleCanjeList;
-    }
-
-    public void setDetalleCanjeList(List<DetalleCanje> detalleCanjeList) {
-        this.detalleCanjeList = detalleCanjeList;
-    }
-
-    public Ciudad getCiudadProductoCodigo() {
-        return ciudadProductoCodigo;
-    }
-
-    public void setCiudadProductoCodigo(Ciudad ciudadProductoCodigo) {
-        this.ciudadProductoCodigo = ciudadProductoCodigo;
-    }
-
     public Usuario getVendedorCodigo() {
         return vendedorCodigo;
     }
 
     public void setVendedorCodigo(Usuario vendedorCodigo) {
         this.vendedorCodigo = vendedorCodigo;
+    }
+
+    public Departamento getDepartamentoProductoCodigo() {
+        return departamentoProductoCodigo;
+    }
+
+    public void setDepartamentoProductoCodigo(Departamento departamentoProductoCodigo) {
+        this.departamentoProductoCodigo = departamentoProductoCodigo;
     }
 
     @XmlTransient
@@ -221,15 +196,6 @@ public class Producto implements Serializable {
 
     public void setComentarioList(List<Comentario> comentarioList) {
         this.comentarioList = comentarioList;
-    }
-
-    @XmlTransient
-    public List<DetalleCompra> getDetalleCompraList() {
-        return detalleCompraList;
-    }
-
-    public void setDetalleCompraList(List<DetalleCompra> detalleCompraList) {
-        this.detalleCompraList = detalleCompraList;
     }
 
     @Override
@@ -254,7 +220,7 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "eshop_bd.Producto[ codigo=" + codigo + " ]";
+        return "com.entities.Producto[ codigo=" + codigo + " ]";
     }
     
 }

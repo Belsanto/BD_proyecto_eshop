@@ -16,15 +16,19 @@ import com.entities.Puntos;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
- * @author EQUIPO
+ * @author USER
  */
 public class PuntosJpaController implements Serializable {
 
     public PuntosJpaController(EntityManagerFactory emf) {
         this.emf = emf;
+    }
+    public PuntosJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("eShop_BDPU");
     }
     private EntityManagerFactory emf = null;
 
