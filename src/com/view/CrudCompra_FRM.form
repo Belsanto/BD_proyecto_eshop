@@ -130,29 +130,24 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel2" min="-2" pref="76" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel1" min="-2" pref="76" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel2" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="76" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="buttonAction4" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_agregar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="buttonAction3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_borrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="buttonAction2" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_modificar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="buttonAction1" min="-2" max="-2" attributes="0"/>
+                  <Component id="bt_buscar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -169,10 +164,10 @@
                   <Component id="jLabel2" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace pref="111" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="buttonAction1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonAction2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonAction3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonAction4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bt_buscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bt_modificar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bt_borrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bt_agregar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               </Group>
@@ -180,22 +175,22 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction1">
+        <Component class="org.edisoncor.gui.button.ButtonAction" name="bt_buscar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction2">
+        <Component class="org.edisoncor.gui.button.ButtonAction" name="bt_modificar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction3">
+        <Component class="org.edisoncor.gui.button.ButtonAction" name="bt_borrar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Borrar"/>
           </Properties>
         </Component>
-        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction4">
+        <Component class="org.edisoncor.gui.button.ButtonAction" name="bt_agregar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
