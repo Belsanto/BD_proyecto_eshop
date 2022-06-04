@@ -52,7 +52,8 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
      private void getComboBox() {
         List ls;
         ls = departamentoCtr.findDepartamentoEntities();
-        String value = "";
+        String value = "Seleccione una ciudad";
+         cbCiudad.addItem(value);
         for (int i = 0; i < ls.size(); i++) {
             departamento = (Departamento) ls.get(i);
             value = departamento.getCodigo() + " " + departamento.getNombre();
@@ -267,6 +268,7 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
 
     private void buttonAction4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAction4ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_buttonAction4ActionPerformed
 
     /**

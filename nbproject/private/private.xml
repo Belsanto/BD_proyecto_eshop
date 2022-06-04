@@ -3,25 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/BD_proyecto_eshop/src/com/controller/CanjeJpaController.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/BD_proyecto_eshop/src/com/controller/ControladorAuxiliar.java</file>
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/BD_proyecto_eshop/src/com/view/CrudUsuario_FRM.java</file>
-=======
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/UsuarioVentas_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/UsuarioProducto_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/UsuarioCanjes_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/CrudCompra_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/CrudProducto_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/Login_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/DetalleVenta_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/DetalleEntrega_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/DetalleCanje_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/CrudSubasta_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/Carrito_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/Index.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/DetalleSubasta_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/CrudUsuario_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/DetalleProducto_FRM.java</file>
->>>>>>> 272b652950eeed2acbcea3a82231faa9a9edfba7
         </group>
     </open-files>
 </project-private>
