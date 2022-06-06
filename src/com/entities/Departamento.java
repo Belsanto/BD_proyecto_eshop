@@ -54,7 +54,7 @@ public class Departamento implements Serializable {
     @JoinColumn(name = "ciudad_codigo", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private Ciudad ciudadCodigo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamentoUsuarioCodigo")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamentoUsuario")
     private List<Usuario> usuarioList;
 
     public Departamento() {

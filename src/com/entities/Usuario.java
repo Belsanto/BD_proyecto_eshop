@@ -74,7 +74,7 @@ public class Usuario implements Serializable {
     private List<SubastaUsuario> subastaUsuarioList;
     @JoinColumn(name = "departamento_usuario_codigo", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
-    private Departamento departamentoUsuarioCodigo;
+    private Departamento departamentoUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioCarteraCodigo")
     private List<Cartera> carteraList;
 
@@ -195,12 +195,12 @@ public class Usuario implements Serializable {
         this.subastaUsuarioList = subastaUsuarioList;
     }
 
-    public Departamento getDepartamentoUsuarioCodigo() {
-        return departamentoUsuarioCodigo;
+    public Departamento getDepartamentoUsuario() {
+        return departamentoUsuario;
     }
 
-    public void setDepartamentoUsuarioCodigo(Departamento departamentoUsuarioCodigo) {
-        this.departamentoUsuarioCodigo = departamentoUsuarioCodigo;
+    public void setDepartamentoUsuario(Departamento departamentoUsuarioCodigo) {
+        this.departamentoUsuario = departamentoUsuarioCodigo;
     }
 
     @XmlTransient
