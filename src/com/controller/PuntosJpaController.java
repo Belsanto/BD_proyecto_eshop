@@ -48,7 +48,7 @@ public class PuntosJpaController implements Serializable {
             }
             em.persist(puntos);
             if (carteraCodigo != null) {
-                carteraCodigo.getPuntosList().add(puntos);
+                carteraCodigo.getPuntosCollection().add(puntos);
                 carteraCodigo = em.merge(carteraCodigo);
             }
             em.getTransaction().commit();
@@ -73,11 +73,11 @@ public class PuntosJpaController implements Serializable {
             }
             puntos = em.merge(puntos);
             if (carteraCodigoOld != null && !carteraCodigoOld.equals(carteraCodigoNew)) {
-                carteraCodigoOld.getPuntosList().remove(puntos);
+                carteraCodigoOld.getPuntosCollection().remove(puntos);
                 carteraCodigoOld = em.merge(carteraCodigoOld);
             }
             if (carteraCodigoNew != null && !carteraCodigoNew.equals(carteraCodigoOld)) {
-                carteraCodigoNew.getPuntosList().add(puntos);
+                carteraCodigoNew.getPuntosCollection().add(puntos);
                 carteraCodigoNew = em.merge(carteraCodigoNew);
             }
             em.getTransaction().commit();
@@ -111,7 +111,7 @@ public class PuntosJpaController implements Serializable {
             }
             Cartera carteraCodigo = puntos.getCarteraCodigo();
             if (carteraCodigo != null) {
-                carteraCodigo.getPuntosList().remove(puntos);
+                carteraCodigo.getPuntosCollection().remove(puntos);
                 carteraCodigo = em.merge(carteraCodigo);
             }
             em.remove(puntos);

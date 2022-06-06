@@ -17,6 +17,7 @@ import com.entities.Departamento;
 import com.entities.ProductoSubasta;
 import com.entities.Subasta;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -42,8 +43,8 @@ public class ProductoSubastaJpaController implements Serializable {
     }
 
     public void create(ProductoSubasta productoSubasta) throws PreexistingEntityException, Exception {
-        if (productoSubasta.getSubastaList() == null) {
-            productoSubasta.setSubastaList(new ArrayList<Subasta>());
+        if (productoSubasta.getSubastaCollection() == null) {
+            productoSubasta.setSubastaCollection(new ArrayList<Subasta>());
         }
         EntityManager em = null;
         try {
@@ -59,28 +60,28 @@ public class ProductoSubastaJpaController implements Serializable {
                 departamentoCodigo = em.getReference(departamentoCodigo.getClass(), departamentoCodigo.getCodigo());
                 productoSubasta.setDepartamentoCodigo(departamentoCodigo);
             }
-            List<Subasta> attachedSubastaList = new ArrayList<Subasta>();
-            for (Subasta subastaListSubastaToAttach : productoSubasta.getSubastaList()) {
-                subastaListSubastaToAttach = em.getReference(subastaListSubastaToAttach.getClass(), subastaListSubastaToAttach.getCodigo());
-                attachedSubastaList.add(subastaListSubastaToAttach);
+            Collection<Subasta> attachedSubastaCollection = new ArrayList<Subasta>();
+            for (Subasta subastaCollectionSubastaToAttach : productoSubasta.getSubastaCollection()) {
+                subastaCollectionSubastaToAttach = em.getReference(subastaCollectionSubastaToAttach.getClass(), subastaCollectionSubastaToAttach.getCodigo());
+                attachedSubastaCollection.add(subastaCollectionSubastaToAttach);
             }
-            productoSubasta.setSubastaList(attachedSubastaList);
+            productoSubasta.setSubastaCollection(attachedSubastaCollection);
             em.persist(productoSubasta);
             if (vendedorCodigo != null) {
-                vendedorCodigo.getProductoSubastaList().add(productoSubasta);
+                vendedorCodigo.getProductoSubastaCollection().add(productoSubasta);
                 vendedorCodigo = em.merge(vendedorCodigo);
             }
             if (departamentoCodigo != null) {
-                departamentoCodigo.getProductoSubastaList().add(productoSubasta);
+                departamentoCodigo.getProductoSubastaCollection().add(productoSubasta);
                 departamentoCodigo = em.merge(departamentoCodigo);
             }
-            for (Subasta subastaListSubasta : productoSubasta.getSubastaList()) {
-                ProductoSubasta oldProductoEnSubastaCodigoOfSubastaListSubasta = subastaListSubasta.getProductoEnSubastaCodigo();
-                subastaListSubasta.setProductoEnSubastaCodigo(productoSubasta);
-                subastaListSubasta = em.merge(subastaListSubasta);
-                if (oldProductoEnSubastaCodigoOfSubastaListSubasta != null) {
-                    oldProductoEnSubastaCodigoOfSubastaListSubasta.getSubastaList().remove(subastaListSubasta);
-                    oldProductoEnSubastaCodigoOfSubastaListSubasta = em.merge(oldProductoEnSubastaCodigoOfSubastaListSubasta);
+            for (Subasta subastaCollectionSubasta : productoSubasta.getSubastaCollection()) {
+                ProductoSubasta oldProductoEnSubastaCodigoOfSubastaCollectionSubasta = subastaCollectionSubasta.getProductoEnSubastaCodigo();
+                subastaCollectionSubasta.setProductoEnSubastaCodigo(productoSubasta);
+                subastaCollectionSubasta = em.merge(subastaCollectionSubasta);
+                if (oldProductoEnSubastaCodigoOfSubastaCollectionSubasta != null) {
+                    oldProductoEnSubastaCodigoOfSubastaCollectionSubasta.getSubastaCollection().remove(subastaCollectionSubasta);
+                    oldProductoEnSubastaCodigoOfSubastaCollectionSubasta = em.merge(oldProductoEnSubastaCodigoOfSubastaCollectionSubasta);
                 }
             }
             em.getTransaction().commit();
@@ -106,8 +107,8 @@ public class ProductoSubastaJpaController implements Serializable {
             Usuario vendedorCodigoNew = productoSubasta.getVendedorCodigo();
             Departamento departamentoCodigoOld = persistentProductoSubasta.getDepartamentoCodigo();
             Departamento departamentoCodigoNew = productoSubasta.getDepartamentoCodigo();
-            List<Subasta> subastaListOld = persistentProductoSubasta.getSubastaList();
-            List<Subasta> subastaListNew = productoSubasta.getSubastaList();
+            Collection<Subasta> subastaCollectionOld = persistentProductoSubasta.getSubastaCollection();
+            Collection<Subasta> subastaCollectionNew = productoSubasta.getSubastaCollection();
             if (vendedorCodigoNew != null) {
                 vendedorCodigoNew = em.getReference(vendedorCodigoNew.getClass(), vendedorCodigoNew.getCodigo());
                 productoSubasta.setVendedorCodigo(vendedorCodigoNew);
@@ -116,44 +117,44 @@ public class ProductoSubastaJpaController implements Serializable {
                 departamentoCodigoNew = em.getReference(departamentoCodigoNew.getClass(), departamentoCodigoNew.getCodigo());
                 productoSubasta.setDepartamentoCodigo(departamentoCodigoNew);
             }
-            List<Subasta> attachedSubastaListNew = new ArrayList<Subasta>();
-            for (Subasta subastaListNewSubastaToAttach : subastaListNew) {
-                subastaListNewSubastaToAttach = em.getReference(subastaListNewSubastaToAttach.getClass(), subastaListNewSubastaToAttach.getCodigo());
-                attachedSubastaListNew.add(subastaListNewSubastaToAttach);
+            Collection<Subasta> attachedSubastaCollectionNew = new ArrayList<Subasta>();
+            for (Subasta subastaCollectionNewSubastaToAttach : subastaCollectionNew) {
+                subastaCollectionNewSubastaToAttach = em.getReference(subastaCollectionNewSubastaToAttach.getClass(), subastaCollectionNewSubastaToAttach.getCodigo());
+                attachedSubastaCollectionNew.add(subastaCollectionNewSubastaToAttach);
             }
-            subastaListNew = attachedSubastaListNew;
-            productoSubasta.setSubastaList(subastaListNew);
+            subastaCollectionNew = attachedSubastaCollectionNew;
+            productoSubasta.setSubastaCollection(subastaCollectionNew);
             productoSubasta = em.merge(productoSubasta);
             if (vendedorCodigoOld != null && !vendedorCodigoOld.equals(vendedorCodigoNew)) {
-                vendedorCodigoOld.getProductoSubastaList().remove(productoSubasta);
+                vendedorCodigoOld.getProductoSubastaCollection().remove(productoSubasta);
                 vendedorCodigoOld = em.merge(vendedorCodigoOld);
             }
             if (vendedorCodigoNew != null && !vendedorCodigoNew.equals(vendedorCodigoOld)) {
-                vendedorCodigoNew.getProductoSubastaList().add(productoSubasta);
+                vendedorCodigoNew.getProductoSubastaCollection().add(productoSubasta);
                 vendedorCodigoNew = em.merge(vendedorCodigoNew);
             }
             if (departamentoCodigoOld != null && !departamentoCodigoOld.equals(departamentoCodigoNew)) {
-                departamentoCodigoOld.getProductoSubastaList().remove(productoSubasta);
+                departamentoCodigoOld.getProductoSubastaCollection().remove(productoSubasta);
                 departamentoCodigoOld = em.merge(departamentoCodigoOld);
             }
             if (departamentoCodigoNew != null && !departamentoCodigoNew.equals(departamentoCodigoOld)) {
-                departamentoCodigoNew.getProductoSubastaList().add(productoSubasta);
+                departamentoCodigoNew.getProductoSubastaCollection().add(productoSubasta);
                 departamentoCodigoNew = em.merge(departamentoCodigoNew);
             }
-            for (Subasta subastaListOldSubasta : subastaListOld) {
-                if (!subastaListNew.contains(subastaListOldSubasta)) {
-                    subastaListOldSubasta.setProductoEnSubastaCodigo(null);
-                    subastaListOldSubasta = em.merge(subastaListOldSubasta);
+            for (Subasta subastaCollectionOldSubasta : subastaCollectionOld) {
+                if (!subastaCollectionNew.contains(subastaCollectionOldSubasta)) {
+                    subastaCollectionOldSubasta.setProductoEnSubastaCodigo(null);
+                    subastaCollectionOldSubasta = em.merge(subastaCollectionOldSubasta);
                 }
             }
-            for (Subasta subastaListNewSubasta : subastaListNew) {
-                if (!subastaListOld.contains(subastaListNewSubasta)) {
-                    ProductoSubasta oldProductoEnSubastaCodigoOfSubastaListNewSubasta = subastaListNewSubasta.getProductoEnSubastaCodigo();
-                    subastaListNewSubasta.setProductoEnSubastaCodigo(productoSubasta);
-                    subastaListNewSubasta = em.merge(subastaListNewSubasta);
-                    if (oldProductoEnSubastaCodigoOfSubastaListNewSubasta != null && !oldProductoEnSubastaCodigoOfSubastaListNewSubasta.equals(productoSubasta)) {
-                        oldProductoEnSubastaCodigoOfSubastaListNewSubasta.getSubastaList().remove(subastaListNewSubasta);
-                        oldProductoEnSubastaCodigoOfSubastaListNewSubasta = em.merge(oldProductoEnSubastaCodigoOfSubastaListNewSubasta);
+            for (Subasta subastaCollectionNewSubasta : subastaCollectionNew) {
+                if (!subastaCollectionOld.contains(subastaCollectionNewSubasta)) {
+                    ProductoSubasta oldProductoEnSubastaCodigoOfSubastaCollectionNewSubasta = subastaCollectionNewSubasta.getProductoEnSubastaCodigo();
+                    subastaCollectionNewSubasta.setProductoEnSubastaCodigo(productoSubasta);
+                    subastaCollectionNewSubasta = em.merge(subastaCollectionNewSubasta);
+                    if (oldProductoEnSubastaCodigoOfSubastaCollectionNewSubasta != null && !oldProductoEnSubastaCodigoOfSubastaCollectionNewSubasta.equals(productoSubasta)) {
+                        oldProductoEnSubastaCodigoOfSubastaCollectionNewSubasta.getSubastaCollection().remove(subastaCollectionNewSubasta);
+                        oldProductoEnSubastaCodigoOfSubastaCollectionNewSubasta = em.merge(oldProductoEnSubastaCodigoOfSubastaCollectionNewSubasta);
                     }
                 }
             }
@@ -188,18 +189,18 @@ public class ProductoSubastaJpaController implements Serializable {
             }
             Usuario vendedorCodigo = productoSubasta.getVendedorCodigo();
             if (vendedorCodigo != null) {
-                vendedorCodigo.getProductoSubastaList().remove(productoSubasta);
+                vendedorCodigo.getProductoSubastaCollection().remove(productoSubasta);
                 vendedorCodigo = em.merge(vendedorCodigo);
             }
             Departamento departamentoCodigo = productoSubasta.getDepartamentoCodigo();
             if (departamentoCodigo != null) {
-                departamentoCodigo.getProductoSubastaList().remove(productoSubasta);
+                departamentoCodigo.getProductoSubastaCollection().remove(productoSubasta);
                 departamentoCodigo = em.merge(departamentoCodigo);
             }
-            List<Subasta> subastaList = productoSubasta.getSubastaList();
-            for (Subasta subastaListSubasta : subastaList) {
-                subastaListSubasta.setProductoEnSubastaCodigo(null);
-                subastaListSubasta = em.merge(subastaListSubasta);
+            Collection<Subasta> subastaCollection = productoSubasta.getSubastaCollection();
+            for (Subasta subastaCollectionSubasta : subastaCollection) {
+                subastaCollectionSubasta.setProductoEnSubastaCodigo(null);
+                subastaCollectionSubasta = em.merge(subastaCollectionSubasta);
             }
             em.remove(productoSubasta);
             em.getTransaction().commit();

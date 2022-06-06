@@ -16,6 +16,7 @@ import javax.persistence.criteria.Root;
 import com.entities.Pais;
 import com.entities.Departamento;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -42,8 +43,8 @@ public class CiudadJpaController implements Serializable {
     }
 
     public void create(Ciudad ciudad) {
-        if (ciudad.getDepartamentoList() == null) {
-            ciudad.setDepartamentoList(new ArrayList<Departamento>());
+        if (ciudad.getDepartamentoCollection() == null) {
+            ciudad.setDepartamentoCollection(new ArrayList<Departamento>());
         }
         EntityManager em = null;
         try {
@@ -54,24 +55,24 @@ public class CiudadJpaController implements Serializable {
                 paisCodigo = em.getReference(paisCodigo.getClass(), paisCodigo.getCodigo());
                 ciudad.setPaisCodigo(paisCodigo);
             }
-            List<Departamento> attachedDepartamentoList = new ArrayList<Departamento>();
-            for (Departamento departamentoListDepartamentoToAttach : ciudad.getDepartamentoList()) {
-                departamentoListDepartamentoToAttach = em.getReference(departamentoListDepartamentoToAttach.getClass(), departamentoListDepartamentoToAttach.getCodigo());
-                attachedDepartamentoList.add(departamentoListDepartamentoToAttach);
+            Collection<Departamento> attachedDepartamentoCollection = new ArrayList<Departamento>();
+            for (Departamento departamentoCollectionDepartamentoToAttach : ciudad.getDepartamentoCollection()) {
+                departamentoCollectionDepartamentoToAttach = em.getReference(departamentoCollectionDepartamentoToAttach.getClass(), departamentoCollectionDepartamentoToAttach.getCodigo());
+                attachedDepartamentoCollection.add(departamentoCollectionDepartamentoToAttach);
             }
-            ciudad.setDepartamentoList(attachedDepartamentoList);
+            ciudad.setDepartamentoCollection(attachedDepartamentoCollection);
             em.persist(ciudad);
             if (paisCodigo != null) {
-                paisCodigo.getCiudadList().add(ciudad);
+                paisCodigo.getCiudadCollection().add(ciudad);
                 paisCodigo = em.merge(paisCodigo);
             }
-            for (Departamento departamentoListDepartamento : ciudad.getDepartamentoList()) {
-                Ciudad oldCiudadCodigoOfDepartamentoListDepartamento = departamentoListDepartamento.getCiudadCodigo();
-                departamentoListDepartamento.setCiudadCodigo(ciudad);
-                departamentoListDepartamento = em.merge(departamentoListDepartamento);
-                if (oldCiudadCodigoOfDepartamentoListDepartamento != null) {
-                    oldCiudadCodigoOfDepartamentoListDepartamento.getDepartamentoList().remove(departamentoListDepartamento);
-                    oldCiudadCodigoOfDepartamentoListDepartamento = em.merge(oldCiudadCodigoOfDepartamentoListDepartamento);
+            for (Departamento departamentoCollectionDepartamento : ciudad.getDepartamentoCollection()) {
+                Ciudad oldCiudadCodigoOfDepartamentoCollectionDepartamento = departamentoCollectionDepartamento.getCiudadCodigo();
+                departamentoCollectionDepartamento.setCiudadCodigo(ciudad);
+                departamentoCollectionDepartamento = em.merge(departamentoCollectionDepartamento);
+                if (oldCiudadCodigoOfDepartamentoCollectionDepartamento != null) {
+                    oldCiudadCodigoOfDepartamentoCollectionDepartamento.getDepartamentoCollection().remove(departamentoCollectionDepartamento);
+                    oldCiudadCodigoOfDepartamentoCollectionDepartamento = em.merge(oldCiudadCodigoOfDepartamentoCollectionDepartamento);
                 }
             }
             em.getTransaction().commit();
@@ -90,15 +91,15 @@ public class CiudadJpaController implements Serializable {
             Ciudad persistentCiudad = em.find(Ciudad.class, ciudad.getCodigo());
             Pais paisCodigoOld = persistentCiudad.getPaisCodigo();
             Pais paisCodigoNew = ciudad.getPaisCodigo();
-            List<Departamento> departamentoListOld = persistentCiudad.getDepartamentoList();
-            List<Departamento> departamentoListNew = ciudad.getDepartamentoList();
+            Collection<Departamento> departamentoCollectionOld = persistentCiudad.getDepartamentoCollection();
+            Collection<Departamento> departamentoCollectionNew = ciudad.getDepartamentoCollection();
             List<String> illegalOrphanMessages = null;
-            for (Departamento departamentoListOldDepartamento : departamentoListOld) {
-                if (!departamentoListNew.contains(departamentoListOldDepartamento)) {
+            for (Departamento departamentoCollectionOldDepartamento : departamentoCollectionOld) {
+                if (!departamentoCollectionNew.contains(departamentoCollectionOldDepartamento)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Departamento " + departamentoListOldDepartamento + " since its ciudadCodigo field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Departamento " + departamentoCollectionOldDepartamento + " since its ciudadCodigo field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -108,30 +109,30 @@ public class CiudadJpaController implements Serializable {
                 paisCodigoNew = em.getReference(paisCodigoNew.getClass(), paisCodigoNew.getCodigo());
                 ciudad.setPaisCodigo(paisCodigoNew);
             }
-            List<Departamento> attachedDepartamentoListNew = new ArrayList<Departamento>();
-            for (Departamento departamentoListNewDepartamentoToAttach : departamentoListNew) {
-                departamentoListNewDepartamentoToAttach = em.getReference(departamentoListNewDepartamentoToAttach.getClass(), departamentoListNewDepartamentoToAttach.getCodigo());
-                attachedDepartamentoListNew.add(departamentoListNewDepartamentoToAttach);
+            Collection<Departamento> attachedDepartamentoCollectionNew = new ArrayList<Departamento>();
+            for (Departamento departamentoCollectionNewDepartamentoToAttach : departamentoCollectionNew) {
+                departamentoCollectionNewDepartamentoToAttach = em.getReference(departamentoCollectionNewDepartamentoToAttach.getClass(), departamentoCollectionNewDepartamentoToAttach.getCodigo());
+                attachedDepartamentoCollectionNew.add(departamentoCollectionNewDepartamentoToAttach);
             }
-            departamentoListNew = attachedDepartamentoListNew;
-            ciudad.setDepartamentoList(departamentoListNew);
+            departamentoCollectionNew = attachedDepartamentoCollectionNew;
+            ciudad.setDepartamentoCollection(departamentoCollectionNew);
             ciudad = em.merge(ciudad);
             if (paisCodigoOld != null && !paisCodigoOld.equals(paisCodigoNew)) {
-                paisCodigoOld.getCiudadList().remove(ciudad);
+                paisCodigoOld.getCiudadCollection().remove(ciudad);
                 paisCodigoOld = em.merge(paisCodigoOld);
             }
             if (paisCodigoNew != null && !paisCodigoNew.equals(paisCodigoOld)) {
-                paisCodigoNew.getCiudadList().add(ciudad);
+                paisCodigoNew.getCiudadCollection().add(ciudad);
                 paisCodigoNew = em.merge(paisCodigoNew);
             }
-            for (Departamento departamentoListNewDepartamento : departamentoListNew) {
-                if (!departamentoListOld.contains(departamentoListNewDepartamento)) {
-                    Ciudad oldCiudadCodigoOfDepartamentoListNewDepartamento = departamentoListNewDepartamento.getCiudadCodigo();
-                    departamentoListNewDepartamento.setCiudadCodigo(ciudad);
-                    departamentoListNewDepartamento = em.merge(departamentoListNewDepartamento);
-                    if (oldCiudadCodigoOfDepartamentoListNewDepartamento != null && !oldCiudadCodigoOfDepartamentoListNewDepartamento.equals(ciudad)) {
-                        oldCiudadCodigoOfDepartamentoListNewDepartamento.getDepartamentoList().remove(departamentoListNewDepartamento);
-                        oldCiudadCodigoOfDepartamentoListNewDepartamento = em.merge(oldCiudadCodigoOfDepartamentoListNewDepartamento);
+            for (Departamento departamentoCollectionNewDepartamento : departamentoCollectionNew) {
+                if (!departamentoCollectionOld.contains(departamentoCollectionNewDepartamento)) {
+                    Ciudad oldCiudadCodigoOfDepartamentoCollectionNewDepartamento = departamentoCollectionNewDepartamento.getCiudadCodigo();
+                    departamentoCollectionNewDepartamento.setCiudadCodigo(ciudad);
+                    departamentoCollectionNewDepartamento = em.merge(departamentoCollectionNewDepartamento);
+                    if (oldCiudadCodigoOfDepartamentoCollectionNewDepartamento != null && !oldCiudadCodigoOfDepartamentoCollectionNewDepartamento.equals(ciudad)) {
+                        oldCiudadCodigoOfDepartamentoCollectionNewDepartamento.getDepartamentoCollection().remove(departamentoCollectionNewDepartamento);
+                        oldCiudadCodigoOfDepartamentoCollectionNewDepartamento = em.merge(oldCiudadCodigoOfDepartamentoCollectionNewDepartamento);
                     }
                 }
             }
@@ -165,19 +166,19 @@ public class CiudadJpaController implements Serializable {
                 throw new NonexistentEntityException("The ciudad with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            List<Departamento> departamentoListOrphanCheck = ciudad.getDepartamentoList();
-            for (Departamento departamentoListOrphanCheckDepartamento : departamentoListOrphanCheck) {
+            Collection<Departamento> departamentoCollectionOrphanCheck = ciudad.getDepartamentoCollection();
+            for (Departamento departamentoCollectionOrphanCheckDepartamento : departamentoCollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Ciudad (" + ciudad + ") cannot be destroyed since the Departamento " + departamentoListOrphanCheckDepartamento + " in its departamentoList field has a non-nullable ciudadCodigo field.");
+                illegalOrphanMessages.add("This Ciudad (" + ciudad + ") cannot be destroyed since the Departamento " + departamentoCollectionOrphanCheckDepartamento + " in its departamentoCollection field has a non-nullable ciudadCodigo field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             Pais paisCodigo = ciudad.getPaisCodigo();
             if (paisCodigo != null) {
-                paisCodigo.getCiudadList().remove(ciudad);
+                paisCodigo.getCiudadCollection().remove(ciudad);
                 paisCodigo = em.merge(paisCodigo);
             }
             em.remove(ciudad);

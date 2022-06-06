@@ -16,10 +16,11 @@ import com.entities.Ciudad;
 import com.entities.Departamento;
 import com.entities.Ruta;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import com.entities.ProductoSubasta;
 import com.entities.Producto;
 import com.entities.Usuario;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -43,17 +44,17 @@ public class DepartamentoJpaController implements Serializable {
     }
 
     public void create(Departamento departamento) {
-        if (departamento.getRutaList() == null) {
-            departamento.setRutaList(new ArrayList<Ruta>());
+        if (departamento.getRutaCollection() == null) {
+            departamento.setRutaCollection(new ArrayList<Ruta>());
         }
-        if (departamento.getProductoSubastaList() == null) {
-            departamento.setProductoSubastaList(new ArrayList<ProductoSubasta>());
+        if (departamento.getProductoSubastaCollection() == null) {
+            departamento.setProductoSubastaCollection(new ArrayList<ProductoSubasta>());
         }
-        if (departamento.getProductoList() == null) {
-            departamento.setProductoList(new ArrayList<Producto>());
+        if (departamento.getProductoCollection() == null) {
+            departamento.setProductoCollection(new ArrayList<Producto>());
         }
-        if (departamento.getUsuarioList() == null) {
-            departamento.setUsuarioList(new ArrayList<Usuario>());
+        if (departamento.getUsuarioCollection() == null) {
+            departamento.setUsuarioCollection(new ArrayList<Usuario>());
         }
         EntityManager em = null;
         try {
@@ -64,69 +65,69 @@ public class DepartamentoJpaController implements Serializable {
                 ciudadCodigo = em.getReference(ciudadCodigo.getClass(), ciudadCodigo.getCodigo());
                 departamento.setCiudadCodigo(ciudadCodigo);
             }
-            List<Ruta> attachedRutaList = new ArrayList<Ruta>();
-            for (Ruta rutaListRutaToAttach : departamento.getRutaList()) {
-                rutaListRutaToAttach = em.getReference(rutaListRutaToAttach.getClass(), rutaListRutaToAttach.getCodigo());
-                attachedRutaList.add(rutaListRutaToAttach);
+            Collection<Ruta> attachedRutaCollection = new ArrayList<Ruta>();
+            for (Ruta rutaCollectionRutaToAttach : departamento.getRutaCollection()) {
+                rutaCollectionRutaToAttach = em.getReference(rutaCollectionRutaToAttach.getClass(), rutaCollectionRutaToAttach.getCodigo());
+                attachedRutaCollection.add(rutaCollectionRutaToAttach);
             }
-            departamento.setRutaList(attachedRutaList);
-            List<ProductoSubasta> attachedProductoSubastaList = new ArrayList<ProductoSubasta>();
-            for (ProductoSubasta productoSubastaListProductoSubastaToAttach : departamento.getProductoSubastaList()) {
-                productoSubastaListProductoSubastaToAttach = em.getReference(productoSubastaListProductoSubastaToAttach.getClass(), productoSubastaListProductoSubastaToAttach.getCodigo());
-                attachedProductoSubastaList.add(productoSubastaListProductoSubastaToAttach);
+            departamento.setRutaCollection(attachedRutaCollection);
+            Collection<ProductoSubasta> attachedProductoSubastaCollection = new ArrayList<ProductoSubasta>();
+            for (ProductoSubasta productoSubastaCollectionProductoSubastaToAttach : departamento.getProductoSubastaCollection()) {
+                productoSubastaCollectionProductoSubastaToAttach = em.getReference(productoSubastaCollectionProductoSubastaToAttach.getClass(), productoSubastaCollectionProductoSubastaToAttach.getCodigo());
+                attachedProductoSubastaCollection.add(productoSubastaCollectionProductoSubastaToAttach);
             }
-            departamento.setProductoSubastaList(attachedProductoSubastaList);
-            List<Producto> attachedProductoList = new ArrayList<Producto>();
-            for (Producto productoListProductoToAttach : departamento.getProductoList()) {
-                productoListProductoToAttach = em.getReference(productoListProductoToAttach.getClass(), productoListProductoToAttach.getCodigo());
-                attachedProductoList.add(productoListProductoToAttach);
+            departamento.setProductoSubastaCollection(attachedProductoSubastaCollection);
+            Collection<Producto> attachedProductoCollection = new ArrayList<Producto>();
+            for (Producto productoCollectionProductoToAttach : departamento.getProductoCollection()) {
+                productoCollectionProductoToAttach = em.getReference(productoCollectionProductoToAttach.getClass(), productoCollectionProductoToAttach.getCodigo());
+                attachedProductoCollection.add(productoCollectionProductoToAttach);
             }
-            departamento.setProductoList(attachedProductoList);
-            List<Usuario> attachedUsuarioList = new ArrayList<Usuario>();
-            for (Usuario usuarioListUsuarioToAttach : departamento.getUsuarioList()) {
-                usuarioListUsuarioToAttach = em.getReference(usuarioListUsuarioToAttach.getClass(), usuarioListUsuarioToAttach.getCodigo());
-                attachedUsuarioList.add(usuarioListUsuarioToAttach);
+            departamento.setProductoCollection(attachedProductoCollection);
+            Collection<Usuario> attachedUsuarioCollection = new ArrayList<Usuario>();
+            for (Usuario usuarioCollectionUsuarioToAttach : departamento.getUsuarioCollection()) {
+                usuarioCollectionUsuarioToAttach = em.getReference(usuarioCollectionUsuarioToAttach.getClass(), usuarioCollectionUsuarioToAttach.getCodigo());
+                attachedUsuarioCollection.add(usuarioCollectionUsuarioToAttach);
             }
-            departamento.setUsuarioList(attachedUsuarioList);
+            departamento.setUsuarioCollection(attachedUsuarioCollection);
             em.persist(departamento);
             if (ciudadCodigo != null) {
-                ciudadCodigo.getDepartamentoList().add(departamento);
+                ciudadCodigo.getDepartamentoCollection().add(departamento);
                 ciudadCodigo = em.merge(ciudadCodigo);
             }
-            for (Ruta rutaListRuta : departamento.getRutaList()) {
-                Departamento oldDepartamentoCodigoOfRutaListRuta = rutaListRuta.getDepartamentoCodigo();
-                rutaListRuta.setDepartamentoCodigo(departamento);
-                rutaListRuta = em.merge(rutaListRuta);
-                if (oldDepartamentoCodigoOfRutaListRuta != null) {
-                    oldDepartamentoCodigoOfRutaListRuta.getRutaList().remove(rutaListRuta);
-                    oldDepartamentoCodigoOfRutaListRuta = em.merge(oldDepartamentoCodigoOfRutaListRuta);
+            for (Ruta rutaCollectionRuta : departamento.getRutaCollection()) {
+                Departamento oldDepartamentoCodigoOfRutaCollectionRuta = rutaCollectionRuta.getDepartamentoCodigo();
+                rutaCollectionRuta.setDepartamentoCodigo(departamento);
+                rutaCollectionRuta = em.merge(rutaCollectionRuta);
+                if (oldDepartamentoCodigoOfRutaCollectionRuta != null) {
+                    oldDepartamentoCodigoOfRutaCollectionRuta.getRutaCollection().remove(rutaCollectionRuta);
+                    oldDepartamentoCodigoOfRutaCollectionRuta = em.merge(oldDepartamentoCodigoOfRutaCollectionRuta);
                 }
             }
-            for (ProductoSubasta productoSubastaListProductoSubasta : departamento.getProductoSubastaList()) {
-                Departamento oldDepartamentoCodigoOfProductoSubastaListProductoSubasta = productoSubastaListProductoSubasta.getDepartamentoCodigo();
-                productoSubastaListProductoSubasta.setDepartamentoCodigo(departamento);
-                productoSubastaListProductoSubasta = em.merge(productoSubastaListProductoSubasta);
-                if (oldDepartamentoCodigoOfProductoSubastaListProductoSubasta != null) {
-                    oldDepartamentoCodigoOfProductoSubastaListProductoSubasta.getProductoSubastaList().remove(productoSubastaListProductoSubasta);
-                    oldDepartamentoCodigoOfProductoSubastaListProductoSubasta = em.merge(oldDepartamentoCodigoOfProductoSubastaListProductoSubasta);
+            for (ProductoSubasta productoSubastaCollectionProductoSubasta : departamento.getProductoSubastaCollection()) {
+                Departamento oldDepartamentoCodigoOfProductoSubastaCollectionProductoSubasta = productoSubastaCollectionProductoSubasta.getDepartamentoCodigo();
+                productoSubastaCollectionProductoSubasta.setDepartamentoCodigo(departamento);
+                productoSubastaCollectionProductoSubasta = em.merge(productoSubastaCollectionProductoSubasta);
+                if (oldDepartamentoCodigoOfProductoSubastaCollectionProductoSubasta != null) {
+                    oldDepartamentoCodigoOfProductoSubastaCollectionProductoSubasta.getProductoSubastaCollection().remove(productoSubastaCollectionProductoSubasta);
+                    oldDepartamentoCodigoOfProductoSubastaCollectionProductoSubasta = em.merge(oldDepartamentoCodigoOfProductoSubastaCollectionProductoSubasta);
                 }
             }
-            for (Producto productoListProducto : departamento.getProductoList()) {
-                Departamento oldDepartamentoProductoCodigoOfProductoListProducto = productoListProducto.getDepartamentoProductoCodigo();
-                productoListProducto.setDepartamentoProductoCodigo(departamento);
-                productoListProducto = em.merge(productoListProducto);
-                if (oldDepartamentoProductoCodigoOfProductoListProducto != null) {
-                    oldDepartamentoProductoCodigoOfProductoListProducto.getProductoList().remove(productoListProducto);
-                    oldDepartamentoProductoCodigoOfProductoListProducto = em.merge(oldDepartamentoProductoCodigoOfProductoListProducto);
+            for (Producto productoCollectionProducto : departamento.getProductoCollection()) {
+                Departamento oldDepartamentoProductoCodigoOfProductoCollectionProducto = productoCollectionProducto.getDepartamentoProductoCodigo();
+                productoCollectionProducto.setDepartamentoProductoCodigo(departamento);
+                productoCollectionProducto = em.merge(productoCollectionProducto);
+                if (oldDepartamentoProductoCodigoOfProductoCollectionProducto != null) {
+                    oldDepartamentoProductoCodigoOfProductoCollectionProducto.getProductoCollection().remove(productoCollectionProducto);
+                    oldDepartamentoProductoCodigoOfProductoCollectionProducto = em.merge(oldDepartamentoProductoCodigoOfProductoCollectionProducto);
                 }
             }
-            for (Usuario usuarioListUsuario : departamento.getUsuarioList()) {
-                Departamento oldDepartamentoUsuarioCodigoOfUsuarioListUsuario = usuarioListUsuario.getDepartamentoUsuarioCodigo();
-                usuarioListUsuario.setDepartamentoUsuarioCodigo(departamento);
-                usuarioListUsuario = em.merge(usuarioListUsuario);
-                if (oldDepartamentoUsuarioCodigoOfUsuarioListUsuario != null) {
-                    oldDepartamentoUsuarioCodigoOfUsuarioListUsuario.getUsuarioList().remove(usuarioListUsuario);
-                    oldDepartamentoUsuarioCodigoOfUsuarioListUsuario = em.merge(oldDepartamentoUsuarioCodigoOfUsuarioListUsuario);
+            for (Usuario usuarioCollectionUsuario : departamento.getUsuarioCollection()) {
+                Departamento oldDepartamentoUsuarioCodigoOfUsuarioCollectionUsuario = usuarioCollectionUsuario.getDepartamentoUsuarioCodigo();
+                usuarioCollectionUsuario.setDepartamentoUsuarioCodigo(departamento);
+                usuarioCollectionUsuario = em.merge(usuarioCollectionUsuario);
+                if (oldDepartamentoUsuarioCodigoOfUsuarioCollectionUsuario != null) {
+                    oldDepartamentoUsuarioCodigoOfUsuarioCollectionUsuario.getUsuarioCollection().remove(usuarioCollectionUsuario);
+                    oldDepartamentoUsuarioCodigoOfUsuarioCollectionUsuario = em.merge(oldDepartamentoUsuarioCodigoOfUsuarioCollectionUsuario);
                 }
             }
             em.getTransaction().commit();
@@ -145,21 +146,21 @@ public class DepartamentoJpaController implements Serializable {
             Departamento persistentDepartamento = em.find(Departamento.class, departamento.getCodigo());
             Ciudad ciudadCodigoOld = persistentDepartamento.getCiudadCodigo();
             Ciudad ciudadCodigoNew = departamento.getCiudadCodigo();
-            List<Ruta> rutaListOld = persistentDepartamento.getRutaList();
-            List<Ruta> rutaListNew = departamento.getRutaList();
-            List<ProductoSubasta> productoSubastaListOld = persistentDepartamento.getProductoSubastaList();
-            List<ProductoSubasta> productoSubastaListNew = departamento.getProductoSubastaList();
-            List<Producto> productoListOld = persistentDepartamento.getProductoList();
-            List<Producto> productoListNew = departamento.getProductoList();
-            List<Usuario> usuarioListOld = persistentDepartamento.getUsuarioList();
-            List<Usuario> usuarioListNew = departamento.getUsuarioList();
+            Collection<Ruta> rutaCollectionOld = persistentDepartamento.getRutaCollection();
+            Collection<Ruta> rutaCollectionNew = departamento.getRutaCollection();
+            Collection<ProductoSubasta> productoSubastaCollectionOld = persistentDepartamento.getProductoSubastaCollection();
+            Collection<ProductoSubasta> productoSubastaCollectionNew = departamento.getProductoSubastaCollection();
+            Collection<Producto> productoCollectionOld = persistentDepartamento.getProductoCollection();
+            Collection<Producto> productoCollectionNew = departamento.getProductoCollection();
+            Collection<Usuario> usuarioCollectionOld = persistentDepartamento.getUsuarioCollection();
+            Collection<Usuario> usuarioCollectionNew = departamento.getUsuarioCollection();
             List<String> illegalOrphanMessages = null;
-            for (Usuario usuarioListOldUsuario : usuarioListOld) {
-                if (!usuarioListNew.contains(usuarioListOldUsuario)) {
+            for (Usuario usuarioCollectionOldUsuario : usuarioCollectionOld) {
+                if (!usuarioCollectionNew.contains(usuarioCollectionOldUsuario)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Usuario " + usuarioListOldUsuario + " since its departamentoUsuarioCodigo field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Usuario " + usuarioCollectionOldUsuario + " since its departamentoUsuarioCodigo field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -169,102 +170,102 @@ public class DepartamentoJpaController implements Serializable {
                 ciudadCodigoNew = em.getReference(ciudadCodigoNew.getClass(), ciudadCodigoNew.getCodigo());
                 departamento.setCiudadCodigo(ciudadCodigoNew);
             }
-            List<Ruta> attachedRutaListNew = new ArrayList<Ruta>();
-            for (Ruta rutaListNewRutaToAttach : rutaListNew) {
-                rutaListNewRutaToAttach = em.getReference(rutaListNewRutaToAttach.getClass(), rutaListNewRutaToAttach.getCodigo());
-                attachedRutaListNew.add(rutaListNewRutaToAttach);
+            Collection<Ruta> attachedRutaCollectionNew = new ArrayList<Ruta>();
+            for (Ruta rutaCollectionNewRutaToAttach : rutaCollectionNew) {
+                rutaCollectionNewRutaToAttach = em.getReference(rutaCollectionNewRutaToAttach.getClass(), rutaCollectionNewRutaToAttach.getCodigo());
+                attachedRutaCollectionNew.add(rutaCollectionNewRutaToAttach);
             }
-            rutaListNew = attachedRutaListNew;
-            departamento.setRutaList(rutaListNew);
-            List<ProductoSubasta> attachedProductoSubastaListNew = new ArrayList<ProductoSubasta>();
-            for (ProductoSubasta productoSubastaListNewProductoSubastaToAttach : productoSubastaListNew) {
-                productoSubastaListNewProductoSubastaToAttach = em.getReference(productoSubastaListNewProductoSubastaToAttach.getClass(), productoSubastaListNewProductoSubastaToAttach.getCodigo());
-                attachedProductoSubastaListNew.add(productoSubastaListNewProductoSubastaToAttach);
+            rutaCollectionNew = attachedRutaCollectionNew;
+            departamento.setRutaCollection(rutaCollectionNew);
+            Collection<ProductoSubasta> attachedProductoSubastaCollectionNew = new ArrayList<ProductoSubasta>();
+            for (ProductoSubasta productoSubastaCollectionNewProductoSubastaToAttach : productoSubastaCollectionNew) {
+                productoSubastaCollectionNewProductoSubastaToAttach = em.getReference(productoSubastaCollectionNewProductoSubastaToAttach.getClass(), productoSubastaCollectionNewProductoSubastaToAttach.getCodigo());
+                attachedProductoSubastaCollectionNew.add(productoSubastaCollectionNewProductoSubastaToAttach);
             }
-            productoSubastaListNew = attachedProductoSubastaListNew;
-            departamento.setProductoSubastaList(productoSubastaListNew);
-            List<Producto> attachedProductoListNew = new ArrayList<Producto>();
-            for (Producto productoListNewProductoToAttach : productoListNew) {
-                productoListNewProductoToAttach = em.getReference(productoListNewProductoToAttach.getClass(), productoListNewProductoToAttach.getCodigo());
-                attachedProductoListNew.add(productoListNewProductoToAttach);
+            productoSubastaCollectionNew = attachedProductoSubastaCollectionNew;
+            departamento.setProductoSubastaCollection(productoSubastaCollectionNew);
+            Collection<Producto> attachedProductoCollectionNew = new ArrayList<Producto>();
+            for (Producto productoCollectionNewProductoToAttach : productoCollectionNew) {
+                productoCollectionNewProductoToAttach = em.getReference(productoCollectionNewProductoToAttach.getClass(), productoCollectionNewProductoToAttach.getCodigo());
+                attachedProductoCollectionNew.add(productoCollectionNewProductoToAttach);
             }
-            productoListNew = attachedProductoListNew;
-            departamento.setProductoList(productoListNew);
-            List<Usuario> attachedUsuarioListNew = new ArrayList<Usuario>();
-            for (Usuario usuarioListNewUsuarioToAttach : usuarioListNew) {
-                usuarioListNewUsuarioToAttach = em.getReference(usuarioListNewUsuarioToAttach.getClass(), usuarioListNewUsuarioToAttach.getCodigo());
-                attachedUsuarioListNew.add(usuarioListNewUsuarioToAttach);
+            productoCollectionNew = attachedProductoCollectionNew;
+            departamento.setProductoCollection(productoCollectionNew);
+            Collection<Usuario> attachedUsuarioCollectionNew = new ArrayList<Usuario>();
+            for (Usuario usuarioCollectionNewUsuarioToAttach : usuarioCollectionNew) {
+                usuarioCollectionNewUsuarioToAttach = em.getReference(usuarioCollectionNewUsuarioToAttach.getClass(), usuarioCollectionNewUsuarioToAttach.getCodigo());
+                attachedUsuarioCollectionNew.add(usuarioCollectionNewUsuarioToAttach);
             }
-            usuarioListNew = attachedUsuarioListNew;
-            departamento.setUsuarioList(usuarioListNew);
+            usuarioCollectionNew = attachedUsuarioCollectionNew;
+            departamento.setUsuarioCollection(usuarioCollectionNew);
             departamento = em.merge(departamento);
             if (ciudadCodigoOld != null && !ciudadCodigoOld.equals(ciudadCodigoNew)) {
-                ciudadCodigoOld.getDepartamentoList().remove(departamento);
+                ciudadCodigoOld.getDepartamentoCollection().remove(departamento);
                 ciudadCodigoOld = em.merge(ciudadCodigoOld);
             }
             if (ciudadCodigoNew != null && !ciudadCodigoNew.equals(ciudadCodigoOld)) {
-                ciudadCodigoNew.getDepartamentoList().add(departamento);
+                ciudadCodigoNew.getDepartamentoCollection().add(departamento);
                 ciudadCodigoNew = em.merge(ciudadCodigoNew);
             }
-            for (Ruta rutaListOldRuta : rutaListOld) {
-                if (!rutaListNew.contains(rutaListOldRuta)) {
-                    rutaListOldRuta.setDepartamentoCodigo(null);
-                    rutaListOldRuta = em.merge(rutaListOldRuta);
+            for (Ruta rutaCollectionOldRuta : rutaCollectionOld) {
+                if (!rutaCollectionNew.contains(rutaCollectionOldRuta)) {
+                    rutaCollectionOldRuta.setDepartamentoCodigo(null);
+                    rutaCollectionOldRuta = em.merge(rutaCollectionOldRuta);
                 }
             }
-            for (Ruta rutaListNewRuta : rutaListNew) {
-                if (!rutaListOld.contains(rutaListNewRuta)) {
-                    Departamento oldDepartamentoCodigoOfRutaListNewRuta = rutaListNewRuta.getDepartamentoCodigo();
-                    rutaListNewRuta.setDepartamentoCodigo(departamento);
-                    rutaListNewRuta = em.merge(rutaListNewRuta);
-                    if (oldDepartamentoCodigoOfRutaListNewRuta != null && !oldDepartamentoCodigoOfRutaListNewRuta.equals(departamento)) {
-                        oldDepartamentoCodigoOfRutaListNewRuta.getRutaList().remove(rutaListNewRuta);
-                        oldDepartamentoCodigoOfRutaListNewRuta = em.merge(oldDepartamentoCodigoOfRutaListNewRuta);
+            for (Ruta rutaCollectionNewRuta : rutaCollectionNew) {
+                if (!rutaCollectionOld.contains(rutaCollectionNewRuta)) {
+                    Departamento oldDepartamentoCodigoOfRutaCollectionNewRuta = rutaCollectionNewRuta.getDepartamentoCodigo();
+                    rutaCollectionNewRuta.setDepartamentoCodigo(departamento);
+                    rutaCollectionNewRuta = em.merge(rutaCollectionNewRuta);
+                    if (oldDepartamentoCodigoOfRutaCollectionNewRuta != null && !oldDepartamentoCodigoOfRutaCollectionNewRuta.equals(departamento)) {
+                        oldDepartamentoCodigoOfRutaCollectionNewRuta.getRutaCollection().remove(rutaCollectionNewRuta);
+                        oldDepartamentoCodigoOfRutaCollectionNewRuta = em.merge(oldDepartamentoCodigoOfRutaCollectionNewRuta);
                     }
                 }
             }
-            for (ProductoSubasta productoSubastaListOldProductoSubasta : productoSubastaListOld) {
-                if (!productoSubastaListNew.contains(productoSubastaListOldProductoSubasta)) {
-                    productoSubastaListOldProductoSubasta.setDepartamentoCodigo(null);
-                    productoSubastaListOldProductoSubasta = em.merge(productoSubastaListOldProductoSubasta);
+            for (ProductoSubasta productoSubastaCollectionOldProductoSubasta : productoSubastaCollectionOld) {
+                if (!productoSubastaCollectionNew.contains(productoSubastaCollectionOldProductoSubasta)) {
+                    productoSubastaCollectionOldProductoSubasta.setDepartamentoCodigo(null);
+                    productoSubastaCollectionOldProductoSubasta = em.merge(productoSubastaCollectionOldProductoSubasta);
                 }
             }
-            for (ProductoSubasta productoSubastaListNewProductoSubasta : productoSubastaListNew) {
-                if (!productoSubastaListOld.contains(productoSubastaListNewProductoSubasta)) {
-                    Departamento oldDepartamentoCodigoOfProductoSubastaListNewProductoSubasta = productoSubastaListNewProductoSubasta.getDepartamentoCodigo();
-                    productoSubastaListNewProductoSubasta.setDepartamentoCodigo(departamento);
-                    productoSubastaListNewProductoSubasta = em.merge(productoSubastaListNewProductoSubasta);
-                    if (oldDepartamentoCodigoOfProductoSubastaListNewProductoSubasta != null && !oldDepartamentoCodigoOfProductoSubastaListNewProductoSubasta.equals(departamento)) {
-                        oldDepartamentoCodigoOfProductoSubastaListNewProductoSubasta.getProductoSubastaList().remove(productoSubastaListNewProductoSubasta);
-                        oldDepartamentoCodigoOfProductoSubastaListNewProductoSubasta = em.merge(oldDepartamentoCodigoOfProductoSubastaListNewProductoSubasta);
+            for (ProductoSubasta productoSubastaCollectionNewProductoSubasta : productoSubastaCollectionNew) {
+                if (!productoSubastaCollectionOld.contains(productoSubastaCollectionNewProductoSubasta)) {
+                    Departamento oldDepartamentoCodigoOfProductoSubastaCollectionNewProductoSubasta = productoSubastaCollectionNewProductoSubasta.getDepartamentoCodigo();
+                    productoSubastaCollectionNewProductoSubasta.setDepartamentoCodigo(departamento);
+                    productoSubastaCollectionNewProductoSubasta = em.merge(productoSubastaCollectionNewProductoSubasta);
+                    if (oldDepartamentoCodigoOfProductoSubastaCollectionNewProductoSubasta != null && !oldDepartamentoCodigoOfProductoSubastaCollectionNewProductoSubasta.equals(departamento)) {
+                        oldDepartamentoCodigoOfProductoSubastaCollectionNewProductoSubasta.getProductoSubastaCollection().remove(productoSubastaCollectionNewProductoSubasta);
+                        oldDepartamentoCodigoOfProductoSubastaCollectionNewProductoSubasta = em.merge(oldDepartamentoCodigoOfProductoSubastaCollectionNewProductoSubasta);
                     }
                 }
             }
-            for (Producto productoListOldProducto : productoListOld) {
-                if (!productoListNew.contains(productoListOldProducto)) {
-                    productoListOldProducto.setDepartamentoProductoCodigo(null);
-                    productoListOldProducto = em.merge(productoListOldProducto);
+            for (Producto productoCollectionOldProducto : productoCollectionOld) {
+                if (!productoCollectionNew.contains(productoCollectionOldProducto)) {
+                    productoCollectionOldProducto.setDepartamentoProductoCodigo(null);
+                    productoCollectionOldProducto = em.merge(productoCollectionOldProducto);
                 }
             }
-            for (Producto productoListNewProducto : productoListNew) {
-                if (!productoListOld.contains(productoListNewProducto)) {
-                    Departamento oldDepartamentoProductoCodigoOfProductoListNewProducto = productoListNewProducto.getDepartamentoProductoCodigo();
-                    productoListNewProducto.setDepartamentoProductoCodigo(departamento);
-                    productoListNewProducto = em.merge(productoListNewProducto);
-                    if (oldDepartamentoProductoCodigoOfProductoListNewProducto != null && !oldDepartamentoProductoCodigoOfProductoListNewProducto.equals(departamento)) {
-                        oldDepartamentoProductoCodigoOfProductoListNewProducto.getProductoList().remove(productoListNewProducto);
-                        oldDepartamentoProductoCodigoOfProductoListNewProducto = em.merge(oldDepartamentoProductoCodigoOfProductoListNewProducto);
+            for (Producto productoCollectionNewProducto : productoCollectionNew) {
+                if (!productoCollectionOld.contains(productoCollectionNewProducto)) {
+                    Departamento oldDepartamentoProductoCodigoOfProductoCollectionNewProducto = productoCollectionNewProducto.getDepartamentoProductoCodigo();
+                    productoCollectionNewProducto.setDepartamentoProductoCodigo(departamento);
+                    productoCollectionNewProducto = em.merge(productoCollectionNewProducto);
+                    if (oldDepartamentoProductoCodigoOfProductoCollectionNewProducto != null && !oldDepartamentoProductoCodigoOfProductoCollectionNewProducto.equals(departamento)) {
+                        oldDepartamentoProductoCodigoOfProductoCollectionNewProducto.getProductoCollection().remove(productoCollectionNewProducto);
+                        oldDepartamentoProductoCodigoOfProductoCollectionNewProducto = em.merge(oldDepartamentoProductoCodigoOfProductoCollectionNewProducto);
                     }
                 }
             }
-            for (Usuario usuarioListNewUsuario : usuarioListNew) {
-                if (!usuarioListOld.contains(usuarioListNewUsuario)) {
-                    Departamento oldDepartamentoUsuarioCodigoOfUsuarioListNewUsuario = usuarioListNewUsuario.getDepartamentoUsuarioCodigo();
-                    usuarioListNewUsuario.setDepartamentoUsuarioCodigo(departamento);
-                    usuarioListNewUsuario = em.merge(usuarioListNewUsuario);
-                    if (oldDepartamentoUsuarioCodigoOfUsuarioListNewUsuario != null && !oldDepartamentoUsuarioCodigoOfUsuarioListNewUsuario.equals(departamento)) {
-                        oldDepartamentoUsuarioCodigoOfUsuarioListNewUsuario.getUsuarioList().remove(usuarioListNewUsuario);
-                        oldDepartamentoUsuarioCodigoOfUsuarioListNewUsuario = em.merge(oldDepartamentoUsuarioCodigoOfUsuarioListNewUsuario);
+            for (Usuario usuarioCollectionNewUsuario : usuarioCollectionNew) {
+                if (!usuarioCollectionOld.contains(usuarioCollectionNewUsuario)) {
+                    Departamento oldDepartamentoUsuarioCodigoOfUsuarioCollectionNewUsuario = usuarioCollectionNewUsuario.getDepartamentoUsuarioCodigo();
+                    usuarioCollectionNewUsuario.setDepartamentoUsuarioCodigo(departamento);
+                    usuarioCollectionNewUsuario = em.merge(usuarioCollectionNewUsuario);
+                    if (oldDepartamentoUsuarioCodigoOfUsuarioCollectionNewUsuario != null && !oldDepartamentoUsuarioCodigoOfUsuarioCollectionNewUsuario.equals(departamento)) {
+                        oldDepartamentoUsuarioCodigoOfUsuarioCollectionNewUsuario.getUsuarioCollection().remove(usuarioCollectionNewUsuario);
+                        oldDepartamentoUsuarioCodigoOfUsuarioCollectionNewUsuario = em.merge(oldDepartamentoUsuarioCodigoOfUsuarioCollectionNewUsuario);
                     }
                 }
             }
@@ -298,35 +299,35 @@ public class DepartamentoJpaController implements Serializable {
                 throw new NonexistentEntityException("The departamento with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            List<Usuario> usuarioListOrphanCheck = departamento.getUsuarioList();
-            for (Usuario usuarioListOrphanCheckUsuario : usuarioListOrphanCheck) {
+            Collection<Usuario> usuarioCollectionOrphanCheck = departamento.getUsuarioCollection();
+            for (Usuario usuarioCollectionOrphanCheckUsuario : usuarioCollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Departamento (" + departamento + ") cannot be destroyed since the Usuario " + usuarioListOrphanCheckUsuario + " in its usuarioList field has a non-nullable departamentoUsuarioCodigo field.");
+                illegalOrphanMessages.add("This Departamento (" + departamento + ") cannot be destroyed since the Usuario " + usuarioCollectionOrphanCheckUsuario + " in its usuarioCollection field has a non-nullable departamentoUsuarioCodigo field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             Ciudad ciudadCodigo = departamento.getCiudadCodigo();
             if (ciudadCodigo != null) {
-                ciudadCodigo.getDepartamentoList().remove(departamento);
+                ciudadCodigo.getDepartamentoCollection().remove(departamento);
                 ciudadCodigo = em.merge(ciudadCodigo);
             }
-            List<Ruta> rutaList = departamento.getRutaList();
-            for (Ruta rutaListRuta : rutaList) {
-                rutaListRuta.setDepartamentoCodigo(null);
-                rutaListRuta = em.merge(rutaListRuta);
+            Collection<Ruta> rutaCollection = departamento.getRutaCollection();
+            for (Ruta rutaCollectionRuta : rutaCollection) {
+                rutaCollectionRuta.setDepartamentoCodigo(null);
+                rutaCollectionRuta = em.merge(rutaCollectionRuta);
             }
-            List<ProductoSubasta> productoSubastaList = departamento.getProductoSubastaList();
-            for (ProductoSubasta productoSubastaListProductoSubasta : productoSubastaList) {
-                productoSubastaListProductoSubasta.setDepartamentoCodigo(null);
-                productoSubastaListProductoSubasta = em.merge(productoSubastaListProductoSubasta);
+            Collection<ProductoSubasta> productoSubastaCollection = departamento.getProductoSubastaCollection();
+            for (ProductoSubasta productoSubastaCollectionProductoSubasta : productoSubastaCollection) {
+                productoSubastaCollectionProductoSubasta.setDepartamentoCodigo(null);
+                productoSubastaCollectionProductoSubasta = em.merge(productoSubastaCollectionProductoSubasta);
             }
-            List<Producto> productoList = departamento.getProductoList();
-            for (Producto productoListProducto : productoList) {
-                productoListProducto.setDepartamentoProductoCodigo(null);
-                productoListProducto = em.merge(productoListProducto);
+            Collection<Producto> productoCollection = departamento.getProductoCollection();
+            for (Producto productoCollectionProducto : productoCollection) {
+                productoCollectionProducto.setDepartamentoProductoCodigo(null);
+                productoCollectionProducto = em.merge(productoCollectionProducto);
             }
             em.remove(departamento);
             em.getTransaction().commit();

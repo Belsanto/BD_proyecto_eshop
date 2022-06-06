@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -177,4 +178,27 @@ public class ControladorAuxiliar implements Serializable {
         }
     }
 
+    
+////////////////////////////
+    //Para 
+    public ArrayList<String> findTelefonosUser(int idUser) {
+
+        String sql = "SELECT * FROM usuario_num_telefono WHERE usuario_codigo='" + idUser + "'";
+
+        ArrayList<String> datos = new ArrayList<>();
+        
+        try {
+
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos.add(rs.getString(1));
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al mostrar telefonos" + e);
+
+        }
+        return datos;
+    }
 }

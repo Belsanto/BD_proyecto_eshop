@@ -17,6 +17,7 @@ import javax.persistence.criteria.Root;
 import com.entities.Usuario;
 import com.entities.Puntos;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -41,8 +42,8 @@ public class CarteraJpaController implements Serializable {
     }
 
     public void create(Cartera cartera) throws PreexistingEntityException, Exception {
-        if (cartera.getPuntosList() == null) {
-            cartera.setPuntosList(new ArrayList<Puntos>());
+        if (cartera.getPuntosCollection() == null) {
+            cartera.setPuntosCollection(new ArrayList<Puntos>());
         }
         EntityManager em = null;
         try {
@@ -53,24 +54,24 @@ public class CarteraJpaController implements Serializable {
                 usuarioCarteraCodigo = em.getReference(usuarioCarteraCodigo.getClass(), usuarioCarteraCodigo.getCodigo());
                 cartera.setUsuarioCarteraCodigo(usuarioCarteraCodigo);
             }
-            List<Puntos> attachedPuntosList = new ArrayList<Puntos>();
-            for (Puntos puntosListPuntosToAttach : cartera.getPuntosList()) {
-                puntosListPuntosToAttach = em.getReference(puntosListPuntosToAttach.getClass(), puntosListPuntosToAttach.getCodigo());
-                attachedPuntosList.add(puntosListPuntosToAttach);
+            Collection<Puntos> attachedPuntosCollection = new ArrayList<Puntos>();
+            for (Puntos puntosCollectionPuntosToAttach : cartera.getPuntosCollection()) {
+                puntosCollectionPuntosToAttach = em.getReference(puntosCollectionPuntosToAttach.getClass(), puntosCollectionPuntosToAttach.getCodigo());
+                attachedPuntosCollection.add(puntosCollectionPuntosToAttach);
             }
-            cartera.setPuntosList(attachedPuntosList);
+            cartera.setPuntosCollection(attachedPuntosCollection);
             em.persist(cartera);
             if (usuarioCarteraCodigo != null) {
-                usuarioCarteraCodigo.getCarteraList().add(cartera);
+                usuarioCarteraCodigo.getCarteraCollection().add(cartera);
                 usuarioCarteraCodigo = em.merge(usuarioCarteraCodigo);
             }
-            for (Puntos puntosListPuntos : cartera.getPuntosList()) {
-                Cartera oldCarteraCodigoOfPuntosListPuntos = puntosListPuntos.getCarteraCodigo();
-                puntosListPuntos.setCarteraCodigo(cartera);
-                puntosListPuntos = em.merge(puntosListPuntos);
-                if (oldCarteraCodigoOfPuntosListPuntos != null) {
-                    oldCarteraCodigoOfPuntosListPuntos.getPuntosList().remove(puntosListPuntos);
-                    oldCarteraCodigoOfPuntosListPuntos = em.merge(oldCarteraCodigoOfPuntosListPuntos);
+            for (Puntos puntosCollectionPuntos : cartera.getPuntosCollection()) {
+                Cartera oldCarteraCodigoOfPuntosCollectionPuntos = puntosCollectionPuntos.getCarteraCodigo();
+                puntosCollectionPuntos.setCarteraCodigo(cartera);
+                puntosCollectionPuntos = em.merge(puntosCollectionPuntos);
+                if (oldCarteraCodigoOfPuntosCollectionPuntos != null) {
+                    oldCarteraCodigoOfPuntosCollectionPuntos.getPuntosCollection().remove(puntosCollectionPuntos);
+                    oldCarteraCodigoOfPuntosCollectionPuntos = em.merge(oldCarteraCodigoOfPuntosCollectionPuntos);
                 }
             }
             em.getTransaction().commit();
@@ -94,15 +95,15 @@ public class CarteraJpaController implements Serializable {
             Cartera persistentCartera = em.find(Cartera.class, cartera.getCodigo());
             Usuario usuarioCarteraCodigoOld = persistentCartera.getUsuarioCarteraCodigo();
             Usuario usuarioCarteraCodigoNew = cartera.getUsuarioCarteraCodigo();
-            List<Puntos> puntosListOld = persistentCartera.getPuntosList();
-            List<Puntos> puntosListNew = cartera.getPuntosList();
+            Collection<Puntos> puntosCollectionOld = persistentCartera.getPuntosCollection();
+            Collection<Puntos> puntosCollectionNew = cartera.getPuntosCollection();
             List<String> illegalOrphanMessages = null;
-            for (Puntos puntosListOldPuntos : puntosListOld) {
-                if (!puntosListNew.contains(puntosListOldPuntos)) {
+            for (Puntos puntosCollectionOldPuntos : puntosCollectionOld) {
+                if (!puntosCollectionNew.contains(puntosCollectionOldPuntos)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Puntos " + puntosListOldPuntos + " since its carteraCodigo field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Puntos " + puntosCollectionOldPuntos + " since its carteraCodigo field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -112,30 +113,30 @@ public class CarteraJpaController implements Serializable {
                 usuarioCarteraCodigoNew = em.getReference(usuarioCarteraCodigoNew.getClass(), usuarioCarteraCodigoNew.getCodigo());
                 cartera.setUsuarioCarteraCodigo(usuarioCarteraCodigoNew);
             }
-            List<Puntos> attachedPuntosListNew = new ArrayList<Puntos>();
-            for (Puntos puntosListNewPuntosToAttach : puntosListNew) {
-                puntosListNewPuntosToAttach = em.getReference(puntosListNewPuntosToAttach.getClass(), puntosListNewPuntosToAttach.getCodigo());
-                attachedPuntosListNew.add(puntosListNewPuntosToAttach);
+            Collection<Puntos> attachedPuntosCollectionNew = new ArrayList<Puntos>();
+            for (Puntos puntosCollectionNewPuntosToAttach : puntosCollectionNew) {
+                puntosCollectionNewPuntosToAttach = em.getReference(puntosCollectionNewPuntosToAttach.getClass(), puntosCollectionNewPuntosToAttach.getCodigo());
+                attachedPuntosCollectionNew.add(puntosCollectionNewPuntosToAttach);
             }
-            puntosListNew = attachedPuntosListNew;
-            cartera.setPuntosList(puntosListNew);
+            puntosCollectionNew = attachedPuntosCollectionNew;
+            cartera.setPuntosCollection(puntosCollectionNew);
             cartera = em.merge(cartera);
             if (usuarioCarteraCodigoOld != null && !usuarioCarteraCodigoOld.equals(usuarioCarteraCodigoNew)) {
-                usuarioCarteraCodigoOld.getCarteraList().remove(cartera);
+                usuarioCarteraCodigoOld.getCarteraCollection().remove(cartera);
                 usuarioCarteraCodigoOld = em.merge(usuarioCarteraCodigoOld);
             }
             if (usuarioCarteraCodigoNew != null && !usuarioCarteraCodigoNew.equals(usuarioCarteraCodigoOld)) {
-                usuarioCarteraCodigoNew.getCarteraList().add(cartera);
+                usuarioCarteraCodigoNew.getCarteraCollection().add(cartera);
                 usuarioCarteraCodigoNew = em.merge(usuarioCarteraCodigoNew);
             }
-            for (Puntos puntosListNewPuntos : puntosListNew) {
-                if (!puntosListOld.contains(puntosListNewPuntos)) {
-                    Cartera oldCarteraCodigoOfPuntosListNewPuntos = puntosListNewPuntos.getCarteraCodigo();
-                    puntosListNewPuntos.setCarteraCodigo(cartera);
-                    puntosListNewPuntos = em.merge(puntosListNewPuntos);
-                    if (oldCarteraCodigoOfPuntosListNewPuntos != null && !oldCarteraCodigoOfPuntosListNewPuntos.equals(cartera)) {
-                        oldCarteraCodigoOfPuntosListNewPuntos.getPuntosList().remove(puntosListNewPuntos);
-                        oldCarteraCodigoOfPuntosListNewPuntos = em.merge(oldCarteraCodigoOfPuntosListNewPuntos);
+            for (Puntos puntosCollectionNewPuntos : puntosCollectionNew) {
+                if (!puntosCollectionOld.contains(puntosCollectionNewPuntos)) {
+                    Cartera oldCarteraCodigoOfPuntosCollectionNewPuntos = puntosCollectionNewPuntos.getCarteraCodigo();
+                    puntosCollectionNewPuntos.setCarteraCodigo(cartera);
+                    puntosCollectionNewPuntos = em.merge(puntosCollectionNewPuntos);
+                    if (oldCarteraCodigoOfPuntosCollectionNewPuntos != null && !oldCarteraCodigoOfPuntosCollectionNewPuntos.equals(cartera)) {
+                        oldCarteraCodigoOfPuntosCollectionNewPuntos.getPuntosCollection().remove(puntosCollectionNewPuntos);
+                        oldCarteraCodigoOfPuntosCollectionNewPuntos = em.merge(oldCarteraCodigoOfPuntosCollectionNewPuntos);
                     }
                 }
             }
@@ -169,19 +170,19 @@ public class CarteraJpaController implements Serializable {
                 throw new NonexistentEntityException("The cartera with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            List<Puntos> puntosListOrphanCheck = cartera.getPuntosList();
-            for (Puntos puntosListOrphanCheckPuntos : puntosListOrphanCheck) {
+            Collection<Puntos> puntosCollectionOrphanCheck = cartera.getPuntosCollection();
+            for (Puntos puntosCollectionOrphanCheckPuntos : puntosCollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Cartera (" + cartera + ") cannot be destroyed since the Puntos " + puntosListOrphanCheckPuntos + " in its puntosList field has a non-nullable carteraCodigo field.");
+                illegalOrphanMessages.add("This Cartera (" + cartera + ") cannot be destroyed since the Puntos " + puntosCollectionOrphanCheckPuntos + " in its puntosCollection field has a non-nullable carteraCodigo field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             Usuario usuarioCarteraCodigo = cartera.getUsuarioCarteraCodigo();
             if (usuarioCarteraCodigo != null) {
-                usuarioCarteraCodigo.getCarteraList().remove(cartera);
+                usuarioCarteraCodigo.getCarteraCollection().remove(cartera);
                 usuarioCarteraCodigo = em.merge(usuarioCarteraCodigo);
             }
             em.remove(cartera);
