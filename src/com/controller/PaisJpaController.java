@@ -14,10 +14,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.entities.Delivery;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import com.entities.Ciudad;
 import com.entities.Pais;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -42,45 +41,45 @@ public class PaisJpaController implements Serializable {
     }
 
     public void create(Pais pais) {
-        if (pais.getDeliveryCollection() == null) {
-            pais.setDeliveryCollection(new ArrayList<Delivery>());
+        if (pais.getDeliveryList() == null) {
+            pais.setDeliveryList(new ArrayList<Delivery>());
         }
-        if (pais.getCiudadCollection() == null) {
-            pais.setCiudadCollection(new ArrayList<Ciudad>());
+        if (pais.getCiudadList() == null) {
+            pais.setCiudadList(new ArrayList<Ciudad>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Collection<Delivery> attachedDeliveryCollection = new ArrayList<Delivery>();
-            for (Delivery deliveryCollectionDeliveryToAttach : pais.getDeliveryCollection()) {
-                deliveryCollectionDeliveryToAttach = em.getReference(deliveryCollectionDeliveryToAttach.getClass(), deliveryCollectionDeliveryToAttach.getCodigo());
-                attachedDeliveryCollection.add(deliveryCollectionDeliveryToAttach);
+            List<Delivery> attachedDeliveryList = new ArrayList<Delivery>();
+            for (Delivery deliveryListDeliveryToAttach : pais.getDeliveryList()) {
+                deliveryListDeliveryToAttach = em.getReference(deliveryListDeliveryToAttach.getClass(), deliveryListDeliveryToAttach.getCodigo());
+                attachedDeliveryList.add(deliveryListDeliveryToAttach);
             }
-            pais.setDeliveryCollection(attachedDeliveryCollection);
-            Collection<Ciudad> attachedCiudadCollection = new ArrayList<Ciudad>();
-            for (Ciudad ciudadCollectionCiudadToAttach : pais.getCiudadCollection()) {
-                ciudadCollectionCiudadToAttach = em.getReference(ciudadCollectionCiudadToAttach.getClass(), ciudadCollectionCiudadToAttach.getCodigo());
-                attachedCiudadCollection.add(ciudadCollectionCiudadToAttach);
+            pais.setDeliveryList(attachedDeliveryList);
+            List<Ciudad> attachedCiudadList = new ArrayList<Ciudad>();
+            for (Ciudad ciudadListCiudadToAttach : pais.getCiudadList()) {
+                ciudadListCiudadToAttach = em.getReference(ciudadListCiudadToAttach.getClass(), ciudadListCiudadToAttach.getCodigo());
+                attachedCiudadList.add(ciudadListCiudadToAttach);
             }
-            pais.setCiudadCollection(attachedCiudadCollection);
+            pais.setCiudadList(attachedCiudadList);
             em.persist(pais);
-            for (Delivery deliveryCollectionDelivery : pais.getDeliveryCollection()) {
-                Pais oldPaisCodigoOfDeliveryCollectionDelivery = deliveryCollectionDelivery.getPaisCodigo();
-                deliveryCollectionDelivery.setPaisCodigo(pais);
-                deliveryCollectionDelivery = em.merge(deliveryCollectionDelivery);
-                if (oldPaisCodigoOfDeliveryCollectionDelivery != null) {
-                    oldPaisCodigoOfDeliveryCollectionDelivery.getDeliveryCollection().remove(deliveryCollectionDelivery);
-                    oldPaisCodigoOfDeliveryCollectionDelivery = em.merge(oldPaisCodigoOfDeliveryCollectionDelivery);
+            for (Delivery deliveryListDelivery : pais.getDeliveryList()) {
+                Pais oldPaisCodigoOfDeliveryListDelivery = deliveryListDelivery.getPaisCodigo();
+                deliveryListDelivery.setPaisCodigo(pais);
+                deliveryListDelivery = em.merge(deliveryListDelivery);
+                if (oldPaisCodigoOfDeliveryListDelivery != null) {
+                    oldPaisCodigoOfDeliveryListDelivery.getDeliveryList().remove(deliveryListDelivery);
+                    oldPaisCodigoOfDeliveryListDelivery = em.merge(oldPaisCodigoOfDeliveryListDelivery);
                 }
             }
-            for (Ciudad ciudadCollectionCiudad : pais.getCiudadCollection()) {
-                Pais oldPaisCodigoOfCiudadCollectionCiudad = ciudadCollectionCiudad.getPaisCodigo();
-                ciudadCollectionCiudad.setPaisCodigo(pais);
-                ciudadCollectionCiudad = em.merge(ciudadCollectionCiudad);
-                if (oldPaisCodigoOfCiudadCollectionCiudad != null) {
-                    oldPaisCodigoOfCiudadCollectionCiudad.getCiudadCollection().remove(ciudadCollectionCiudad);
-                    oldPaisCodigoOfCiudadCollectionCiudad = em.merge(oldPaisCodigoOfCiudadCollectionCiudad);
+            for (Ciudad ciudadListCiudad : pais.getCiudadList()) {
+                Pais oldPaisCodigoOfCiudadListCiudad = ciudadListCiudad.getPaisCodigo();
+                ciudadListCiudad.setPaisCodigo(pais);
+                ciudadListCiudad = em.merge(ciudadListCiudad);
+                if (oldPaisCodigoOfCiudadListCiudad != null) {
+                    oldPaisCodigoOfCiudadListCiudad.getCiudadList().remove(ciudadListCiudad);
+                    oldPaisCodigoOfCiudadListCiudad = em.merge(oldPaisCodigoOfCiudadListCiudad);
                 }
             }
             em.getTransaction().commit();
@@ -97,64 +96,64 @@ public class PaisJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Pais persistentPais = em.find(Pais.class, pais.getCodigo());
-            Collection<Delivery> deliveryCollectionOld = persistentPais.getDeliveryCollection();
-            Collection<Delivery> deliveryCollectionNew = pais.getDeliveryCollection();
-            Collection<Ciudad> ciudadCollectionOld = persistentPais.getCiudadCollection();
-            Collection<Ciudad> ciudadCollectionNew = pais.getCiudadCollection();
+            List<Delivery> deliveryListOld = persistentPais.getDeliveryList();
+            List<Delivery> deliveryListNew = pais.getDeliveryList();
+            List<Ciudad> ciudadListOld = persistentPais.getCiudadList();
+            List<Ciudad> ciudadListNew = pais.getCiudadList();
             List<String> illegalOrphanMessages = null;
-            for (Delivery deliveryCollectionOldDelivery : deliveryCollectionOld) {
-                if (!deliveryCollectionNew.contains(deliveryCollectionOldDelivery)) {
+            for (Delivery deliveryListOldDelivery : deliveryListOld) {
+                if (!deliveryListNew.contains(deliveryListOldDelivery)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Delivery " + deliveryCollectionOldDelivery + " since its paisCodigo field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Delivery " + deliveryListOldDelivery + " since its paisCodigo field is not nullable.");
                 }
             }
-            for (Ciudad ciudadCollectionOldCiudad : ciudadCollectionOld) {
-                if (!ciudadCollectionNew.contains(ciudadCollectionOldCiudad)) {
+            for (Ciudad ciudadListOldCiudad : ciudadListOld) {
+                if (!ciudadListNew.contains(ciudadListOldCiudad)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Ciudad " + ciudadCollectionOldCiudad + " since its paisCodigo field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Ciudad " + ciudadListOldCiudad + " since its paisCodigo field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            Collection<Delivery> attachedDeliveryCollectionNew = new ArrayList<Delivery>();
-            for (Delivery deliveryCollectionNewDeliveryToAttach : deliveryCollectionNew) {
-                deliveryCollectionNewDeliveryToAttach = em.getReference(deliveryCollectionNewDeliveryToAttach.getClass(), deliveryCollectionNewDeliveryToAttach.getCodigo());
-                attachedDeliveryCollectionNew.add(deliveryCollectionNewDeliveryToAttach);
+            List<Delivery> attachedDeliveryListNew = new ArrayList<Delivery>();
+            for (Delivery deliveryListNewDeliveryToAttach : deliveryListNew) {
+                deliveryListNewDeliveryToAttach = em.getReference(deliveryListNewDeliveryToAttach.getClass(), deliveryListNewDeliveryToAttach.getCodigo());
+                attachedDeliveryListNew.add(deliveryListNewDeliveryToAttach);
             }
-            deliveryCollectionNew = attachedDeliveryCollectionNew;
-            pais.setDeliveryCollection(deliveryCollectionNew);
-            Collection<Ciudad> attachedCiudadCollectionNew = new ArrayList<Ciudad>();
-            for (Ciudad ciudadCollectionNewCiudadToAttach : ciudadCollectionNew) {
-                ciudadCollectionNewCiudadToAttach = em.getReference(ciudadCollectionNewCiudadToAttach.getClass(), ciudadCollectionNewCiudadToAttach.getCodigo());
-                attachedCiudadCollectionNew.add(ciudadCollectionNewCiudadToAttach);
+            deliveryListNew = attachedDeliveryListNew;
+            pais.setDeliveryList(deliveryListNew);
+            List<Ciudad> attachedCiudadListNew = new ArrayList<Ciudad>();
+            for (Ciudad ciudadListNewCiudadToAttach : ciudadListNew) {
+                ciudadListNewCiudadToAttach = em.getReference(ciudadListNewCiudadToAttach.getClass(), ciudadListNewCiudadToAttach.getCodigo());
+                attachedCiudadListNew.add(ciudadListNewCiudadToAttach);
             }
-            ciudadCollectionNew = attachedCiudadCollectionNew;
-            pais.setCiudadCollection(ciudadCollectionNew);
+            ciudadListNew = attachedCiudadListNew;
+            pais.setCiudadList(ciudadListNew);
             pais = em.merge(pais);
-            for (Delivery deliveryCollectionNewDelivery : deliveryCollectionNew) {
-                if (!deliveryCollectionOld.contains(deliveryCollectionNewDelivery)) {
-                    Pais oldPaisCodigoOfDeliveryCollectionNewDelivery = deliveryCollectionNewDelivery.getPaisCodigo();
-                    deliveryCollectionNewDelivery.setPaisCodigo(pais);
-                    deliveryCollectionNewDelivery = em.merge(deliveryCollectionNewDelivery);
-                    if (oldPaisCodigoOfDeliveryCollectionNewDelivery != null && !oldPaisCodigoOfDeliveryCollectionNewDelivery.equals(pais)) {
-                        oldPaisCodigoOfDeliveryCollectionNewDelivery.getDeliveryCollection().remove(deliveryCollectionNewDelivery);
-                        oldPaisCodigoOfDeliveryCollectionNewDelivery = em.merge(oldPaisCodigoOfDeliveryCollectionNewDelivery);
+            for (Delivery deliveryListNewDelivery : deliveryListNew) {
+                if (!deliveryListOld.contains(deliveryListNewDelivery)) {
+                    Pais oldPaisCodigoOfDeliveryListNewDelivery = deliveryListNewDelivery.getPaisCodigo();
+                    deliveryListNewDelivery.setPaisCodigo(pais);
+                    deliveryListNewDelivery = em.merge(deliveryListNewDelivery);
+                    if (oldPaisCodigoOfDeliveryListNewDelivery != null && !oldPaisCodigoOfDeliveryListNewDelivery.equals(pais)) {
+                        oldPaisCodigoOfDeliveryListNewDelivery.getDeliveryList().remove(deliveryListNewDelivery);
+                        oldPaisCodigoOfDeliveryListNewDelivery = em.merge(oldPaisCodigoOfDeliveryListNewDelivery);
                     }
                 }
             }
-            for (Ciudad ciudadCollectionNewCiudad : ciudadCollectionNew) {
-                if (!ciudadCollectionOld.contains(ciudadCollectionNewCiudad)) {
-                    Pais oldPaisCodigoOfCiudadCollectionNewCiudad = ciudadCollectionNewCiudad.getPaisCodigo();
-                    ciudadCollectionNewCiudad.setPaisCodigo(pais);
-                    ciudadCollectionNewCiudad = em.merge(ciudadCollectionNewCiudad);
-                    if (oldPaisCodigoOfCiudadCollectionNewCiudad != null && !oldPaisCodigoOfCiudadCollectionNewCiudad.equals(pais)) {
-                        oldPaisCodigoOfCiudadCollectionNewCiudad.getCiudadCollection().remove(ciudadCollectionNewCiudad);
-                        oldPaisCodigoOfCiudadCollectionNewCiudad = em.merge(oldPaisCodigoOfCiudadCollectionNewCiudad);
+            for (Ciudad ciudadListNewCiudad : ciudadListNew) {
+                if (!ciudadListOld.contains(ciudadListNewCiudad)) {
+                    Pais oldPaisCodigoOfCiudadListNewCiudad = ciudadListNewCiudad.getPaisCodigo();
+                    ciudadListNewCiudad.setPaisCodigo(pais);
+                    ciudadListNewCiudad = em.merge(ciudadListNewCiudad);
+                    if (oldPaisCodigoOfCiudadListNewCiudad != null && !oldPaisCodigoOfCiudadListNewCiudad.equals(pais)) {
+                        oldPaisCodigoOfCiudadListNewCiudad.getCiudadList().remove(ciudadListNewCiudad);
+                        oldPaisCodigoOfCiudadListNewCiudad = em.merge(oldPaisCodigoOfCiudadListNewCiudad);
                     }
                 }
             }
@@ -188,19 +187,19 @@ public class PaisJpaController implements Serializable {
                 throw new NonexistentEntityException("The pais with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Collection<Delivery> deliveryCollectionOrphanCheck = pais.getDeliveryCollection();
-            for (Delivery deliveryCollectionOrphanCheckDelivery : deliveryCollectionOrphanCheck) {
+            List<Delivery> deliveryListOrphanCheck = pais.getDeliveryList();
+            for (Delivery deliveryListOrphanCheckDelivery : deliveryListOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Pais (" + pais + ") cannot be destroyed since the Delivery " + deliveryCollectionOrphanCheckDelivery + " in its deliveryCollection field has a non-nullable paisCodigo field.");
+                illegalOrphanMessages.add("This Pais (" + pais + ") cannot be destroyed since the Delivery " + deliveryListOrphanCheckDelivery + " in its deliveryList field has a non-nullable paisCodigo field.");
             }
-            Collection<Ciudad> ciudadCollectionOrphanCheck = pais.getCiudadCollection();
-            for (Ciudad ciudadCollectionOrphanCheckCiudad : ciudadCollectionOrphanCheck) {
+            List<Ciudad> ciudadListOrphanCheck = pais.getCiudadList();
+            for (Ciudad ciudadListOrphanCheckCiudad : ciudadListOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Pais (" + pais + ") cannot be destroyed since the Ciudad " + ciudadCollectionOrphanCheckCiudad + " in its ciudadCollection field has a non-nullable paisCodigo field.");
+                illegalOrphanMessages.add("This Pais (" + pais + ") cannot be destroyed since the Ciudad " + ciudadListOrphanCheckCiudad + " in its ciudadList field has a non-nullable paisCodigo field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);

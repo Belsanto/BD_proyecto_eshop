@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 
+    
 public class Conexiones implements Serializable {
 
      public DataSource dataSource;
@@ -26,7 +27,7 @@ public class Conexiones implements Serializable {
         
         inicializaDataSource();
         
-    }
+}
     
     private void inicializaDataSource(){
         

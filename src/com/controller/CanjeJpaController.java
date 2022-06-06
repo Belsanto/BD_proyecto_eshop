@@ -49,7 +49,7 @@ public class CanjeJpaController implements Serializable {
             }
             em.persist(canje);
             if (clienteCodigo != null) {
-                clienteCodigo.getCanjeCollection().add(canje);
+                clienteCodigo.getCanjeList().add(canje);
                 clienteCodigo = em.merge(clienteCodigo);
             }
             em.getTransaction().commit();
@@ -74,11 +74,11 @@ public class CanjeJpaController implements Serializable {
             }
             canje = em.merge(canje);
             if (clienteCodigoOld != null && !clienteCodigoOld.equals(clienteCodigoNew)) {
-                clienteCodigoOld.getCanjeCollection().remove(canje);
+                clienteCodigoOld.getCanjeList().remove(canje);
                 clienteCodigoOld = em.merge(clienteCodigoOld);
             }
             if (clienteCodigoNew != null && !clienteCodigoNew.equals(clienteCodigoOld)) {
-                clienteCodigoNew.getCanjeCollection().add(canje);
+                clienteCodigoNew.getCanjeList().add(canje);
                 clienteCodigoNew = em.merge(clienteCodigoNew);
             }
             em.getTransaction().commit();
@@ -112,7 +112,7 @@ public class CanjeJpaController implements Serializable {
             }
             Usuario clienteCodigo = canje.getClienteCodigo();
             if (clienteCodigo != null) {
-                clienteCodigo.getCanjeCollection().remove(canje);
+                clienteCodigo.getCanjeList().remove(canje);
                 clienteCodigo = em.merge(clienteCodigo);
             }
             em.remove(canje);

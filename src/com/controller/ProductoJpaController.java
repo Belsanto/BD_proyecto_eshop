@@ -17,7 +17,6 @@ import com.entities.Departamento;
 import com.entities.Comentario;
 import com.entities.Producto;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,8 +42,8 @@ public class ProductoJpaController implements Serializable {
     }
 
     public void create(Producto producto) throws PreexistingEntityException, Exception {
-        if (producto.getComentarioCollection() == null) {
-            producto.setComentarioCollection(new ArrayList<Comentario>());
+        if (producto.getComentarioList() == null) {
+            producto.setComentarioList(new ArrayList<Comentario>());
         }
         EntityManager em = null;
         try {
@@ -60,28 +59,28 @@ public class ProductoJpaController implements Serializable {
                 departamentoProductoCodigo = em.getReference(departamentoProductoCodigo.getClass(), departamentoProductoCodigo.getCodigo());
                 producto.setDepartamentoProductoCodigo(departamentoProductoCodigo);
             }
-            Collection<Comentario> attachedComentarioCollection = new ArrayList<Comentario>();
-            for (Comentario comentarioCollectionComentarioToAttach : producto.getComentarioCollection()) {
-                comentarioCollectionComentarioToAttach = em.getReference(comentarioCollectionComentarioToAttach.getClass(), comentarioCollectionComentarioToAttach.getCodigo());
-                attachedComentarioCollection.add(comentarioCollectionComentarioToAttach);
+            List<Comentario> attachedComentarioList = new ArrayList<Comentario>();
+            for (Comentario comentarioListComentarioToAttach : producto.getComentarioList()) {
+                comentarioListComentarioToAttach = em.getReference(comentarioListComentarioToAttach.getClass(), comentarioListComentarioToAttach.getCodigo());
+                attachedComentarioList.add(comentarioListComentarioToAttach);
             }
-            producto.setComentarioCollection(attachedComentarioCollection);
+            producto.setComentarioList(attachedComentarioList);
             em.persist(producto);
             if (vendedorCodigo != null) {
-                vendedorCodigo.getProductoCollection().add(producto);
+                vendedorCodigo.getProductoList().add(producto);
                 vendedorCodigo = em.merge(vendedorCodigo);
             }
             if (departamentoProductoCodigo != null) {
-                departamentoProductoCodigo.getProductoCollection().add(producto);
+                departamentoProductoCodigo.getProductoList().add(producto);
                 departamentoProductoCodigo = em.merge(departamentoProductoCodigo);
             }
-            for (Comentario comentarioCollectionComentario : producto.getComentarioCollection()) {
-                Producto oldProductocCodigoOfComentarioCollectionComentario = comentarioCollectionComentario.getProductocCodigo();
-                comentarioCollectionComentario.setProductocCodigo(producto);
-                comentarioCollectionComentario = em.merge(comentarioCollectionComentario);
-                if (oldProductocCodigoOfComentarioCollectionComentario != null) {
-                    oldProductocCodigoOfComentarioCollectionComentario.getComentarioCollection().remove(comentarioCollectionComentario);
-                    oldProductocCodigoOfComentarioCollectionComentario = em.merge(oldProductocCodigoOfComentarioCollectionComentario);
+            for (Comentario comentarioListComentario : producto.getComentarioList()) {
+                Producto oldProductocCodigoOfComentarioListComentario = comentarioListComentario.getProductocCodigo();
+                comentarioListComentario.setProductocCodigo(producto);
+                comentarioListComentario = em.merge(comentarioListComentario);
+                if (oldProductocCodigoOfComentarioListComentario != null) {
+                    oldProductocCodigoOfComentarioListComentario.getComentarioList().remove(comentarioListComentario);
+                    oldProductocCodigoOfComentarioListComentario = em.merge(oldProductocCodigoOfComentarioListComentario);
                 }
             }
             em.getTransaction().commit();
@@ -107,8 +106,8 @@ public class ProductoJpaController implements Serializable {
             Usuario vendedorCodigoNew = producto.getVendedorCodigo();
             Departamento departamentoProductoCodigoOld = persistentProducto.getDepartamentoProductoCodigo();
             Departamento departamentoProductoCodigoNew = producto.getDepartamentoProductoCodigo();
-            Collection<Comentario> comentarioCollectionOld = persistentProducto.getComentarioCollection();
-            Collection<Comentario> comentarioCollectionNew = producto.getComentarioCollection();
+            List<Comentario> comentarioListOld = persistentProducto.getComentarioList();
+            List<Comentario> comentarioListNew = producto.getComentarioList();
             if (vendedorCodigoNew != null) {
                 vendedorCodigoNew = em.getReference(vendedorCodigoNew.getClass(), vendedorCodigoNew.getCodigo());
                 producto.setVendedorCodigo(vendedorCodigoNew);
@@ -117,44 +116,44 @@ public class ProductoJpaController implements Serializable {
                 departamentoProductoCodigoNew = em.getReference(departamentoProductoCodigoNew.getClass(), departamentoProductoCodigoNew.getCodigo());
                 producto.setDepartamentoProductoCodigo(departamentoProductoCodigoNew);
             }
-            Collection<Comentario> attachedComentarioCollectionNew = new ArrayList<Comentario>();
-            for (Comentario comentarioCollectionNewComentarioToAttach : comentarioCollectionNew) {
-                comentarioCollectionNewComentarioToAttach = em.getReference(comentarioCollectionNewComentarioToAttach.getClass(), comentarioCollectionNewComentarioToAttach.getCodigo());
-                attachedComentarioCollectionNew.add(comentarioCollectionNewComentarioToAttach);
+            List<Comentario> attachedComentarioListNew = new ArrayList<Comentario>();
+            for (Comentario comentarioListNewComentarioToAttach : comentarioListNew) {
+                comentarioListNewComentarioToAttach = em.getReference(comentarioListNewComentarioToAttach.getClass(), comentarioListNewComentarioToAttach.getCodigo());
+                attachedComentarioListNew.add(comentarioListNewComentarioToAttach);
             }
-            comentarioCollectionNew = attachedComentarioCollectionNew;
-            producto.setComentarioCollection(comentarioCollectionNew);
+            comentarioListNew = attachedComentarioListNew;
+            producto.setComentarioList(comentarioListNew);
             producto = em.merge(producto);
             if (vendedorCodigoOld != null && !vendedorCodigoOld.equals(vendedorCodigoNew)) {
-                vendedorCodigoOld.getProductoCollection().remove(producto);
+                vendedorCodigoOld.getProductoList().remove(producto);
                 vendedorCodigoOld = em.merge(vendedorCodigoOld);
             }
             if (vendedorCodigoNew != null && !vendedorCodigoNew.equals(vendedorCodigoOld)) {
-                vendedorCodigoNew.getProductoCollection().add(producto);
+                vendedorCodigoNew.getProductoList().add(producto);
                 vendedorCodigoNew = em.merge(vendedorCodigoNew);
             }
             if (departamentoProductoCodigoOld != null && !departamentoProductoCodigoOld.equals(departamentoProductoCodigoNew)) {
-                departamentoProductoCodigoOld.getProductoCollection().remove(producto);
+                departamentoProductoCodigoOld.getProductoList().remove(producto);
                 departamentoProductoCodigoOld = em.merge(departamentoProductoCodigoOld);
             }
             if (departamentoProductoCodigoNew != null && !departamentoProductoCodigoNew.equals(departamentoProductoCodigoOld)) {
-                departamentoProductoCodigoNew.getProductoCollection().add(producto);
+                departamentoProductoCodigoNew.getProductoList().add(producto);
                 departamentoProductoCodigoNew = em.merge(departamentoProductoCodigoNew);
             }
-            for (Comentario comentarioCollectionOldComentario : comentarioCollectionOld) {
-                if (!comentarioCollectionNew.contains(comentarioCollectionOldComentario)) {
-                    comentarioCollectionOldComentario.setProductocCodigo(null);
-                    comentarioCollectionOldComentario = em.merge(comentarioCollectionOldComentario);
+            for (Comentario comentarioListOldComentario : comentarioListOld) {
+                if (!comentarioListNew.contains(comentarioListOldComentario)) {
+                    comentarioListOldComentario.setProductocCodigo(null);
+                    comentarioListOldComentario = em.merge(comentarioListOldComentario);
                 }
             }
-            for (Comentario comentarioCollectionNewComentario : comentarioCollectionNew) {
-                if (!comentarioCollectionOld.contains(comentarioCollectionNewComentario)) {
-                    Producto oldProductocCodigoOfComentarioCollectionNewComentario = comentarioCollectionNewComentario.getProductocCodigo();
-                    comentarioCollectionNewComentario.setProductocCodigo(producto);
-                    comentarioCollectionNewComentario = em.merge(comentarioCollectionNewComentario);
-                    if (oldProductocCodigoOfComentarioCollectionNewComentario != null && !oldProductocCodigoOfComentarioCollectionNewComentario.equals(producto)) {
-                        oldProductocCodigoOfComentarioCollectionNewComentario.getComentarioCollection().remove(comentarioCollectionNewComentario);
-                        oldProductocCodigoOfComentarioCollectionNewComentario = em.merge(oldProductocCodigoOfComentarioCollectionNewComentario);
+            for (Comentario comentarioListNewComentario : comentarioListNew) {
+                if (!comentarioListOld.contains(comentarioListNewComentario)) {
+                    Producto oldProductocCodigoOfComentarioListNewComentario = comentarioListNewComentario.getProductocCodigo();
+                    comentarioListNewComentario.setProductocCodigo(producto);
+                    comentarioListNewComentario = em.merge(comentarioListNewComentario);
+                    if (oldProductocCodigoOfComentarioListNewComentario != null && !oldProductocCodigoOfComentarioListNewComentario.equals(producto)) {
+                        oldProductocCodigoOfComentarioListNewComentario.getComentarioList().remove(comentarioListNewComentario);
+                        oldProductocCodigoOfComentarioListNewComentario = em.merge(oldProductocCodigoOfComentarioListNewComentario);
                     }
                 }
             }
@@ -189,18 +188,18 @@ public class ProductoJpaController implements Serializable {
             }
             Usuario vendedorCodigo = producto.getVendedorCodigo();
             if (vendedorCodigo != null) {
-                vendedorCodigo.getProductoCollection().remove(producto);
+                vendedorCodigo.getProductoList().remove(producto);
                 vendedorCodigo = em.merge(vendedorCodigo);
             }
             Departamento departamentoProductoCodigo = producto.getDepartamentoProductoCodigo();
             if (departamentoProductoCodigo != null) {
-                departamentoProductoCodigo.getProductoCollection().remove(producto);
+                departamentoProductoCodigo.getProductoList().remove(producto);
                 departamentoProductoCodigo = em.merge(departamentoProductoCodigo);
             }
-            Collection<Comentario> comentarioCollection = producto.getComentarioCollection();
-            for (Comentario comentarioCollectionComentario : comentarioCollection) {
-                comentarioCollectionComentario.setProductocCodigo(null);
-                comentarioCollectionComentario = em.merge(comentarioCollectionComentario);
+            List<Comentario> comentarioList = producto.getComentarioList();
+            for (Comentario comentarioListComentario : comentarioList) {
+                comentarioListComentario.setProductocCodigo(null);
+                comentarioListComentario = em.merge(comentarioListComentario);
             }
             em.remove(producto);
             em.getTransaction().commit();

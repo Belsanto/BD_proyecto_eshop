@@ -55,11 +55,11 @@ public class ComentarioJpaController implements Serializable {
             }
             em.persist(comentario);
             if (productocCodigo != null) {
-                productocCodigo.getComentarioCollection().add(comentario);
+                productocCodigo.getComentarioList().add(comentario);
                 productocCodigo = em.merge(productocCodigo);
             }
             if (userComentCodigo != null) {
-                userComentCodigo.getComentarioCollection().add(comentario);
+                userComentCodigo.getComentarioList().add(comentario);
                 userComentCodigo = em.merge(userComentCodigo);
             }
             em.getTransaction().commit();
@@ -90,19 +90,19 @@ public class ComentarioJpaController implements Serializable {
             }
             comentario = em.merge(comentario);
             if (productocCodigoOld != null && !productocCodigoOld.equals(productocCodigoNew)) {
-                productocCodigoOld.getComentarioCollection().remove(comentario);
+                productocCodigoOld.getComentarioList().remove(comentario);
                 productocCodigoOld = em.merge(productocCodigoOld);
             }
             if (productocCodigoNew != null && !productocCodigoNew.equals(productocCodigoOld)) {
-                productocCodigoNew.getComentarioCollection().add(comentario);
+                productocCodigoNew.getComentarioList().add(comentario);
                 productocCodigoNew = em.merge(productocCodigoNew);
             }
             if (userComentCodigoOld != null && !userComentCodigoOld.equals(userComentCodigoNew)) {
-                userComentCodigoOld.getComentarioCollection().remove(comentario);
+                userComentCodigoOld.getComentarioList().remove(comentario);
                 userComentCodigoOld = em.merge(userComentCodigoOld);
             }
             if (userComentCodigoNew != null && !userComentCodigoNew.equals(userComentCodigoOld)) {
-                userComentCodigoNew.getComentarioCollection().add(comentario);
+                userComentCodigoNew.getComentarioList().add(comentario);
                 userComentCodigoNew = em.merge(userComentCodigoNew);
             }
             em.getTransaction().commit();
@@ -136,12 +136,12 @@ public class ComentarioJpaController implements Serializable {
             }
             Producto productocCodigo = comentario.getProductocCodigo();
             if (productocCodigo != null) {
-                productocCodigo.getComentarioCollection().remove(comentario);
+                productocCodigo.getComentarioList().remove(comentario);
                 productocCodigo = em.merge(productocCodigo);
             }
             Usuario userComentCodigo = comentario.getUserComentCodigo();
             if (userComentCodigo != null) {
-                userComentCodigo.getComentarioCollection().remove(comentario);
+                userComentCodigo.getComentarioList().remove(comentario);
                 userComentCodigo = em.merge(userComentCodigo);
             }
             em.remove(comentario);

@@ -49,7 +49,7 @@ public class CompraJpaController implements Serializable {
             }
             em.persist(compra);
             if (compradorCodigo != null) {
-                compradorCodigo.getCompraCollection().add(compra);
+                compradorCodigo.getCompraList().add(compra);
                 compradorCodigo = em.merge(compradorCodigo);
             }
             em.getTransaction().commit();
@@ -74,11 +74,11 @@ public class CompraJpaController implements Serializable {
             }
             compra = em.merge(compra);
             if (compradorCodigoOld != null && !compradorCodigoOld.equals(compradorCodigoNew)) {
-                compradorCodigoOld.getCompraCollection().remove(compra);
+                compradorCodigoOld.getCompraList().remove(compra);
                 compradorCodigoOld = em.merge(compradorCodigoOld);
             }
             if (compradorCodigoNew != null && !compradorCodigoNew.equals(compradorCodigoOld)) {
-                compradorCodigoNew.getCompraCollection().add(compra);
+                compradorCodigoNew.getCompraList().add(compra);
                 compradorCodigoNew = em.merge(compradorCodigoNew);
             }
             em.getTransaction().commit();
@@ -112,7 +112,7 @@ public class CompraJpaController implements Serializable {
             }
             Usuario compradorCodigo = compra.getCompradorCodigo();
             if (compradorCodigo != null) {
-                compradorCodigo.getCompraCollection().remove(compra);
+                compradorCodigo.getCompraList().remove(compra);
                 compradorCodigo = em.merge(compradorCodigo);
             }
             em.remove(compra);

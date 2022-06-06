@@ -55,11 +55,11 @@ public class RutaJpaController implements Serializable {
             }
             em.persist(ruta);
             if (departamentoCodigo != null) {
-                departamentoCodigo.getRutaCollection().add(ruta);
+                departamentoCodigo.getRutaList().add(ruta);
                 departamentoCodigo = em.merge(departamentoCodigo);
             }
             if (empresaCodigo != null) {
-                empresaCodigo.getRutaCollection().add(ruta);
+                empresaCodigo.getRutaList().add(ruta);
                 empresaCodigo = em.merge(empresaCodigo);
             }
             em.getTransaction().commit();
@@ -90,19 +90,19 @@ public class RutaJpaController implements Serializable {
             }
             ruta = em.merge(ruta);
             if (departamentoCodigoOld != null && !departamentoCodigoOld.equals(departamentoCodigoNew)) {
-                departamentoCodigoOld.getRutaCollection().remove(ruta);
+                departamentoCodigoOld.getRutaList().remove(ruta);
                 departamentoCodigoOld = em.merge(departamentoCodigoOld);
             }
             if (departamentoCodigoNew != null && !departamentoCodigoNew.equals(departamentoCodigoOld)) {
-                departamentoCodigoNew.getRutaCollection().add(ruta);
+                departamentoCodigoNew.getRutaList().add(ruta);
                 departamentoCodigoNew = em.merge(departamentoCodigoNew);
             }
             if (empresaCodigoOld != null && !empresaCodigoOld.equals(empresaCodigoNew)) {
-                empresaCodigoOld.getRutaCollection().remove(ruta);
+                empresaCodigoOld.getRutaList().remove(ruta);
                 empresaCodigoOld = em.merge(empresaCodigoOld);
             }
             if (empresaCodigoNew != null && !empresaCodigoNew.equals(empresaCodigoOld)) {
-                empresaCodigoNew.getRutaCollection().add(ruta);
+                empresaCodigoNew.getRutaList().add(ruta);
                 empresaCodigoNew = em.merge(empresaCodigoNew);
             }
             em.getTransaction().commit();
@@ -136,12 +136,12 @@ public class RutaJpaController implements Serializable {
             }
             Departamento departamentoCodigo = ruta.getDepartamentoCodigo();
             if (departamentoCodigo != null) {
-                departamentoCodigo.getRutaCollection().remove(ruta);
+                departamentoCodigo.getRutaList().remove(ruta);
                 departamentoCodigo = em.merge(departamentoCodigo);
             }
             Delivery empresaCodigo = ruta.getEmpresaCodigo();
             if (empresaCodigo != null) {
-                empresaCodigo.getRutaCollection().remove(ruta);
+                empresaCodigo.getRutaList().remove(ruta);
                 empresaCodigo = em.merge(empresaCodigo);
             }
             em.remove(ruta);

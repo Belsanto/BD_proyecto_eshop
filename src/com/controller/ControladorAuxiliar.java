@@ -17,6 +17,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -27,6 +31,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+/**
+ *
+ * @author USER
+ */
 public class ControladorAuxiliar implements Serializable {
 
     Connection con = null;
@@ -36,7 +44,7 @@ public class ControladorAuxiliar implements Serializable {
     Statement st;
 
     Conexiones metodosPool = new Conexiones();
-
+    
     public static String sesionUsuario;
 
     public static String ip = "localhost";
@@ -57,7 +65,7 @@ public class ControladorAuxiliar implements Serializable {
             conn = DriverManager.getConnection(url, user, password);
             if (conn != null) {
                 System.out.println("CONEXION EXITOSA B");
-            }
+}
 
         } catch (ClassNotFoundException | SQLException e) {
 
