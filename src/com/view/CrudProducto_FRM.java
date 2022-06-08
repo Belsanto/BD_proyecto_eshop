@@ -474,13 +474,14 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
                  producto.setNombre(txt_nombre.getText());
                  producto.setNombrePublicacion(txt_nombrePublicacion.getText());
                  producto.setDescripcion(txt_descripcion.getText());
-                 producto.setDescuento(Integer.parseInt(txt_descuento.getText()));
-                 producto.setPrecio(Integer.parseInt(txt_valor.getText()));
+                 producto.setDescuento(Float.parseFloat(txt_descuento.getText()));
+                 producto.setPrecio(Float.parseFloat(txt_valor.getText()));
                  producto.setValorEnPuntos(Integer.parseInt(txt_valorPuntos.getText()));
                  producto.setUnidades(Integer.parseInt(txt_unidades.getText()));
                  producto.setFechaLimite(cd_fechaLimite.getDate());
                  producto.setDepartamentoProductoCodigo(departamentoCtr.findDepartamento(cbCiudad.getSelectedIndex()));
                  productoCtr.create(producto);
+                 
              } catch (Exception ex) {
                  Logger.getLogger(CrudProducto_FRM.class.getName()).log(Level.SEVERE, null, ex);
              }

@@ -19,7 +19,7 @@ public class Conexiones implements Serializable {
     public String db = "eshop_proyectobd";
     public String puerto = "3306";
     public String url = "jdbc:mysql://"+ip+":"+puerto+"/"+db;
-    public String user = "localhost";
+    public String user = "root";
     public String pass = "";
     
     

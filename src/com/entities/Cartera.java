@@ -6,6 +6,9 @@
 package com.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -100,5 +103,45 @@ public class Cartera implements Serializable {
     public String toString() {
         return "com.entities.Cartera[ codigo=" + codigo + " ]";
     }
-    
+
+    public int getTotalPuntosDisponibles() {
+        int total = 0;
+        if (this.getPuntosList() != null) {
+            if (this.getPuntosList().size() > 0) {
+                for (Puntos puntos : this.getPuntosList()) {
+                    total += puntos.getCantidadDisponible();
+                }
+
+            }
+        }
+        return total;
+    }
+
+    public int getTotalPuntosUsados() {
+        int total = 0;
+        if (this.getPuntosList() != null) {
+            if (this.getPuntosList().size() > 0) {
+                for (Puntos puntos : this.getPuntosList()) {
+                    total += puntos.getCantidadUsada();
+                }
+
+            }
+        }
+        return total;
+    }
+
+    public int getTotalPuntosVencidos() {
+        int total = 0;
+        if (this.getPuntosList() != null) {
+            if (this.getPuntosList().size() > 0) {
+                for (Puntos puntos : this.getPuntosList()) {
+                    if (puntos.getEstado().equalsIgnoreCase("vencidos")) {
+                        total += puntos.getCantidadDisponible();
+                    }
+                }
+
+            }
+        }
+        return total;
+    }
 }

@@ -4,6 +4,7 @@ import com.controller.CarteraJpaController;
 import com.controller.ControladorAuxiliar;
 import com.controller.DepartamentoJpaController;
 import com.controller.UsuarioJpaController;
+import com.controller.exceptions.IllegalOrphanException;
 import com.controller.exceptions.NonexistentEntityException;
 import com.entities.Cartera;
 import com.entities.Departamento;
@@ -42,14 +43,14 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
     byte[] imagen;
     FileInputStream entrada;
     FileOutputStream salida;
-    ArrayList<String> telefonos;
+    ArrayList<String> telefonos = new ArrayList<>();
     Image foto;
 
     public CrudUsuario_FRM() {
         initComponents();
         getTablaUsuario();
         getComboBoxCiudad();
-        limpiar();
+        cbTelefono.addItem("No hay");
     }
 
     public byte[] abrirArchivo(File archivo) {
@@ -84,6 +85,22 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
 
         labelFoto.setText("");
         labelFoto.setIcon(new ImageIcon(foto));
+    }
+
+    private void setUserFoto(Usuario user) {
+
+        fotoUser = user.getRutaFoto();
+
+        foto = getToolkit().getImage(fotoUser);
+        if (fotoUser.length() > 40) {
+
+            foto = foto.getScaledInstance(250, 200, Image.SCALE_DEFAULT);
+
+            labelFoto.setText("");
+            labelFoto.setIcon(new ImageIcon(foto));
+        } else {
+            setDefaultFoto();
+        }
     }
 
     private void getTablaUsuario() {
@@ -126,11 +143,11 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
     private void getComboBoxTelefono(int idUser) {
         ArrayList<String> ls;
         ls = mainController.findTelefonosUser(idUser);
-        String value = "Seleccione";
-        cbTelefono.addItem(value);
+        String value = "";
         for (int i = 0; i < ls.size(); i++) {
             value = ls.get(i);
             cbTelefono.addItem(value);
+            telefonos.add(value);
         }
     }
 
@@ -157,6 +174,8 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
         buttonAction1 = new org.edisoncor.gui.button.ButtonAction();
         buttonAction2 = new org.edisoncor.gui.button.ButtonAction();
         panelLlamada1 = new org.edisoncor.gui.panel.PanelLlamada();
+        labelRound1 = new org.edisoncor.gui.label.LabelRound();
+        btnCantPuntos = new org.edisoncor.gui.button.ButtonRound();
         jLabel6 = new javax.swing.JLabel();
         txtfoto = new org.edisoncor.gui.textField.TextFieldRectBackground();
         panelImage1 = new org.edisoncor.gui.panel.PanelImage();
@@ -232,6 +251,11 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
         });
 
         buttonAction1.setText("Buscar");
+        buttonAction1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAction1ActionPerformed(evt);
+            }
+        });
 
         buttonAction2.setText("Modificar");
         buttonAction2.addActionListener(new java.awt.event.ActionListener() {
@@ -245,15 +269,43 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
         panelLlamada1.setColorPrimario(new java.awt.Color(255, 255, 255));
         panelLlamada1.setColorSecundario(new java.awt.Color(204, 204, 204));
 
+        labelRound1.setForeground(new java.awt.Color(0, 0, 0));
+        labelRound1.setText("Cantidad de Puntos");
+        labelRound1.setColorDeSombra(new java.awt.Color(204, 204, 204));
+
+        btnCantPuntos.setBackground(new java.awt.Color(204, 255, 204));
+        btnCantPuntos.setForeground(new java.awt.Color(0, 0, 0));
+        btnCantPuntos.setText("Cantidad puntos");
+        btnCantPuntos.setColorDeSombra(new java.awt.Color(153, 153, 153));
+        btnCantPuntos.setEnabled(false);
+        btnCantPuntos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCantPuntosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLlamada1Layout = new javax.swing.GroupLayout(panelLlamada1);
         panelLlamada1.setLayout(panelLlamada1Layout);
         panelLlamada1Layout.setHorizontalGroup(
             panelLlamada1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelLlamada1Layout.createSequentialGroup()
+                .addGroup(panelLlamada1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLlamada1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(labelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelLlamada1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(btnCantPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLlamada1Layout.setVerticalGroup(
             panelLlamada1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGroup(panelLlamada1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCantPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jLabel6.setText("FOTO");
@@ -428,9 +480,7 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelRect1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(panelRect1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,8 +494,8 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAction4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAction4ActionPerformed
-        if (txtname.equals("") || txtUsename.equals("") || txtemail.equals("") 
-                || txtfoto.equals("") || txtpassword.equals("") 
+        if (txtname.equals("") || txtUsename.equals("") || txtemail.equals("")
+                || txtfoto.equals("") || txtpassword.equals("")
                 || cbCiudad.getSelectedIndex() < 1 || cbTelefono.getSelectedItem().equals("No hay")) {
             JOptionPane.showMessageDialog(null, "Error con los datos");
         } else {
@@ -457,6 +507,8 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
             usuario.setPassword(txtpassword.getText());
             usuario.setDepartamentoUsuario(departamentoCtr.findDepartamento(cbCiudad.getSelectedIndex()));
             usuarioCtr.create(usuario);
+            //aqui guarda la foto
+            mainController.insertarTelefonosUser(usuario.getCodigo(), telefonos);
             archivo = new File("C:\\Users\\USER\\Documents\\NetBeansProjects\\BD_proyecto_eshop\\src\\fotos\\" + usuario.getCodigo() + ".jpg");
             if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("jpeg")) {
                 String respuesta = guardarArchivo(archivo, imagen);
@@ -491,6 +543,8 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
             imagen = abrirArchivo(file);
 
         }
+
+
     }//GEN-LAST:event_buttonAero1ActionPerformed
 
     private void btnTelefonosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelefonosActionPerformed
@@ -504,6 +558,7 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
                 if (cbTelefono.getItemAt(0).equals("No hay")) {
                     cbTelefono.removeAllItems();
                 }
+                telefonos.add(phone);
                 cbTelefono.addItem(phone);
             } else {
 
@@ -520,39 +575,101 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
 
     private void buttonAction3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAction3ActionPerformed
         // TODO add your handling code here:
+
+        try {
+            int cod = Integer.parseInt(JOptionPane.showInputDialog("ingrese el codigo del usuario que desea eliminar"));
+            Usuario user = usuarioCtr.findUsuario(cod);
+
+            if (usuario != null) {
+                try {
+                    mainController.borrararTelefonosUser(user.getCodigo());
+                    usuarioCtr.destroy(user.getCodigo());
+                } catch (IllegalOrphanException ex) {
+                    Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NonexistentEntityException ex) {
+                    Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (NumberFormatException e) {
+            Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, e);
+        }
+
     }//GEN-LAST:event_buttonAction3ActionPerformed
 
     private void buttonAction2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAction2ActionPerformed
-        if (txtname.equals("") || txtUsename.equals("") || txtemail.equals("") || txtfoto.equals("") || txtpassword.equals("") || cbCiudad.getSelectedIndex() < 1 || cbTelefono.getSelectedItem().equals("No hay")) {
+        if (txtname.equals("") || txtUsename.equals("") || txtemail.equals("")
+                || txtfoto.equals("") || txtpassword.equals("")
+                || cbCiudad.getSelectedIndex() < 1 || cbTelefono.getSelectedItem().equals("No hay")) {
             JOptionPane.showMessageDialog(null, "Error con los datos");
         } else {
-            try {
-                usuario = new Usuario();
-                usuario.setNombre(txtname.getText());
-                usuario.setUsername(txtUsename.getText());
-                usuario.setEmail(txtemail.getText());
-                usuario.setRutaFoto(txtfoto.getText());
-                usuario.setPassword(txtpassword.getText());
-                usuario.setDepartamentoUsuario(departamentoCtr.findDepartamento(cbCiudad.getSelectedIndex() - 1));
-                usuarioCtr.edit(usuario);
-                archivo = new File("C:\\Users\\USER\\Documents\\NetBeansProjects\\BD_proyecto_eshop\\src\\fotos\\" + usuario.getCodigo() + ".jpg");
-                if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("jpeg")) {
-                    String respuesta = guardarArchivo(archivo, imagen);
-                    if (respuesta != null) {
-                        JOptionPane.showMessageDialog(null, respuesta);
+            if (usuario != null) {
+
+                try {
+                    usuario.setNombre(txtname.getText());
+                    usuario.setRutaFoto(txtfoto.getText());
+                    usuario.setPassword(txtpassword.getText());
+                    usuario.setDepartamentoUsuario(departamentoCtr.findDepartamento(cbCiudad.getSelectedIndex()));
+                    usuarioCtr.edit(usuario);
+                    archivo = new File("C:\\Users\\USER\\Documents\\NetBeansProjects\\BD_proyecto_eshop\\src\\fotos\\" + usuario.getCodigo() + ".jpg");
+//                        mainController.borrararTelefonosUser(usuario.getCodigo());
+                    mainController.insertarTelefonosUser(usuario.getCodigo(), telefonos);
+                    if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("jpeg")) {
+                        String respuesta = guardarArchivo(archivo, imagen);
+                        if (respuesta != null) {
+                            JOptionPane.showMessageDialog(null, respuesta);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Foto no guardada o seleccionada");
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Archivo no guardado");
+                        JOptionPane.showMessageDialog(null, "Archivo guardado");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Archivo guardado");
+                } catch (NonexistentEntityException ex) {
+                    Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (NonexistentEntityException ex) {
-                Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception ex) {
-                Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
     }//GEN-LAST:event_buttonAction2ActionPerformed
+
+    private void buttonAction1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAction1ActionPerformed
+        try {
+            int cod = Integer.parseInt(JOptionPane.showInputDialog("ingrese el codigo del usuario que desea eliminar"));
+            usuario = usuarioCtr.findUsuario(cod);
+
+            if (usuario != null) {
+                setUsuario(usuario);
+            }
+
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(null, "ERROR! no se encontraron datos");
+        } catch (NullPointerException e) {
+
+            JOptionPane.showMessageDialog(null, "ERROR! no se encontraron datos");
+        }
+    }//GEN-LAST:event_buttonAction1ActionPerformed
+
+    private void btnCantPuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCantPuntosActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Tienes: " + "\n" + usuario.getCarteraList().get(0).getTotalPuntosDisponibles() + " Puntos disponibles. "
+                + "\n" + usuario.getCarteraList().get(0).getTotalPuntosUsados() + " Puntos gastados. "
+                + "\n" + usuario.getCarteraList().get(0).getTotalPuntosVencidos() + " Puntos vencidos. ");
+    }//GEN-LAST:event_btnCantPuntosActionPerformed
+
+    public void setUsuario(Usuario user) {
+        txtUsename.setText(user.getUsername());
+        txtemail.setText(user.getEmail());
+        txtname.setText(user.getNombre());
+        txtpassword.setText(user.getPassword());
+        setUserFoto(user);
+        cbTelefono.removeAllItems();
+        getComboBoxTelefono(user.getCodigo());
+        cbCiudad.setSelectedIndex(user.getDepartamentoUsuario().getCodigo());
+        btnCantPuntos.setEnabled(true);
+        btnCantPuntos.setText("Tienes: " + user.getCarteraList().get(0).getTotalPuntosDisponibles());
+    }
 
     /**
      * @param args the command line arguments
@@ -592,6 +709,7 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonAction btnCLear;
+    private org.edisoncor.gui.button.ButtonRound btnCantPuntos;
     private org.edisoncor.gui.button.ButtonAero btnTelefonos;
     private org.edisoncor.gui.button.ButtonAction buttonAction1;
     private org.edisoncor.gui.button.ButtonAction buttonAction2;
@@ -610,10 +728,9 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablaUsuarios;
     private javax.swing.JLabel labelFoto;
+    private org.edisoncor.gui.label.LabelRound labelRound1;
     private org.edisoncor.gui.panel.PanelImage panelImage1;
     private org.edisoncor.gui.panel.PanelLlamada panelLlamada1;
-    private org.edisoncor.gui.panel.PanelLlamada panelLlamada2;
-    private org.edisoncor.gui.panel.PanelLlamada panelLlamada3;
     private org.edisoncor.gui.panel.PanelRect panelRect1;
     private org.edisoncor.gui.panel.PanelRound panelRound1;
     private org.edisoncor.gui.textField.TextFieldRectBackground txtUsename;
@@ -630,6 +747,7 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
         txtfoto.setText("");
         txtname.setText("");
         txtpassword.setText("");
+        getComboBoxCiudad();
         cbCiudad.setSelectedIndex(0);
 
         cbTelefono.addItem("No hay");
