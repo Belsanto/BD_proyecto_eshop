@@ -1,20 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.view;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import com.controller.CarteraJpaController;
-import com.controller.ControladorAuxiliar;
 import com.controller.DepartamentoJpaController;
 import com.controller.ProductoJpaController;
+import com.controller.UsuarioJpaController;
+import com.controller.exceptions.NonexistentEntityException;
 import com.entities.Departamento; 
 import com.entities.Producto;
 import com.entities.Usuario;
-import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author USER
  */
-public class CrudProducto_FRM extends javax.swing.JFrame {
+public class CrudProducto_FRM extends javax.swing.JFrame {  
 
     
 
@@ -35,10 +28,26 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
     DepartamentoJpaController departamentoCtr = new DepartamentoJpaController();
     Departamento departamento = new Departamento();
     
+    UsuarioJpaController usuarioCtr = new UsuarioJpaController();
+    Usuario usuario = new Usuario();
+    
     public CrudProducto_FRM() {
         initComponents();
         getComboBox();
+        getComboBoxUsuario();
         getTablaProducto();
+    }
+    
+    private void getComboBoxUsuario() {
+        List ls;
+        ls = usuarioCtr.findUsuarioEntities();
+        String value = "Seleccione un Usuario";
+         cbUsuario.addItem(value);
+        for (int i = 0; i < ls.size(); i++) {
+            usuario = (Usuario) ls.get(i);
+            value = usuario.getCodigo() + " " + usuario.getNombre();
+            cbUsuario.addItem(value);
+        }
     }
     
     private void getComboBox() {
@@ -54,10 +63,10 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
     }
     
      private void getTablaProducto() {
-        String col[] = {"Código", "Nombre", "Publicación","Descripción","Descuento", "Valor", "Valor en Puntos", "Unidades", "Ciudad", "Fecha Límite"};
+        String col[] = {"Código", "Nombre", "Publicación","Descripción","Descuento", "Valor", "Valor en Puntos", "Unidades", "Ciudad", "Fecha Límite", "Vendedor"};
         DefaultTableModel modelo = new DefaultTableModel(col, 0);
-        Object obj[] = new Object[10];
-        List ls;
+        Object obj[] = new Object[11];
+        List ls; 
         try {
             ls = productoCtr.findProductoEntities();
             for (int i = 0; i < ls.size(); i++) {
@@ -72,6 +81,7 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
                 obj[7] = producto.getUnidades();
                 obj[8] = producto.getDepartamentoProductoCodigo().getNombre();
                 obj[9] = producto.getFechaLimite();
+                obj[10] = producto.getVendedorCodigo().getNombre();
                 modelo.addRow(obj);
             }
             this.jTableProductos.setModel(modelo);
@@ -80,11 +90,10 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al cargar persistencia");
 
         }
+        
+     }
 
-    }
     
-    
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -116,8 +125,11 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
         bt_eliminar = new org.edisoncor.gui.button.ButtonRound();
         bt_buscar = new org.edisoncor.gui.button.ButtonRound();
         jLabel10 = new javax.swing.JLabel();
-        cbCiudad = new org.edisoncor.gui.comboBox.ComboBoxRect();
+        cbUsuario = new org.edisoncor.gui.comboBox.ComboBoxRect();
         canvas1 = new java.awt.Canvas();
+        bt_limpiar = new org.edisoncor.gui.button.ButtonRound();
+        jLabel11 = new javax.swing.JLabel();
+        cbCiudad = new org.edisoncor.gui.comboBox.ComboBoxRect();
         labelRound1 = new org.edisoncor.gui.label.LabelRound();
         labelMetric2 = new org.edisoncor.gui.label.LabelMetric();
         panelRoundTranslucido1 = new org.edisoncor.gui.panel.PanelRoundTranslucido();
@@ -126,7 +138,7 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2022-05-11 at 12.37.40 AM.jpeg"))); // NOI18N
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/producto.jpeg"))); // NOI18N
 
         labelMetric1.setForeground(new java.awt.Color(0, 204, 153));
         labelMetric1.setText("e-Shop");
@@ -246,10 +258,32 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
         });
 
         bt_buscar.setText("Buscar");
+        bt_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_buscarActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Ciudad:");
+        jLabel10.setText("Vendedor:");
+
+        cbUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbUsuarioActionPerformed(evt);
+            }
+        });
+
+        bt_limpiar.setText("Limpiar");
+        bt_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_limpiarActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Ciudad:");
 
         cbCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,58 +295,65 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
         panelRoundTranslucidoComplete1.setLayout(panelRoundTranslucidoComplete1Layout);
         panelRoundTranslucidoComplete1Layout.setHorizontalGroup(
             panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRoundTranslucidoComplete1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRoundTranslucidoComplete1Layout.createSequentialGroup()
-                        .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_nombrePublicacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_descripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_descuento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_codigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_nombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_valor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_valorPuntos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_unidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cd_fechaLimite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(43, 43, 43))
-                    .addGroup(panelRoundTranslucidoComplete1Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(bt_crear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(bt_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
-                        .addComponent(bt_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(bt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(121, 121, 121))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRoundTranslucidoComplete1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(351, 351, 351))
+            .addGroup(panelRoundTranslucidoComplete1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txt_nombrePublicacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_descripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_descuento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_codigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_nombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_valorPuntos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_unidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cd_fechaLimite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_valor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRoundTranslucidoComplete1Layout.createSequentialGroup()
+                .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelRoundTranslucidoComplete1Layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(bt_crear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(bt_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(163, 163, 163)
+                        .addComponent(bt_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bt_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRoundTranslucidoComplete1Layout.createSequentialGroup()
+                        .addGap(284, 284, 284)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(43, 43, 43)
+                .addComponent(bt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67))
         );
         panelRoundTranslucidoComplete1Layout.setVerticalGroup(
             panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRoundTranslucidoComplete1Layout.createSequentialGroup()
                 .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(30, 30, 30)
                 .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRoundTranslucidoComplete1Layout.createSequentialGroup()
                         .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -336,14 +377,7 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(txt_descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                        .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bt_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bt_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bt_crear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28))
+                            .addComponent(txt_descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelRoundTranslucidoComplete1Layout.createSequentialGroup()
                         .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,15 +390,26 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
                         .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txt_unidades, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
                         .addGap(16, 16, 16)
                         .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
-                            .addComponent(cbCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cd_fechaLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel8))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRoundTranslucidoComplete1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_crear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         labelMetric2.setText("Agregar Producto:");
@@ -390,7 +435,7 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
             .addGroup(panelRoundTranslucido1Layout.createSequentialGroup()
                 .addGap(83, 83, 83)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         panelRoundTranslucido1Layout.setVerticalGroup(
             panelRoundTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,11 +452,7 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
             .addGroup(panelImage1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(labelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1012, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelRoundTranslucidoComplete1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(42, 42, 42))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelRoundTranslucido1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -424,6 +465,10 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelMetric1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(480, 480, 480))
+            .addGroup(panelImage1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(panelRoundTranslucidoComplete1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelImage1Layout.setVerticalGroup(
             panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,11 +479,11 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
                 .addComponent(labelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelMetric2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(panelRoundTranslucidoComplete1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(panelRoundTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -447,7 +492,7 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -457,15 +502,15 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCiudadActionPerformed
+    private void cbUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbCiudadActionPerformed
+    }//GEN-LAST:event_cbUsuarioActionPerformed
 
     private void bt_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_crearActionPerformed
          if (txt_codigo.equals("") || txt_nombre.equals("") || txt_nombrePublicacion.equals("") 
                 || txt_descripcion.equals("") || txt_descuento.equals("")|| txt_valor.equals("") 
                 || txt_valorPuntos.equals("") || txt_unidades.equals("") || 
-                cd_fechaLimite.equals("") || cbCiudad.getSelectedIndex() < 1) {
+                cd_fechaLimite.equals("") || cbUsuario.getSelectedIndex() < 1) {
             JOptionPane.showMessageDialog(null, "Error con los datos");
         } else {
              try {
@@ -480,6 +525,7 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
                  producto.setUnidades(Integer.parseInt(txt_unidades.getText()));
                  producto.setFechaLimite(cd_fechaLimite.getDate());
                  producto.setDepartamentoProductoCodigo(departamentoCtr.findDepartamento(cbCiudad.getSelectedIndex()));
+                 producto.setVendedorCodigo(usuarioCtr.findUsuario(cbUsuario.getSelectedIndex()));
                  productoCtr.create(producto);
                  
              } catch (Exception ex) {
@@ -522,13 +568,80 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoActionPerformed
 
     private void bt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_modificarActionPerformed
-        // TODO add your handling code here:
+     if (txt_codigo.equals("") || txt_nombre.equals("") || txt_nombrePublicacion.equals("") 
+                || txt_descripcion.equals("") || txt_descuento.equals("")|| txt_valor.equals("") 
+                || txt_valorPuntos.equals("") || txt_unidades.equals("") || 
+                cd_fechaLimite.equals("") || cbUsuario.getSelectedIndex() < 1 || cbCiudad.getSelectedIndex() < 1) {
+            JOptionPane.showMessageDialog(null, "Error con los datos");
+        } else {
+            if (producto != null) {
+
+                try {
+                 producto.setCodigo(txt_codigo.getText());
+                 producto.setNombre(txt_nombre.getText());
+                 producto.setNombrePublicacion(txt_nombrePublicacion.getText());
+                 producto.setDescripcion(txt_descripcion.getText());
+                 producto.setDescuento(Float.parseFloat(txt_descuento.getText()));
+                 producto.setPrecio(Float.parseFloat(txt_valor.getText()));
+                 producto.setValorEnPuntos(Integer.parseInt(txt_valorPuntos.getText()));
+                 producto.setUnidades(Integer.parseInt(txt_unidades.getText()));
+                 producto.setFechaLimite(cd_fechaLimite.getDate());
+                 producto.setDepartamentoProductoCodigo(departamentoCtr.findDepartamento(cbCiudad.getSelectedIndex()));
+                 producto.setVendedorCodigo(usuarioCtr.findUsuario(cbUsuario.getSelectedIndex()));
+                 productoCtr.edit(producto);
+                    
+                } catch (NonexistentEntityException ex) {
+                    Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
     }//GEN-LAST:event_bt_modificarActionPerformed
 
     private void bt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarActionPerformed
-        
+  
     }//GEN-LAST:event_bt_eliminarActionPerformed
 
+    private void bt_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_limpiarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_bt_limpiarActionPerformed
+
+    private void cbCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCiudadActionPerformed
+
+    private void bt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarActionPerformed
+        try {
+            String cod = (JOptionPane.showInputDialog("ingrese el codigo del producto"));
+            producto = productoCtr.findProducto(cod);
+
+            if (producto != null) {
+                setProducto(producto);
+            }
+
+        } catch (NumberFormatException | NullPointerException e) {
+
+            JOptionPane.showMessageDialog(null, "ERROR! no se encontraron datos");
+        }
+    }//GEN-LAST:event_bt_buscarActionPerformed
+    
+    public void setProducto(Producto prod) {
+        txt_codigo.setText(prod.getCodigo());
+        txt_nombre.setText(prod.getNombre());
+        txt_nombrePublicacion.setText(prod.getNombrePublicacion());
+        txt_descripcion.setText(prod.getDescripcion());
+        txt_valor.setText(Float.toString(prod.getPrecio())); 
+        txt_valorPuntos.setText(Integer.toString(prod.getValorEnPuntos()));
+        txt_descuento.setText(Float.toString(prod.getPrecio()));
+        txt_unidades.setText(Integer.toString(prod.getUnidades()));
+        cd_fechaLimite.setDate(prod.getFechaLimite());
+        cbUsuario.setSelectedIndex(prod.getVendedorCodigo().getCodigo());
+        cbCiudad.setSelectedIndex(prod.getDepartamentoProductoCodigo().getCodigo());
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -568,12 +681,15 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
     private org.edisoncor.gui.button.ButtonRound bt_buscar;
     private org.edisoncor.gui.button.ButtonRound bt_crear;
     private org.edisoncor.gui.button.ButtonRound bt_eliminar;
+    private org.edisoncor.gui.button.ButtonRound bt_limpiar;
     private org.edisoncor.gui.button.ButtonRound bt_modificar;
     private java.awt.Canvas canvas1;
     private org.edisoncor.gui.comboBox.ComboBoxRect cbCiudad;
+    private org.edisoncor.gui.comboBox.ComboBoxRect cbUsuario;
     private com.toedter.calendar.JDateChooser cd_fechaLimite;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -599,4 +715,23 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
     private org.edisoncor.gui.textField.TextFieldRectIcon txt_valor;
     private org.edisoncor.gui.textField.TextFieldRectIcon txt_valorPuntos;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiar() {
+        txt_codigo.setText("");
+        txt_nombre.setText("");
+        txt_nombrePublicacion.setText("");
+        txt_descripcion.setText("");
+        txt_descuento.setText("");
+        txt_unidades.setText("");
+        txt_valor.setText("");        
+        txt_valorPuntos.setText("");
+        cd_fechaLimite.setDate(null);
+        getComboBoxUsuario();
+        cbUsuario.setSelectedIndex(0);
+        getComboBox();
+        cbCiudad.setSelectedIndex(0);
+        
+        producto = null;        
+
+    }
 }

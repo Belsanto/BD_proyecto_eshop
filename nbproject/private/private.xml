@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/CrudRuta_FRM.java</file>
             <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/CrudUsuario_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/controller/ProductoJpaController.java</file>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/entities/Ruta.java</file>
             <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/CrudProducto_FRM.java</file>
-            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/entities/Puntos.java</file>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/controller/RutaJpaController.java</file>
             <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/controller/ControladorAuxiliar.java</file>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/view/CrudSubasta_FRM.java</file>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/controller/UsuarioJpaController.java</file>
+            <file>file:/C:/Users/braya/Documents/e-Shop/BD_proyecto_eshop/src/com/entities/Delivery.java</file>
         </group>
     </open-files>
 </project-private>
