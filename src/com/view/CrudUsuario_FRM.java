@@ -582,7 +582,6 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
 
             if (usuario != null) {
                 try {
-                    mainController.borrararTelefonosUser(user.getCodigo());
                     usuarioCtr.destroy(user.getCodigo());
                 } catch (IllegalOrphanException ex) {
                     Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, ex);
