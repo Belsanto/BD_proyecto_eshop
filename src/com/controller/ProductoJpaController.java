@@ -255,5 +255,9 @@ public class ProductoJpaController implements Serializable {
             em.close();
         }
     }
+
+    public Producto findProducto(int cod) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -382,5 +382,9 @@ public class DepartamentoJpaController implements Serializable {
             em.close();
         }
     }
+
+    public List findUsuarioEntities() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
