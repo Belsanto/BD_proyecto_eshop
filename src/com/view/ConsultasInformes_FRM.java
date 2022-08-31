@@ -734,7 +734,6 @@ public class ConsultasInformes_FRM extends javax.swing.JFrame {
         
         
         tablaInformes.setModel(modelo);
-        
         String sql = "SELECT nombre, codigo from delivery WHERE pais_codigo=3";
         
         String datos[] = new String [10];
