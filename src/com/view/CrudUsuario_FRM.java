@@ -104,19 +104,20 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
     }
 
     private void getTablaUsuario() {
-        String col[] = {"NOMBRE", "USUARIO", "CONTRASEÑA", "EMAIL", "CIUDAD"};
+        String col[] = {"CODIGO","NOMBRE", "USUARIO", "CONTRASEÑA", "EMAIL", "CIUDAD"};
         DefaultTableModel modelo = new DefaultTableModel(col, 0);
-        Object obj[] = new Object[5];
+        Object obj[] = new Object[6];
         List ls;
         try {
             ls = usuarioCtr.findUsuarioEntities();
             for (int i = 0; i < ls.size(); i++) {
                 usuario = (Usuario) ls.get(i);
-                obj[0] = usuario.getNombre();
-                obj[1] = usuario.getUsername();
-                obj[2] = usuario.getPassword();
-                obj[3] = usuario.getEmail();
-                obj[4] = usuario.getDepartamentoUsuario().getNombre();
+                obj[1] = usuario.getNombre();
+                obj[2] = usuario.getUsername();
+                obj[3] = usuario.getPassword();
+                obj[4] = usuario.getEmail();
+                obj[5] = usuario.getDepartamentoUsuario().getNombre();
+                obj[0] = usuario.getCodigo()+"";
                 modelo.addRow(obj);
             }
             this.jTablaUsuarios.setModel(modelo);
@@ -521,6 +522,7 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Archivo guardado");
             }
         }
+        limpiar();
     }//GEN-LAST:event_buttonAction4ActionPerformed
 
     private void buttonAero1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero1ActionPerformed
@@ -582,8 +584,8 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
 
             if (usuario != null) {
                 try {
-                    mainController.borrararTelefonosUser(user.getCodigo());
                     usuarioCtr.destroy(user.getCodigo());
+                    limpiar();
                 } catch (IllegalOrphanException ex) {
                     Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (NonexistentEntityException ex) {
@@ -631,6 +633,7 @@ public class CrudUsuario_FRM extends javax.swing.JFrame {
             }
 
         }
+        limpiar();
     }//GEN-LAST:event_buttonAction2ActionPerformed
 
     private void buttonAction1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAction1ActionPerformed

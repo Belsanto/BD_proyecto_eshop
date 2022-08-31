@@ -134,16 +134,6 @@ public class RutaJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The ruta with id " + id + " no longer exists.", enfe);
             }
-            Departamento departamentoCodigo = ruta.getDepartamentoCodigo();
-            if (departamentoCodigo != null) {
-                departamentoCodigo.getRutaList().remove(ruta);
-                departamentoCodigo = em.merge(departamentoCodigo);
-            }
-            Delivery empresaCodigo = ruta.getEmpresaCodigo();
-            if (empresaCodigo != null) {
-                empresaCodigo.getRutaList().remove(ruta);
-                empresaCodigo = em.merge(empresaCodigo);
-            }
             em.remove(ruta);
             em.getTransaction().commit();
         } finally {

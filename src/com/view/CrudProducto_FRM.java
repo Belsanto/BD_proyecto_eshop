@@ -35,7 +35,7 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
         initComponents();
         getComboBox();
         getComboBoxUsuario();
-        getTablaProducto();
+        getTableProductos();
     }
     
     private void getComboBoxUsuario() {
@@ -62,7 +62,7 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
         }
     }
     
-     private void getTablaProducto() {
+     private void getTableProductos() {
         String col[] = {"Código", "Nombre", "Publicación","Descripción","Descuento", "Valor", "Valor en Puntos", "Unidades", "Ciudad", "Fecha Límite", "Vendedor"};
         DefaultTableModel modelo = new DefaultTableModel(col, 0);
         Object obj[] = new Object[11];
@@ -452,15 +452,7 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
             .addGroup(panelImage1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(labelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
-                .addGap(0, 1021, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelRoundTranslucidoComplete1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(51, 51, 51))
-=======
                 .addGap(0, 0, Short.MAX_VALUE))
->>>>>>> c7f308e557e03f3447c81d997e860bb297dcf416
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelRoundTranslucido1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -500,11 +492,7 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-=======
                 .addGap(0, 0, Short.MAX_VALUE))
->>>>>>> c7f308e557e03f3447c81d997e860bb297dcf416
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -613,7 +601,12 @@ public class CrudProducto_FRM extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_modificarActionPerformed
 
     private void bt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarActionPerformed
-  
+        try {
+            String codigo =JOptionPane.showInputDialog("ingrese el codigo");
+            productoCtr.destroy(codigo);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(CrudProducto_FRM.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bt_eliminarActionPerformed
 
     private void bt_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_limpiarActionPerformed

@@ -10,10 +10,12 @@ import com.controller.DepartamentoJpaController;
 import com.controller.ControladorAuxiliar;
 import com.controller.Conexiones;
 import com.controller.RutaJpaController;
+import com.controller.exceptions.IllegalOrphanException;
 import com.controller.exceptions.NonexistentEntityException;
 import com.entities.Delivery;
 import com.entities.Departamento;
 import com.entities.Ruta;
+import com.entities.Usuario;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +42,7 @@ public class CrudRuta_FRM extends javax.swing.JFrame {
         initComponents();
         getComboBoxEmpresa();
         getComboBox();
-        getTablaRutas();
+        getTableRutas();
     }
     
     private void getComboBoxEmpresa() {
@@ -68,7 +70,7 @@ public class CrudRuta_FRM extends javax.swing.JFrame {
         }
     }
     
-     private void getTablaRutas() {
+     private void getTableRutas() {
         String col[] = {"Código", "Estado", "Fecha Inicio", "Fecha Fin", "Ciudad", "Empresa"};
         DefaultTableModel modelo = new DefaultTableModel(col, 0);
         Object obj[] = new Object[6];
@@ -390,7 +392,7 @@ public class CrudRuta_FRM extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 57, Short.MAX_VALUE))
         );
 
         pack();
@@ -477,7 +479,21 @@ public class CrudRuta_FRM extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_ciudadActionPerformed
 
     private void bt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarActionPerformed
+         try {
+            int cod = Integer.parseInt(JOptionPane.showInputDialog("ingrese el codigo del usuario que desea eliminar"));
+            Ruta user = rutaCtr.findRuta(cod);
 
+            if (ruta != null) {
+                try {
+                    //mainController.borrararTelefonosUser(user.getCodigo());
+                    rutaCtr.destroy(user.getCodigo());
+                } catch (NonexistentEntityException ex) {
+                    Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (NumberFormatException e) {
+            Logger.getLogger(CrudUsuario_FRM.class.getName()).log(Level.SEVERE, null, e);
+        }
     }//GEN-LAST:event_bt_eliminarActionPerformed
 
     private void txt_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_estadoActionPerformed

@@ -45,7 +45,7 @@ public class ConsultasInformes_FRM extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaInformes = new javax.swing.JTable();
         btnReporte = new org.edisoncor.gui.button.ButtonRound();
-        tabbedPaneRound1 = new org.edisoncor.gui.tabbedPane.TabbedPaneRound();
+        tabbedPaneRound3 = new org.edisoncor.gui.tabbedPane.TabbedPaneRound();
         panelRound1 = new org.edisoncor.gui.panel.PanelRound();
         buttonAero1 = new org.edisoncor.gui.button.ButtonAero();
         buttonAero2 = new org.edisoncor.gui.button.ButtonAero();
@@ -53,11 +53,15 @@ public class ConsultasInformes_FRM extends javax.swing.JFrame {
         buttonAero4 = new org.edisoncor.gui.button.ButtonAero();
         buttonAero5 = new org.edisoncor.gui.button.ButtonAero();
         panelRound2 = new org.edisoncor.gui.panel.PanelRound();
-        buttonRound2 = new org.edisoncor.gui.button.ButtonRound();
         buttonAero6 = new org.edisoncor.gui.button.ButtonAero();
         buttonAero7 = new org.edisoncor.gui.button.ButtonAero();
         buttonAero9 = new org.edisoncor.gui.button.ButtonAero();
         buttonAero10 = new org.edisoncor.gui.button.ButtonAero();
+        tabbedPaneRound1 = new org.edisoncor.gui.tabbedPane.TabbedPaneRound();
+        panelRound4 = new org.edisoncor.gui.panel.PanelRound();
+        buttonAero8 = new org.edisoncor.gui.button.ButtonAero();
+        buttonAero11 = new org.edisoncor.gui.button.ButtonAero();
+        buttonAero12 = new org.edisoncor.gui.button.ButtonAero();
 
         javax.swing.GroupLayout panel5Layout = new javax.swing.GroupLayout(panel5);
         panel5.setLayout(panel5Layout);
@@ -122,8 +126,18 @@ public class ConsultasInformes_FRM extends javax.swing.JFrame {
         );
 
         buttonAero1.setText("Consulta 5");
+        buttonAero1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAero1ActionPerformed(evt);
+            }
+        });
 
         buttonAero2.setText("Consulta 4");
+        buttonAero2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAero2ActionPerformed(evt);
+            }
+        });
 
         buttonAero3.setText("Consulta 1");
         buttonAero3.addActionListener(new java.awt.event.ActionListener() {
@@ -133,8 +147,18 @@ public class ConsultasInformes_FRM extends javax.swing.JFrame {
         });
 
         buttonAero4.setText("Consulta 3");
+        buttonAero4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAero4ActionPerformed(evt);
+            }
+        });
 
         buttonAero5.setText("Consulta 2");
+        buttonAero5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAero5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -168,64 +192,126 @@ public class ConsultasInformes_FRM extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        tabbedPaneRound1.addTab("Avanzadas", panelRound1);
-
-        buttonRound2.setText("Generar Reporte");
+        tabbedPaneRound3.addTab("Avanzadas", panelRound1);
 
         buttonAero6.setText("Consulta 4");
+        buttonAero6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAero6ActionPerformed(evt);
+            }
+        });
 
         buttonAero7.setText("Consulta 3");
+        buttonAero7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAero7ActionPerformed(evt);
+            }
+        });
 
         buttonAero9.setText("Consulta 2");
+        buttonAero9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAero9ActionPerformed(evt);
+            }
+        });
 
         buttonAero10.setText("Consulta 1");
+        buttonAero10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAero10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
         panelRound2.setLayout(panelRound2Layout);
         panelRound2Layout.setHorizontalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound2Layout.createSequentialGroup()
-                .addGap(234, 234, 234)
-                .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(298, 298, 298)
+                .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonAero6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonAero7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonAero9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonAero10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                    .addComponent(buttonAero10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAero7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         panelRound2Layout.setVerticalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound2Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(86, 86, 86)
                 .addComponent(buttonAero10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonAero9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(buttonAero7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonAero6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(buttonAero6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        tabbedPaneRound1.addTab("Intermedias", panelRound2);
+        tabbedPaneRound3.addTab("Intermedias", panelRound2);
+
+        buttonAero8.setText("Consulta 1");
+        buttonAero8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAero8ActionPerformed(evt);
+            }
+        });
+
+        buttonAero11.setText("Consulta 2");
+        buttonAero11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAero11ActionPerformed(evt);
+            }
+        });
+
+        buttonAero12.setText("Consulta 3");
+        buttonAero12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAero12ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelRound4Layout = new javax.swing.GroupLayout(panelRound4);
+        panelRound4.setLayout(panelRound4Layout);
+        panelRound4Layout.setHorizontalGroup(
+            panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound4Layout.createSequentialGroup()
+                .addGap(257, 257, 257)
+                .addGroup(panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonAero12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonAero11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonAero8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(274, Short.MAX_VALUE))
+        );
+        panelRound4Layout.setVerticalGroup(
+            panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound4Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(buttonAero8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(buttonAero11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(buttonAero12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+
+        tabbedPaneRound1.addTab("tab1", panelRound4);
+
+        tabbedPaneRound3.addTab("Simples", tabbedPaneRound1);
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabbedPaneRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabbedPaneRound3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tabbedPaneRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabbedPaneRound3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
                 .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -244,7 +330,7 @@ public class ConsultasInformes_FRM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAero3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero3ActionPerformed
-        JOptionPane.showMessageDialog(null, "listar el nombre de departamento y la cantidad de usuarios que tienen una cantidad en puntos disponibles mayor que el usuario belsanto182");
+        JOptionPane.showMessageDialog(null, "listar el");
         JOptionPane.showMessageDialog(null, "SELECT d.nombre, COUNT(u.codigo) \n "
                 + "FROM departamento AS d, usuario As u, cartera AS c, puntos AS p \n"
                 + " WHERE u.departamento_usuario_codigo = d.codigo AND u.codigo = c.usuario_cartera_codigo \n "
@@ -288,6 +374,389 @@ public class ConsultasInformes_FRM extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnReporteActionPerformed
 
+    private void buttonAero5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero5ActionPerformed
+        JOptionPane.showMessageDialog(null, "listar el ");
+        JOptionPane.showMessageDialog(null, "SELECT u.nombre, e.nombre, d.nombre \n "
+                + "FROM ruta r, departamento d, delivery e, detalle_entrega de, compra c, usuario u \n" 
+                + "WHERE r.departamento_codigo=d.codigo AND r.empresa_codigo = e.codigo AND de.ruta_codigo = r.codigo \n" 
+                + "AND de.compra_codigo = c.codigo AND c.comprador_codigo = u.codigo \n" 
+                + "AND c.fecha_compra IN(SELECT c.fecha_compra FROM detalle_compra dc, compra c\n" 
+                + "WHERE dc.compra_codigo = c.codigo AND dc.sub_total>='200')ORDER BY e.nombre DESC\n");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre Usuario");
+        modelo.addColumn("Nombre Empresa");
+        modelo.addColumn("Nombre Ciudad");
+        
+        tablaInformes.setModel(modelo);
+        
+        String sql = "SELECT u.nombre, e.nombre, d.nombre FROM ruta r, departamento d, delivery e, detalle_entrega de, compra c, usuario u WHERE r.departamento_codigo=d.codigo AND r.empresa_codigo = e.codigo AND de.ruta_codigo = r.codigo AND de.compra_codigo = c.codigo AND c.comprador_codigo = u.codigo AND c.fecha_compra IN(SELECT c.fecha_compra FROM detalle_compra dc, compra c WHERE dc.compra_codigo = c.codigo AND dc.sub_total>='200')ORDER BY e.nombre DESC";
+        
+        String datos[] = new String [10];
+        Statement st;
+        try {
+            
+            st = ControladorAuxiliar.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                modelo.addRow(datos);
+            }
+            tablaInformes.setModel(modelo);
+            btnReporte.setEnabled(true);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No funciona "+e);
+            
+        }
+    }//GEN-LAST:event_buttonAero5ActionPerformed
+
+    private void buttonAero4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero4ActionPerformed
+        JOptionPane.showMessageDialog(null, "listar el ");
+        JOptionPane.showMessageDialog(null, "SELECT u.nombre, p.nombre FROM usuario u, departamento d, ciudad c, pais p \n" 
+            + "WHERE u.departamento_usuario_codigo = d.codigo AND c.codigo = d.ciudad_codigo AND p.codigo=C.pais_codigo \n" 
+            + "AND P.codigo IN(SELECT p.codigo FROM pais p, delivery e, ruta r WHERE r.empresa_codigo=e.codigo AND p.codigo=e.pais_codigo \n" 
+            + "AND r.estado !='Terminado')ORDER by u.nombre ASC \n");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre Usuario");
+        modelo.addColumn("Pais");
+        
+        
+        tablaInformes.setModel(modelo);
+        
+        String sql = "SELECT u.nombre, p.nombre FROM usuario u, departamento d, ciudad c, pais p WHERE u.departamento_usuario_codigo = d.codigo AND c.codigo = d.ciudad_codigo AND p.codigo=C.pais_codigo AND P.codigo IN(SELECT p.codigo FROM pais p, delivery e, ruta r WHERE r.empresa_codigo=e.codigo AND p.codigo=e.pais_codigo AND r.estado !='Terminado')ORDER by u.nombre ASC";
+        
+        String datos[] = new String [10];
+        Statement st;
+        try {
+            
+            st = ControladorAuxiliar.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                
+                modelo.addRow(datos);
+            }
+            tablaInformes.setModel(modelo);
+            btnReporte.setEnabled(true);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No funciona "+e);
+            
+        }
+    }//GEN-LAST:event_buttonAero4ActionPerformed
+
+    private void buttonAero2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero2ActionPerformed
+        JOptionPane.showMessageDialog(null, "listar el ");
+        JOptionPane.showMessageDialog(null, "SELECT DISTINCT d.nombre, c.nombre, p.nombre\n" 
+                + "FROM departamento d, ciudad c, pais p \n "
+                + "WHERE p.codigo=c.pais_codigo AND c.codigo= d.ciudad_codigo AND d.codigo NOT IN(SELECT d.codigo FROM departamento d, usuario u, compra c \n" 
+                + "WHERE d.codigo =u.departamento_usuario_codigo AND c.comprador_codigo = u.codigo AND c.medio_pago='PSE') \n");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Ciudad");
+        modelo.addColumn("Departamento");
+        modelo.addColumn("Pais");
+        
+        tablaInformes.setModel(modelo);
+        
+        String sql = "SELECT DISTINCT d.nombre, c.nombre, p.nombre FROM departamento d, ciudad c, pais p WHERE p.codigo=c.pais_codigo AND c.codigo= d.ciudad_codigo AND d.codigo NOT IN(SELECT d.codigo FROM departamento d, usuario u, compra c WHERE d.codigo =u.departamento_usuario_codigo AND c.comprador_codigo = u.codigo AND c.medio_pago='PSE')";
+        
+        String datos[] = new String [10];
+        Statement st;
+        try {
+            
+            st = ControladorAuxiliar.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                modelo.addRow(datos);
+            }
+            tablaInformes.setModel(modelo);
+            btnReporte.setEnabled(true);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No funciona "+e);
+            
+        }
+                                             
+    }//GEN-LAST:event_buttonAero2ActionPerformed
+
+    private void buttonAero1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero1ActionPerformed
+        JOptionPane.showMessageDialog(null, "listar el ");
+        JOptionPane.showMessageDialog(null, "SELECT d.nombre, u.nombre FROM departamento d, usuario u, ciudad c, pais p \n" 
+            + "WHERE u.departamento_usuario_codigo = d.codigo AND d.ciudad_codigo=c.codigo AND p.codigo=c.pais_codigo AND p.nombre NOT IN(SELECT p.nombre FROM departamento d, ciudad c, pais p \n" 
+            + "WHERE d.ciudad_codigo=c.codigo AND p.codigo=c.pais_codigo AND p.nombre LIKE '%M%') GROUP BY u.nombre \n");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre Ciudad");
+        modelo.addColumn("Nombre Usuario");
+        
+        
+        tablaInformes.setModel(modelo);
+        
+        String sql = "SELECT d.nombre, u.nombre FROM departamento d, usuario u, ciudad c, pais p WHERE u.departamento_usuario_codigo = d.codigo AND d.ciudad_codigo=c.codigo AND p.codigo=c.pais_codigo AND p.nombre NOT IN(SELECT p.nombre FROM departamento d, ciudad c, pais p WHERE d.ciudad_codigo=c.codigo AND p.codigo=c.pais_codigo AND p.nombre LIKE '%M%') GROUP BY u.nombre";
+        
+        String datos[] = new String [10];
+        Statement st;
+        try {
+            
+            st = ControladorAuxiliar.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                modelo.addRow(datos);
+            }
+            tablaInformes.setModel(modelo);
+            btnReporte.setEnabled(true);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No funciona "+e);
+            
+        }
+    }//GEN-LAST:event_buttonAero1ActionPerformed
+
+    private void buttonAero10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero10ActionPerformed
+        JOptionPane.showMessageDialog(null, "listar el ");
+        JOptionPane.showMessageDialog(null, "SELECT d.nombre, COUNT(u.codigo) FROM departamento AS d, usuario As u WHERE \n" 
+                + "u.departamento_usuario_codigo = d.codigo GROUP BY d.nombre \n");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre Ciudad");
+        modelo.addColumn("Cantidad de Usuarios");
+        
+        
+        tablaInformes.setModel(modelo);
+        
+        String sql = "SELECT d.nombre, COUNT(u.codigo) FROM departamento AS d, usuario As u WHERE u.departamento_usuario_codigo = d.codigo GROUP BY d.nombre";
+        
+        String datos[] = new String [10];
+        Statement st;
+        try {
+            
+            st = ControladorAuxiliar.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                modelo.addRow(datos);
+            }
+            tablaInformes.setModel(modelo);
+            btnReporte.setEnabled(true);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No funciona "+e);
+            
+        }
+    }//GEN-LAST:event_buttonAero10ActionPerformed
+
+    private void buttonAero9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero9ActionPerformed
+         JOptionPane.showMessageDialog(null, "listar el ");
+        JOptionPane.showMessageDialog(null, "SELECT u.nombre, SUM(p.cantidad_disponible) FROM usuario AS u, cartera AS c, puntos AS p \n" 
+                +"WHERE u.codigo = c.usuario_cartera_codigo AND c.codigo = p.cartera_codigo GROUP BY u.codigo \n");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre Usuario");
+        modelo.addColumn("Sumas Puntos Disponibles");
+        
+        
+        tablaInformes.setModel(modelo);
+        
+        String sql = "SELECT u.nombre, SUM(p.cantidad_disponible) FROM usuario AS u, cartera AS c, puntos AS p WHERE u.codigo = c.usuario_cartera_codigo AND c.codigo = p.cartera_codigo GROUP BY u.codigo";
+        
+        String datos[] = new String [10];
+        Statement st;
+        try {
+            
+            st = ControladorAuxiliar.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                modelo.addRow(datos);
+            }
+            tablaInformes.setModel(modelo);
+            btnReporte.setEnabled(true);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No funciona "+e);
+            
+        }  
+    }//GEN-LAST:event_buttonAero9ActionPerformed
+
+    private void buttonAero7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero7ActionPerformed
+        JOptionPane.showMessageDialog(null, "listar el ");
+        JOptionPane.showMessageDialog(null, "SELECT u.nombre, p.nombre FROM usuario u, departamento d, ciudad c, pais p \n" 
+                + "WHERE u.departamento_usuario_codigo = d.codigo AND c.codigo = d.ciudad_codigo \n" 
+                +"AND p.codigo=C.pais_codigo AND P.codigo!='1'");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre Usuario");
+        modelo.addColumn("Pais Usuario");
+        
+        
+        tablaInformes.setModel(modelo);
+        
+        String sql = "SELECT u.nombre, p.nombre FROM usuario u, departamento d, ciudad c, pais p WHERE u.departamento_usuario_codigo = d.codigo AND c.codigo = d.ciudad_codigo AND p.codigo=C.pais_codigo AND P.codigo!='1'";
+        
+        String datos[] = new String [10];
+        Statement st;
+        try {
+            
+            st = ControladorAuxiliar.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                modelo.addRow(datos);
+            }
+            tablaInformes.setModel(modelo);
+            btnReporte.setEnabled(true);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No funciona "+e);
+            
+        } 
+    }//GEN-LAST:event_buttonAero7ActionPerformed
+
+    private void buttonAero6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero6ActionPerformed
+       JOptionPane.showMessageDialog(null, "listar el ");
+        JOptionPane.showMessageDialog(null, "(SELECT p.nombre FROM departamento d, ciudad c, pais p \n" 
+                +"WHERE d.ciudad_codigo=c.codigo AND p.codigo=c.pais_codigo AND p.nombre LIKE '%M%') \n");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Pais");
+        
+        
+        
+        tablaInformes.setModel(modelo);
+        
+        String sql = "(SELECT p.nombre FROM departamento d, ciudad c, pais p WHERE d.ciudad_codigo=c.codigo AND p.codigo=c.pais_codigo AND p.nombre LIKE '%M%')";
+        
+        String datos[] = new String [10];
+        Statement st;
+        try {
+            
+            st = ControladorAuxiliar.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                 modelo.addRow(datos);
+            }
+            tablaInformes.setModel(modelo);
+            btnReporte.setEnabled(true);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No funciona "+e);
+            
+        } 
+    }//GEN-LAST:event_buttonAero6ActionPerformed
+
+    private void buttonAero8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero8ActionPerformed
+        JOptionPane.showMessageDialog(null, "listar el ");
+        JOptionPane.showMessageDialog(null, "SELECT nombre, unidades, precio from producto WHERE unidades>2");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre Producto");
+        modelo.addColumn("Unidades");
+        modelo.addColumn("Precio");
+        
+        
+        
+        tablaInformes.setModel(modelo);
+        
+        String sql = "SELECT nombre, unidades, precio from producto WHERE unidades>2";
+        
+        String datos[] = new String [10];
+        Statement st;
+        try {
+            
+            st = ControladorAuxiliar.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                 modelo.addRow(datos);
+            }
+            tablaInformes.setModel(modelo);
+            btnReporte.setEnabled(true);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No funciona "+e);
+            
+        }  
+    }//GEN-LAST:event_buttonAero8ActionPerformed
+
+    private void buttonAero11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero11ActionPerformed
+        JOptionPane.showMessageDialog(null, "listar el ");
+        JOptionPane.showMessageDialog(null, "SELECT codigo, nombre, email, username FROM `usuario` WHERE departamento_usuario_codigo=13");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Código");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Email");
+        modelo.addColumn("Username");
+        
+        
+        
+        tablaInformes.setModel(modelo);
+        
+        String sql = "SELECT codigo, nombre, email, username FROM `usuario` WHERE departamento_usuario_codigo=13";
+        
+        String datos[] = new String [10];
+        Statement st;
+        try {
+            
+            st = ControladorAuxiliar.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                datos[3]=rs.getString(4);
+                 modelo.addRow(datos);
+            }
+            tablaInformes.setModel(modelo);
+            btnReporte.setEnabled(true);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No funciona "+e);
+            
+        }
+    }//GEN-LAST:event_buttonAero11ActionPerformed
+
+    private void buttonAero12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAero12ActionPerformed
+        JOptionPane.showMessageDialog(null, "listar el ");
+        JOptionPane.showMessageDialog(null, "SELECT nombre, codigo from delivery WHERE pais_codigo=1");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Código");
+        
+        
+        
+        
+        tablaInformes.setModel(modelo);
+        
+        String sql = "SELECT nombre, codigo from delivery WHERE pais_codigo=3";
+        
+        String datos[] = new String [10];
+        Statement st;
+        try {
+            
+            st = ControladorAuxiliar.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                 modelo.addRow(datos);
+            }
+            tablaInformes.setModel(modelo);
+            btnReporte.setEnabled(true);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No funciona "+e);
+            
+        }
+    }//GEN-LAST:event_buttonAero12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -327,21 +796,25 @@ public class ConsultasInformes_FRM extends javax.swing.JFrame {
     private org.edisoncor.gui.button.ButtonRound btnReporte;
     private org.edisoncor.gui.button.ButtonAero buttonAero1;
     private org.edisoncor.gui.button.ButtonAero buttonAero10;
+    private org.edisoncor.gui.button.ButtonAero buttonAero11;
+    private org.edisoncor.gui.button.ButtonAero buttonAero12;
     private org.edisoncor.gui.button.ButtonAero buttonAero2;
     private org.edisoncor.gui.button.ButtonAero buttonAero3;
     private org.edisoncor.gui.button.ButtonAero buttonAero4;
     private org.edisoncor.gui.button.ButtonAero buttonAero5;
     private org.edisoncor.gui.button.ButtonAero buttonAero6;
     private org.edisoncor.gui.button.ButtonAero buttonAero7;
+    private org.edisoncor.gui.button.ButtonAero buttonAero8;
     private org.edisoncor.gui.button.ButtonAero buttonAero9;
-    private org.edisoncor.gui.button.ButtonRound buttonRound2;
     private javax.swing.JScrollPane jScrollPane1;
     private org.edisoncor.gui.panel.Panel panel1;
     private org.edisoncor.gui.panel.Panel panel2;
     private org.edisoncor.gui.panel.Panel panel5;
     private org.edisoncor.gui.panel.PanelRound panelRound1;
     private org.edisoncor.gui.panel.PanelRound panelRound2;
+    private org.edisoncor.gui.panel.PanelRound panelRound4;
     private org.edisoncor.gui.tabbedPane.TabbedPaneRound tabbedPaneRound1;
+    private org.edisoncor.gui.tabbedPane.TabbedPaneRound tabbedPaneRound3;
     private javax.swing.JTable tablaInformes;
     // End of variables declaration//GEN-END:variables
 }

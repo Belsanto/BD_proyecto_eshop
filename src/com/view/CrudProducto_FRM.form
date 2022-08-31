@@ -25,11 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="panelImage1" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-              <EmptySpace max="32767" attributes="0"/>
-=======
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
->>>>>>> c7f308e557e03f3447c81d997e860bb297dcf416
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,16 +49,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   <Component id="labelRound1" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                  <EmptySpace min="0" pref="1021" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="panelRoundTranslucidoComplete1" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-=======
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
->>>>>>> c7f308e557e03f3447c81d997e860bb297dcf416
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>

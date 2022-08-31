@@ -186,21 +186,6 @@ public class ProductoJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The producto with id " + id + " no longer exists.", enfe);
             }
-            Usuario vendedorCodigo = producto.getVendedorCodigo();
-            if (vendedorCodigo != null) {
-                vendedorCodigo.getProductoList().remove(producto);
-                vendedorCodigo = em.merge(vendedorCodigo);
-            }
-            Departamento departamentoProductoCodigo = producto.getDepartamentoProductoCodigo();
-            if (departamentoProductoCodigo != null) {
-                departamentoProductoCodigo.getProductoList().remove(producto);
-                departamentoProductoCodigo = em.merge(departamentoProductoCodigo);
-            }
-            List<Comentario> comentarioList = producto.getComentarioList();
-            for (Comentario comentarioListComentario : comentarioList) {
-                comentarioListComentario.setProductocCodigo(null);
-                comentarioListComentario = em.merge(comentarioListComentario);
-            }
             em.remove(producto);
             em.getTransaction().commit();
         } finally {

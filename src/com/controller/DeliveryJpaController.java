@@ -155,16 +155,7 @@ public class DeliveryJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The delivery with id " + id + " no longer exists.", enfe);
             }
-            Pais paisCodigo = delivery.getPaisCodigo();
-            if (paisCodigo != null) {
-                paisCodigo.getDeliveryList().remove(delivery);
-                paisCodigo = em.merge(paisCodigo);
-            }
-            List<Ruta> rutaList = delivery.getRutaList();
-            for (Ruta rutaListRuta : rutaList) {
-                rutaListRuta.setEmpresaCodigo(null);
-                rutaListRuta = em.merge(rutaListRuta);
-            }
+            
             em.remove(delivery);
             em.getTransaction().commit();
         } finally {
